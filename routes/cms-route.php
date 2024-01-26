@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use VedianSOFT\CMS\Controllers\PageController;
-
+use VedianSOFT\CMS\Controllers\RowController;
+use VedianSOFT\CMS\Controllers\BlockController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +19,7 @@ Route::middleware('web')
     ->prefix('cms')
     ->group(function () {
         Route::get('/page/create', [PageController::class, 'create']);
+        Route::get('/row/create', [RowController::class, 'create']);
+        Route::get('/block/create', [BlockController::class, 'create']);
+        
     });

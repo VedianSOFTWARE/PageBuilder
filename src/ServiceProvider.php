@@ -4,12 +4,17 @@ namespace VedianSOFT\CMS;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
-use VedianSOFT\CMS\Builders\Builder;
-use VedianSOFT\CMS\Builders\ColumnBuilder;
 use VedianSOFT\CMS\Builders\PageBuilder;
-use VedianSOFT\CMS\Builders\RowBuilder;
+use VedianSOFT\CMS\Builders\RowBuilder; // Add this line
+use VedianSOFT\CMS\Builders\BlockBuilder; // Add this line
 use VedianSOFT\CMS\Contracts\BuilderContract;
-use VedianSOFT\CMS\Controllers\PageController;
+use VedianSOFT\CMS\Contracts\PageContract;
+use VedianSOFT\CMS\Contracts\RowContract;
+use VedianSOFT\CMS\Contracts\BlockContract;
+use VedianSOFT\CMS\Models\Builder;
+use VedianSOFT\CMS\Models\Page;
+use VedianSOFT\CMS\Models\Row;
+use VedianSOFT\CMS\Models\Block;
 
 /**
  * Class ServiceProvider
@@ -26,7 +31,28 @@ class ServiceProvider extends Provider
     public function register()
     {
         $this->commands($this->commands);
+        
+        // Base builder model binding
+        $this->app->bind(BuilderContract::class, Builder::class);
+
+        // Builder sub-model bindings
+        $this->app->bind(PageContract::class, Page::class);
+        $this->app->bind(RowContract::class, Row::class);
+        $this->app->bind(BlockContract::class, Block::class);
+
+        // Builder bindings
+        $this->app->when(PageBuilder::class)
+            ->give(PageContract::class);
+        $this->app->when(RowBuilder::class)
+            ->give(RowContract::class);
+
+        $this->app->when(BlockBuilder::class) 
+            ->give(BlockContract::class);
     }
+
+        
+
+    
 
     /**
      * Bootstrap any application services.

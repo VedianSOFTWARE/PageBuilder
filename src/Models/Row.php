@@ -3,9 +3,10 @@
 namespace VedianSOFT\CMS\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use VedianSOFT\CMS\Contracts\RowContract;
 use VedianSOFT\CMS\Traits\HasAuthor;
 
-class Row extends Model
+class Row extends Model implements RowContract
 {
     use HasAuthor;
 

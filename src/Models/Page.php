@@ -3,10 +3,11 @@
 namespace VedianSOFT\CMS\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use VedianSOFT\CMS\Contracts\PageContract;
 use VedianSOFT\CMS\Traits\HasAuthor;
 use VedianSOFT\CMS\Traits\HasVisibility;
 
-class Page extends Model
+class Page extends Model implements PageContract
 {
     use HasAuthor, HasVisibility;
 

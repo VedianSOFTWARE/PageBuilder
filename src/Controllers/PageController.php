@@ -6,10 +6,9 @@ use VedianSOFT\CMS\Builders\PageBuilder;
 
 class PageController extends Controller
 {
-    public function create()
+    public function create(PageBuilder $pb)
     {
-        $pb = new PageBuilder();
-        dd($pb);
+        dd($pb->getModel(), $this);
         return 666;
     }
 }
