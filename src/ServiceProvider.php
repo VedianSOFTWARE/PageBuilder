@@ -4,6 +4,7 @@ namespace VedianSOFTWARE\VedianCMS;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
+use VedianSoftware\VedianCMS\Console\Commands\ComponentMakeCommand;
 
 /**
  * Class ServiceProvider
@@ -15,14 +16,13 @@ use Illuminate\Support\ServiceProvider as Provider;
  */
 class ServiceProvider extends Provider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+    protected $commands = [
+        ComponentMakeCommand::class,
+    ];
+
     public function register()
     {
-        // Register your CMS services here
+        $this->commands($this->commands);
     }
 
     /**

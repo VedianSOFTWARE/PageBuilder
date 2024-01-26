@@ -1,5 +1,5 @@
 {
-    "name": "vediansoftware/vediancms",
+    "name": "vediansoftware/vedian-cms",
     "description": "Content management system for laravel",
     "type": "library",
     "autoload": {
