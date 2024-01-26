@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSOFTWARE\VedianCMS\Traits;
+namespace VedianSOFT\CMS\Traits;
 
 trait HasAuthor
 {

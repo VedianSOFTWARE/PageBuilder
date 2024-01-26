@@ -1,9 +1,19 @@
 <?php
 
-namespace VedianSOFTWARE\VedianCMS;
+namespace VedianSOFT\CMS;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
+use Ramsey\Collection\CollectionInterface;
+use VedianSOFT\CMS\Builders\Builder;
+use VedianSOFT\CMS\Builders\PageBuilder;
+use VedianSOFT\CMS\Features\RowFeature;
+use VedianSOFT\CMS\Collectors\RowsCollection;
+use VedianSOFT\CMS\Contracts\BuilderContract;
+use VedianSOFT\CMS\Contracts\CollectionContract;
+use VedianSOFT\CMS\Contracts\FeatureContract;
+use VedianSOFT\CMS\Contracts\PageBuilderContract;
 
 /**
  * Class ServiceProvider
@@ -21,6 +31,7 @@ class ServiceProvider extends Provider
     public function register()
     {
         $this->commands($this->commands);
+    
     }
 
     /**
@@ -43,7 +54,7 @@ class ServiceProvider extends Provider
      */
     protected function vendorBladeComponents()
     {
-        Blade::componentNamespace('VedianSOFTWARE\\VedianCMS\\Views\\Components', 'vedian-cms');
+        Blade::componentNamespace('VedianSOFT\\CMS\\Views\\Components', 'vedian-cms');
     }
 
     /**
