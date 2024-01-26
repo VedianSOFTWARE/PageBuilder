@@ -4,7 +4,6 @@ namespace VedianSOFTWARE\VedianCMS;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
-use VedianSoftware\VedianCMS\Console\Commands\ComponentMakeCommand;
 
 /**
  * Class ServiceProvider
@@ -17,7 +16,6 @@ use VedianSoftware\VedianCMS\Console\Commands\ComponentMakeCommand;
 class ServiceProvider extends Provider
 {
     protected $commands = [
-        ComponentMakeCommand::class,
     ];
 
     public function register()
