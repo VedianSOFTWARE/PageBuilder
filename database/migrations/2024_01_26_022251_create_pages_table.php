@@ -1,10 +1,10 @@
 <?php
 
-use App\Enumerations\Status;
-use App\Enumerations\Visibility;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use VedianCMS\Enumerations\Status;
+use VedianCMS\Enumerations\Visibility;
 
 return new class extends Migration
 {

@@ -2,7 +2,7 @@
 
 namespace VedianCMS\Enumerations;
 
-use App\Traits\EnumToArray;
+use VedianCMS\Traits\EnumToArray;
 
 enum Visibility: string
 {

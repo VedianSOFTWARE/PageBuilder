@@ -23,7 +23,24 @@ class ServiceProvider extends Provider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom([
+        $this->vendorLoaders();
+        $this->vendorPublishers();
+    }
+
+    protected function vendorLoaders()
+    {
+        // Load migrations
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        // Load views
+        $this->loadViewsFrom(__DIR__ . '/../views', 'vedian-cms-views');
+        // Load routes
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php', 'vedian-cms-routes');
+    }
+
+    protected function vendorPublishers()
+    {
+        // Publish migrations
+        $this->publishes([
             __DIR__ .
                 '/../database/migrations' => database_path('migrations/vedian-cms')
         ], 'vedian-cms-migrations');
@@ -32,9 +49,6 @@ class ServiceProvider extends Provider
         $this->publishes([
             __DIR__ . '/../config/cms.php' => config_path('vedian-cms.php'),
         ], 'config');
-
-        // Load views
-        $this->loadViewsFrom(__DIR__ . '/../views', 'vedian-cms-views');
 
         // Publish views
         $this->publishes([
