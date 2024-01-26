@@ -2,18 +2,14 @@
 
 namespace VedianSOFT\CMS;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
-use Ramsey\Collection\CollectionInterface;
 use VedianSOFT\CMS\Builders\Builder;
+use VedianSOFT\CMS\Builders\ColumnBuilder;
 use VedianSOFT\CMS\Builders\PageBuilder;
-use VedianSOFT\CMS\Features\RowFeature;
-use VedianSOFT\CMS\Collectors\RowsCollection;
+use VedianSOFT\CMS\Builders\RowBuilder;
 use VedianSOFT\CMS\Contracts\BuilderContract;
-use VedianSOFT\CMS\Contracts\CollectionContract;
-use VedianSOFT\CMS\Contracts\FeatureContract;
-use VedianSOFT\CMS\Contracts\PageBuilderContract;
+use VedianSOFT\CMS\Controllers\PageController;
 
 /**
  * Class ServiceProvider
@@ -25,13 +21,11 @@ use VedianSOFT\CMS\Contracts\PageBuilderContract;
  */
 class ServiceProvider extends Provider
 {
-    protected $commands = [
-    ];
+    protected $commands = [];
 
     public function register()
     {
         $this->commands($this->commands);
-    
     }
 
     /**
