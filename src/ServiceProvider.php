@@ -34,7 +34,7 @@ class ServiceProvider extends Provider
         // Load views
         $this->loadViewsFrom(__DIR__ . '/../views', 'vedian-cms-views');
         // Load routes
-        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php', 'vedian-cms-routes');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/cms-route.php', 'vedian-cms-routes');
     }
 
     protected function vendorPublishers()
@@ -48,11 +48,11 @@ class ServiceProvider extends Provider
         // Publish config file
         $this->publishes([
             __DIR__ . '/../config/cms.php' => config_path('vedian-cms.php'),
-        ], 'config');
+        ], 'vedian-cms-config');
 
         // Publish views
         $this->publishes([
             __DIR__ . '/../views' => resource_path('views/vendor/vedian-cms'),
-        ], 'views');
+        ], 'vedian-cms-views');
     }
 }
