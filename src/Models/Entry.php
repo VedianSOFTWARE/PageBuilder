@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSOFTWARE\VedianSOFTWARE\VedianCMS\Models;
+namespace VedianSOFTWARE\VedianCMS\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

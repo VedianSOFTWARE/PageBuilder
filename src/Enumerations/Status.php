@@ -1,6 +1,6 @@
 <?php 
 
-namespace VedianSOFTWARE\VedianSOFTWARE\VedianCMS\Enumerations;
+namespace VedianSOFTWARE\VedianCMS\Enumerations;
 
 use VedianSOFTWARE\VedianCMS\Traits\EnumToArray;
 
