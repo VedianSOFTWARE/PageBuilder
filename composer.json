@@ -12,6 +12,13 @@
         "illuminate/support": "^10.0",
         "laravel/framework": "^10.0"
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VedianCMS\\ServiceProvider"
+            ]
+        }
+    },
     "authors": [
         {
             "name": "Tom van Tilburg",

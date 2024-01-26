@@ -1,10 +1,10 @@
 <?php
 
-namespace VedianSOFT\Providers;
+namespace VedianCMS;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as Provider;
 
-class CMSServiceProvider extends ServiceProvider
+class ServiceProvider extends Provider
 {
     /**
      * Register any application services.
@@ -22,14 +22,19 @@ class CMSServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {        
+    {
+        $this->loadMigrationsFrom([
+            __DIR__ .
+                '/../database/migrations' => database_path('migrations/vedian-cms')
+        ], 'vedian-cms-migrations');
+
         // Publish config file
         $this->publishes([
-            __DIR__ . '/../config/cms.php' => config_path('cms.php'),
+            __DIR__ . '/../config/cms.php' => config_path('vedian-cms.php'),
         ], 'config');
 
         // Load views
-        $this->loadViewsFrom(__DIR__ . '/../views', 'vedian-cms');
+        $this->loadViewsFrom(__DIR__ . '/../views', 'vedian-cms-views');
 
         // Publish views
         $this->publishes([
