@@ -4,6 +4,11 @@ namespace VedianSOFT\CMS\Builders;
 
 use VedianSOFT\CMS\Contracts\BlockContract;
 
+/**
+ * Class BlockBuilder
+ * 
+ * This class is responsible for building blocks in the VedianSOFT CMS.
+ */
 class BlockBuilder extends Builder
 {
 
