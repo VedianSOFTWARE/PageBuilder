@@ -14,6 +14,8 @@ use VedianSOFT\CMS\Controllers\PageController;
 |
 */
 
-Route::middleware('web')->group(function () {
-    Route::get('/test', [PageController::class, 'index']);
-});
+Route::middleware('web')
+    ->prefix('cms')
+    ->group(function () {
+        Route::get('/page/create', [PageController::class, 'create']);
+    });

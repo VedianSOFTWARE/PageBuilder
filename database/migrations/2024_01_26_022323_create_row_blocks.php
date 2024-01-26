@@ -11,9 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_entries', function (Blueprint $table) {
-            $table->foreignId('page_id')->constrained('pages');
-            $table->foreignId('entry_id')->constrained('entries');
+        Schema::create('row_blocks', function (Blueprint $table) {
+            
+            $table->id();
+            
+            $table->string('title');
+
+            $table->tinyText('style')->nullable();
+
+            $table->tinyInteger('order')->default(0);
+            $table->foreignId('row_id')->constrained('rows');
+
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -19,6 +19,8 @@ return new class extends Migration
             
             $table->string('title');
             $table->string('slug')->unique();
+            
+            $table->tinyText('excerpt')->nullable();
 
             $table->enum(
                 'visibility',
@@ -30,8 +32,8 @@ return new class extends Migration
                 Status::getValues()
             )->default(Status::DRAFT->value);
 
-            $table->dateTime('valid_from')->nullable();
-            $table->dateTime('valid_till')->nullable();
+            $table->dateTime('visible_from')->nullable();
+            $table->dateTime('visible_till')->nullable();
 
             $table->timestamp('published_at')->nullable();
             $table->foreignId('created_by')->constrained('users');

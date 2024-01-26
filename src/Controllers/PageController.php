@@ -6,7 +6,7 @@ use VedianSOFT\CMS\Builders\PageBuilder;
 
 class PageController extends Controller
 {
-    public function index()
+    public function create()
     {
         $pb = new PageBuilder();
         dd($pb);

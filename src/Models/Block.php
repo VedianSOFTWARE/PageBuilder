@@ -4,16 +4,16 @@ namespace VedianSOFT\CMS\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Entry extends Model
+class Block extends Model
 {
     // Define the fillable columns
     protected $fillable = [
         // Add your fillable columns here
     ];
 
-    // Define the many-to-many relationship with the Page model
-    public function pages()
+    // Define the relationship with the "Row" model
+    public function row()
     {
-        return $this->belongsToMany(Page::class, 'page_entries');
-    }
+        return $this->belongsTo(Row::class);
+    }    
 }
