@@ -1,0 +1,22 @@
+{
+    "name": "vediansoftware/vediancms",
+    "description": "Content management system for laravel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "VedianCMS\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0"
+    },
+    "authors": [
+        {
+            "name": "Tom van Tilburg",
+            "email": "tom@vediansoft.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
