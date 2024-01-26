@@ -32,7 +32,7 @@ class ServiceProvider extends Provider
     {
         $this->commands($this->commands);
 
-        // Base builder model binding
+        // Base builder model bindings
         $this->app->bind(BuilderContract::class, Builder::class);
 
         // Builder sub-model bindings
