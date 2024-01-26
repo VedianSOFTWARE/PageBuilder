@@ -28,8 +28,8 @@ class Row extends Model implements RowContract
     }
 
     // Define the has-one relationship with the Block model
-    public function block()
+    public function blocks()
     {
-        return $this->hasOne(Block::class);
+        return $this->hasMany(Block::class);
     }
 }

@@ -25,7 +25,7 @@ class Page extends Model implements PageContract
     
     public function rows()
     {
-        return $this->belongsToMany(Row::class, 'page_entries');
+        return $this->belongsToMany(Row::class, 'page_rows');
     }
     
 }

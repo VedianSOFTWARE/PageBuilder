@@ -16,10 +16,9 @@ use VedianSOFT\CMS\Controllers\BlockController;
 */
 
 Route::middleware('web')
-    ->prefix('cms')
+    ->prefix('admin/website/page')
     ->group(function () {
-        Route::get('/page/create', [PageController::class, 'create']);
-        Route::get('/row/create', [RowController::class, 'create']);
-        Route::get('/block/create', [BlockController::class, 'create']);
-        
+        Route::get('create', [PageController::class, 'create']);
+        Route::get('add/row', [RowController::class, 'create']);
+        Route::get('add/block', [BlockController::class, 'create']);
     });
