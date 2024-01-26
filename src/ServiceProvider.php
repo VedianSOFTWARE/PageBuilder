@@ -1,9 +1,18 @@
 <?php
 
-namespace VedianCMS;
+namespace VedianSOFTWARE\VedianCMS;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
 
+/**
+ * Class ServiceProvider
+ *
+ * This class is the service provider for the VedianCMS package.
+ * It registers and bootstraps the necessary services and components.
+ *
+ * @package VedianCMS
+ */
 class ServiceProvider extends Provider
 {
     /**
@@ -25,8 +34,25 @@ class ServiceProvider extends Provider
     {
         $this->vendorLoaders();
         $this->vendorPublishers();
+        $this->vendorBladeComponents();
     }
 
+
+    /**
+     * Register the vendor blade components.
+     *
+     * @return void
+     */
+    protected function vendorBladeComponents()
+    {
+        Blade::componentNamespace('VedianSOFTWARE\\VedianCMS\\Views\\Components', 'vedian-cms');
+    }
+
+    /**
+     * Load the vendor loaders.
+     *
+     * @return void
+     */
     protected function vendorLoaders()
     {
         // Load migrations
@@ -37,6 +63,11 @@ class ServiceProvider extends Provider
         $this->loadRoutesFrom(__DIR__ . '/../routes/cms-route.php', 'vedian-cms-routes');
     }
 
+    /**
+     * Get the vendor publishers for the service provider.
+     *
+     * @return array
+     */
     protected function vendorPublishers()
     {
         // Publish migrations

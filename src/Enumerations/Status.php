@@ -1,8 +1,8 @@
 <?php 
 
-namespace VedianCMS\Enumerations;
+namespace VedianSOFTWARE\VedianSOFTWARE\VedianCMS\Enumerations;
 
-use VedianCMS\Traits\EnumToArray;
+use VedianSOFTWARE\VedianCMS\Traits\EnumToArray;
 
 enum Status: string {
     
