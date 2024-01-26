@@ -2,18 +2,18 @@
 
 namespace VedianSOFT\CMS\Builders;
 
-use VedianSOFT\CMS\Contracts\BlockContract;
+use VedianSOFT\CMS\Contracts\ColumnContract;
 
 /**
- * Class BlockBuilder
+ * Class ColumnBuilder
  * 
  * This class is responsible for building blocks in the VedianSOFT CMS.
  */
-class BlockBuilder extends Builder
+class ColumnBuilder extends Builder
 {
 
     public function __construct(
-        BlockContract $model
+        ColumnContract $model
     ) {
         $this($model);
     }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use VedianSOFT\CMS\Controllers\PageController;
 use VedianSOFT\CMS\Controllers\RowController;
-use VedianSOFT\CMS\Controllers\BlockController;
+use VedianSOFT\CMS\Controllers\ColumnController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +20,5 @@ Route::middleware('web')
     ->group(function () {
         Route::get('create', [PageController::class, 'create']);
         Route::get('add/row', [RowController::class, 'create']);
-        Route::get('add/block', [BlockController::class, 'create']);
+        Route::get('add/block', [ColumnController::class, 'create']);
     });

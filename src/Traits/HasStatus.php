@@ -1,53 +1,26 @@
+<?php
 
-<?php 
 namespace VedianSOFT\CMS\Traits;
 
-use InvalidArgumentException;
 use VedianSOFT\CMS\Enumerations\Status;
 
+/**
+ * Trait HasStatus
+ * 
+ * This trait provides functionality for managing the status of a model.
+ */
 trait HasStatus
 {
-    protected $status;
-
-    public function setStatus($status)
+    /**
+     * Initialize the HasStatus trait.
+     * 
+     * This method merges the 'status' attribute into the fillable array and casts it to the Status enumeration class.
+     *
+     * @return void
+     */
+    public function initializeHasStatus()
     {
-        if (!in_array($status, Status::getValues())) {
-            throw new InvalidArgumentException('Invalid status');
-        }
-
-        $this->status = $status->value;
-    }
-
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-
-    public function isDraft()
-    {
-        return $this->status === Status::DRAFT;
-    }
-
-    public function isPublished()
-    {
-        return $this->status === Status::PUBLISHED;
-    }
-
-    public function isDeleted()
-    {
-        return $this->status === Status::DELETED;
-    }
-
-    public function isHidden()
-    {
-        return $this->status === Status::HIDDEN;
-    }
-
-    public function isArchived()
-    {
-        return $this->status === Status::ARCHIVE;
+        $this->mergeFillable(['status']);
+        $this->mergeCasts(['status' => Status::class]);
     }
 }
-
-

@@ -11,19 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('row_blocks', function (Blueprint $table) {
-            
-            $table->id();
-            
-            $table->string('title');
-
-            $table->tinyText('style')->nullable();
-
+        Schema::create('page_rows', function (Blueprint $table) {
             $table->tinyInteger('order')->default(0);
+            $table->foreignId('page_id')->constrained('pages');
             $table->foreignId('row_id')->constrained('rows');
-
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('page_rows');
     }
 };

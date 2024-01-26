@@ -2,6 +2,6 @@
 
 namespace VedianSOFT\CMS\Contracts;
 
-interface BlockContract
+interface ColumnContract
 {
 }
