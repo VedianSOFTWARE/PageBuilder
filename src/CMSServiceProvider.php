@@ -25,15 +25,15 @@ class CMSServiceProvider extends ServiceProvider
     {        
         // Publish config file
         $this->publishes([
-            __DIR__ . '/../config/yourconfig.php' => config_path('yourconfig.php'),
+            __DIR__ . '/../config/cms.php' => config_path('cms.php'),
         ], 'config');
 
         // Load views
-        $this->loadViewsFrom(__DIR__ . '/../views', 'yourpackage');
+        $this->loadViewsFrom(__DIR__ . '/../views', 'vedian-cms');
 
         // Publish views
         $this->publishes([
-            __DIR__ . '/../views' => resource_path('views/vendor/yourpackage'),
+            __DIR__ . '/../views' => resource_path('views/vendor/vedian-cms'),
         ], 'views');
     }
 }
