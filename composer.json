@@ -1,10 +1,10 @@
 {
-    "name": "vediansoftware/vediancms",
+    "name": "vediansoftware/vedian-cms",
     "description": "Content management system for laravel",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "VedianCMS\\": "src/"
+            "VedianSOFT\\CMS\\": "src/"
         }
     },
     "require": {
@@ -15,7 +15,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VedianCMS\\ServiceProvider"
+                "VedianSOFT\\CMS\\ServiceProvider"
             ]
         }
     },

@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use VedianCMS\Enumerations\Status;
-use VedianCMS\Enumerations\Visibility;
+use VedianSOFT\CMS\Enumerations\Status;
+use VedianSOFT\CMS\Enumerations\Visibility;
 
 return new class extends Migration
 {
@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
 
             $table->id();
+            
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('meta_title')->nullable();
-            $table->string('meta_description')->nullable();
+            
+            $table->tinyText('excerpt')->nullable();
 
             $table->enum(
                 'visibility',
@@ -31,8 +32,8 @@ return new class extends Migration
                 Status::getValues()
             )->default(Status::DRAFT->value);
 
-            $table->dateTime('valid_from')->nullable();
-            $table->dateTime('valid_till')->nullable();
+            $table->dateTime('visible_from')->nullable();
+            $table->dateTime('visible_till')->nullable();
 
             $table->timestamp('published_at')->nullable();
             $table->foreignId('created_by')->constrained('users');

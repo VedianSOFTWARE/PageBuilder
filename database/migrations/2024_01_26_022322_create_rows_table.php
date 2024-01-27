@@ -11,11 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('entries', function (Blueprint $table) {
+        Schema::create('rows', function (Blueprint $table) {
             $table->id();
+            
             $table->string('title');
             $table->string('slug')->unique();
-            $table->json('content')->nullable();
+            
+            $table->tinyText('description')->nullable();
+            $table->string('template')->nullable();
+            $table->tinyText('style')->nullable();
+
+            $table->dateTime('visible_from')->nullable();
+            $table->dateTime('visible_till')->nullable();
+
+            $table->timestamp('published_at')->nullable();
             $table->foreignId('created_by')->constrained('users');
 
             $table->timestamps();
