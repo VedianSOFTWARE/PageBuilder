@@ -5,8 +5,8 @@ namespace VedianSOFT\CMS;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
 use VedianSOFT\CMS\Builders\PageBuilder;
-use VedianSOFT\CMS\Builders\RowBuilder; // Add this line
-use VedianSOFT\CMS\Builders\ColumnBuilder; // Add this line
+use VedianSOFT\CMS\Builders\RowBuilder;
+use VedianSOFT\CMS\Builders\ColumnBuilder;
 use VedianSOFT\CMS\Contracts\BuilderContract;
 use VedianSOFT\CMS\Contracts\PageContract;
 use VedianSOFT\CMS\Contracts\RowContract;
@@ -22,7 +22,7 @@ use VedianSOFT\CMS\Models\Column;
  * This class is the service provider for the VedianCMS package.
  * It registers and bootstraps the necessary services and components.
  *
- * @package VedianCMS
+ * @package VedianSOFT\CMS
  */
 class ServiceProvider extends Provider
 {
@@ -31,7 +31,7 @@ class ServiceProvider extends Provider
     public function register()
     {
         $this->commands($this->commands);
-
+    
         // Base builder model bindings
         $this->app->bind(BuilderContract::class, Builder::class);
 

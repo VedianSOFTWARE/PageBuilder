@@ -17,9 +17,5 @@ class ColumnBuilder extends Builder
     ) {
         $this($model);
     }
-
-    /**
-     * This code adds protected properties to match the migration row_blocks.
-     */
     
 }
