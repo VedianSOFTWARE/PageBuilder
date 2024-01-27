@@ -31,7 +31,10 @@ class ServiceProvider extends Provider
     public function register()
     {
         $this->commands($this->commands);
-    
+
+        // 
+        $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
+
         // Base builder model bindings
         $this->app->bind(BuilderContract::class, Builder::class);
 
@@ -43,17 +46,14 @@ class ServiceProvider extends Provider
         // Builder bindings
         $this->app->when(PageBuilder::class)
             ->give(PageContract::class);
+            
         $this->app->when(RowBuilder::class)
             ->give(RowContract::class);
 
         $this->app->when(ColumnBuilder::class)
             ->give(ColumnContract::class);
     }
-
-
-
-
-
+    
     /**
      * Bootstrap any application services.
      *
@@ -74,7 +74,7 @@ class ServiceProvider extends Provider
      */
     protected function vendorBladeComponents()
     {
-        Blade::componentNamespace('VedianSOFT\\CMS\\Views\\Components', 'vedian-cms');
+        Blade::componentNamespace('VedianSOFT\\CMS\\Views\\Components', 'vedian');
     }
 
     /**
@@ -87,9 +87,10 @@ class ServiceProvider extends Provider
         // Load migrations
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         // Load views
-        $this->loadViewsFrom(__DIR__ . '/../views', 'vedian-cms-views');
+        $this->loadViewsFrom(__DIR__ . '/../views', 'vedian-views');
         // Load routes
-        $this->loadRoutesFrom(__DIR__ . '/../routes/cms-route.php', 'vedian-cms-routes');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/cms-public.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/cms-private.php');
     }
 
     /**
@@ -107,7 +108,7 @@ class ServiceProvider extends Provider
 
         // Publish config file
         $this->publishes([
-            __DIR__ . '/../config/cms.php' => config_path('vedian-cms.php'),
+            __DIR__ . '/../config/app.php' => config_path('vedian-cms.php'),
         ], 'vedian-cms-config');
 
         // Publish views

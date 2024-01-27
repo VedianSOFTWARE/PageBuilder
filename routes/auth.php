@@ -15,10 +15,10 @@ use VedianSOFT\CMS\Controllers\ColumnController;
 |
 */
 
-Route::middleware('web')
-    ->prefix('admin/website/page')
-    ->group(function () {
-        Route::get('create', [PageController::class, 'create']);
-        Route::get('add/row', [RowController::class, 'create']);
-        Route::get('add/block', [ColumnController::class, 'create']);
-    });
+Route::middleware(['auth:sanctum', 'verified'])->get('page', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('pages/create', [PageController::class, 'create']);
+Route::get('add/row', [RowController::class, 'create']);
+Route::get('add/column', [ColumnController::class, 'create']);

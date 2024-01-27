@@ -19,6 +19,7 @@ class PageController extends Controller
     public function create(PageBuilder $pb)
     {
         dd($pb->getModel(), $this);
+        return view('dashboard');
         return 666;
     }
 }
