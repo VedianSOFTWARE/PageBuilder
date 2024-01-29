@@ -11,11 +11,5 @@ use VedianSoft\VedianCms\Contracts\ColumnContract;
  */
 class ColumnBuilder extends Builder
 {
-
-    public function __construct(
-        ColumnContract $model
-    ) {
-        $this($model);
-    }
     
 }

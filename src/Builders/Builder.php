@@ -2,15 +2,14 @@
 
 namespace VedianSoft\VedianCms\Builders;
 
-use VedianSoft\VedianCms\Contracts\BuilderContract;
-use VedianSoft\VedianCms\Contracts\PageContract;
+use VedianSoft\VedianCms\Contracts\ModelContract;
 
 /**
  * Class Builder
  * 
  * This class represents a builder for creating CMS pages.
  */
-class Builder implements BuilderContract
+class Builder
 {
     /**
      * Constructor method for the builder.
@@ -19,7 +18,7 @@ class Builder implements BuilderContract
      * @return void
      */
     public function __construct(
-        protected BuilderContract $model
+        protected ModelContract $model
     ) {
         $this->setModel($model);
     }

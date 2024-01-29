@@ -4,7 +4,7 @@ namespace VedianSoft\VedianCms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use VedianSoft\VedianCms\Contracts\RowContract;
+use VedianSoft\VedianCms\Contracts\BuilderContract;
 use VedianSoft\VedianCms\Traits\HasAuthor;
 use VedianSoft\VedianCms\Traits\HasStatus;
 use VedianSoft\VedianCms\Traits\HasVisibility;
@@ -14,12 +14,12 @@ use VedianSoft\VedianCms\Traits\IsVisibleBetween;
  * Class Row
  *
  * This class represents a row in the CMS system.
- * It extends the Eloquent Model class and implements the RowContract interface.
+ * It extends the Eloquent Model class and implements the BuilderContract interface.
  * It also uses several traits for additional functionality.
  *
  * @package VedianSoft\VedianCms\Models
  */
-class Row extends Model implements RowContract
+class Row extends Builder
 {
     use HasAuthor, HasVisibility, HasStatus, IsVisibleBetween, SoftDeletes;
 

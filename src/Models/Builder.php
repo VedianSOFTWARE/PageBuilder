@@ -2,9 +2,9 @@
 
 namespace VedianSoft\VedianCms\Models;
 
-use Illuminate\Database\Eloquent\Model as EloquentModel;
-use VedianSoft\VedianCms\Contracts\BuilderContract;
+use Illuminate\Database\Eloquent\Model;
+use VedianSoft\VedianCms\Contracts\ModelContract;
 
-class Builder extends EloquentModel implements BuilderContract
+class Builder extends Model implements ModelContract
 {
 }

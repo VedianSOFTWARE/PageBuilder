@@ -2,6 +2,7 @@
 
 namespace VedianSoft\VedianCms\Contracts;
 
-interface ColumnContract
+interface ModelContract
 {
+    
 }

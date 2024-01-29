@@ -9,7 +9,7 @@ use VedianSoft\VedianCms\Contracts\ColumnContract;
 /**
  * Represents a column in the CMS.
  */
-class Column extends Model implements ColumnContract
+class Column extends Builder
 {
     use SoftDeletes;
 

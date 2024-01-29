@@ -20,7 +20,7 @@ use VedianSoft\VedianCms\Traits\IsVisibleBetween;
  *
  * @package VedianSoft\VedianCms\Models
  */
-class Page extends Model implements BuilderContract
+class Page extends Builder
 {
     use HasAuthor, HasVisibility, HasStatus, IsVisibleBetween, SoftDeletes;
 
