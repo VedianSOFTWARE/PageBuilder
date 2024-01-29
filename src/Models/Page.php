@@ -2,10 +2,7 @@
 
 namespace VedianSoft\VedianCms\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use VedianSoft\VedianCms\Contracts\BuilderContract;
-use VedianSoft\VedianCms\Contracts\PageContract;
 use VedianSoft\VedianCms\Traits\HasAuthor;
 use VedianSoft\VedianCms\Traits\HasStatus;
 use VedianSoft\VedianCms\Traits\HasVisibility;
@@ -20,7 +17,7 @@ use VedianSoft\VedianCms\Traits\IsVisibleBetween;
  *
  * @package VedianSoft\VedianCms\Models
  */
-class Page extends Builder
+class Page extends BuilderModel
 {
     use HasAuthor, HasVisibility, HasStatus, IsVisibleBetween, SoftDeletes;
 
