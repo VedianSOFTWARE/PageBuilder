@@ -1,14 +1,15 @@
 <?php 
 
-namespace VedianSOFT\CMS\Models;
+namespace VedianSoft\VedianCms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use VedianSOFT\CMS\Contracts\PageContract;
-use VedianSOFT\CMS\Traits\HasAuthor;
-use VedianSOFT\CMS\Traits\HasStatus;
-use VedianSOFT\CMS\Traits\HasVisibility;
-use VedianSOFT\CMS\Traits\IsVisibleBetween;
+use VedianSoft\VedianCms\Contracts\BuilderContract;
+use VedianSoft\VedianCms\Contracts\PageContract;
+use VedianSoft\VedianCms\Traits\HasAuthor;
+use VedianSoft\VedianCms\Traits\HasStatus;
+use VedianSoft\VedianCms\Traits\HasVisibility;
+use VedianSoft\VedianCms\Traits\IsVisibleBetween;
 
 /**
  * Class Page
@@ -17,12 +18,11 @@ use VedianSOFT\CMS\Traits\IsVisibleBetween;
  * It extends the Eloquent Model class and implements the PageContract interface.
  * It also uses several traits for additional functionality.
  *
- * @package VedianSOFT\CMS\Models
+ * @package VedianSoft\VedianCms\Models
  */
-class Page extends Model implements PageContract
+class Page extends Model implements BuilderContract
 {
     use HasAuthor, HasVisibility, HasStatus, IsVisibleBetween, SoftDeletes;
-
 
     protected $fillable = [
         'title',

@@ -1,8 +1,8 @@
 <?php
 
-namespace VedianSOFT\CMS\Builders;
+namespace VedianSoft\VedianCms\Builders;
 
-use VedianSOFT\CMS\Contracts\RowContract;
+use VedianSoft\VedianCms\Contracts\RowContract;
 
 class RowBuilder extends Builder
 {

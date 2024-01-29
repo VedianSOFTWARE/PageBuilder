@@ -1,12 +1,12 @@
 <?php
 
-namespace VedianSOFT\CMS\Controllers;
+namespace VedianSoft\VedianCms\Controllers;
 
-use VedianSOFT\CMS\Builders\PageBuilder;
+use VedianSoft\VedianCms\Builders\PageBuilder;
 
 /**
  * Class PageController
- * @package VedianSOFT\CMS\Controllers
+ * @package VedianSoft\VedianCms\Controllers
  */
 class PageController extends Controller
 {

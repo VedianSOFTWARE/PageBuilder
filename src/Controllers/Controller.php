@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSOFT\CMS\Controllers;
+namespace VedianSoft\VedianCms\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

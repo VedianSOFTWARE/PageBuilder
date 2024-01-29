@@ -1,10 +1,10 @@
 <?php
 
-namespace VedianSOFT\CMS\Builders;
+namespace VedianSoft\VedianCms\Builders;
 
-use VedianSOFT\CMS\Contracts\PageContract;
-use VedianSOFT\CMS\Enumerations\Status;
-use VedianSOFT\CMS\Enumerations\Visibility;
+use VedianSoft\VedianCms\Contracts\PageContract;
+use VedianSoft\VedianCms\Enumerations\Status;
+use VedianSoft\VedianCms\Enumerations\Visibility;
 
 /**
  * Class PageBuilder
@@ -14,17 +14,6 @@ use VedianSOFT\CMS\Enumerations\Visibility;
  */
 class PageBuilder extends Builder
 {
-    /**
-     * Create a new PageBuilder instance.
-     *
-     * @param PageContract $model The page model instance.
-     */
-    public function __construct(
-        PageContract $model
-    ) {
-        $this($model);
-    }
-
     // Site meta
     /**
      * The title of the page.
@@ -48,7 +37,6 @@ class PageBuilder extends Builder
      */
     protected string $excerpt;
 
-    // Page status
     /**
      * The visibility of the page.
      *
@@ -63,7 +51,6 @@ class PageBuilder extends Builder
      */
     protected Status $status;
 
-    // Visibility period
     /**
      * The start date and time when the page is visible.
      *

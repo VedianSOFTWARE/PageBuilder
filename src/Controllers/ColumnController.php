@@ -1,8 +1,8 @@
 <?php
 
-namespace VedianSOFT\CMS\Controllers;
+namespace VedianSoft\VedianCms\Controllers;
 
-use VedianSOFT\CMS\Builders\ColumnBuilder;
+use VedianSoft\VedianCms\Builders\ColumnBuilder;
 
 class ColumnController extends Controller
 {

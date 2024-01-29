@@ -1,9 +1,9 @@
 <?php
 
-namespace VedianSOFT\CMS\Models;
+namespace VedianSoft\VedianCms\Models;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
-use VedianSOFT\CMS\Contracts\BuilderContract;
+use VedianSoft\VedianCms\Contracts\BuilderContract;
 
 class Builder extends EloquentModel implements BuilderContract
 {

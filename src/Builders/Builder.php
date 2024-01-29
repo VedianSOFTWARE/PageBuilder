@@ -1,43 +1,26 @@
 <?php
 
-namespace VedianSOFT\CMS\Builders;
+namespace VedianSoft\VedianCms\Builders;
 
-use VedianSOFT\CMS\Contracts\BuilderContract;
-use VedianSOFT\CMS\Contracts\PageContract;
+use VedianSoft\VedianCms\Contracts\BuilderContract;
+use VedianSoft\VedianCms\Contracts\PageContract;
 
 /**
  * Class Builder
  * 
  * This class represents a builder for creating CMS pages.
  */
-class Builder
+class Builder implements BuilderContract
 {
-    /**
-     * The model instance.
-     *
-     * @var BuilderContract
-     */
-    protected $model;
-
-    /**
-     * Invokable method for the builder.
-     *
-     * @param BuilderContract $model The model instance.
-     * @return void
-     */
-    public function __invoke($model)
-    {
-        $this->setModel($model);
-    }
-
     /**
      * Constructor method for the builder.
      *
      * @param BuilderContract $model The model instance.
      * @return void
      */
-    public function __construct(BuilderContract $model)
-    {
+    public function __construct(
+        protected BuilderContract $model
+    ) {
         $this->setModel($model);
     }
 

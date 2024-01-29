@@ -1,10 +1,10 @@
 <?php
 
-namespace VedianSOFT\CMS\Models;
+namespace VedianSoft\VedianCms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use VedianSOFT\CMS\Contracts\ColumnContract;
+use VedianSoft\VedianCms\Contracts\ColumnContract;
 
 /**
  * Represents a column in the CMS.

@@ -1,8 +1,8 @@
 <?php
 
-namespace VedianSOFT\CMS\Controllers;
+namespace VedianSoft\VedianCms\Controllers;
 
-use VedianSOFT\CMS\Builders\RowBuilder;
+use VedianSoft\VedianCms\Builders\RowBuilder;
 
 /**
  * Class RowController

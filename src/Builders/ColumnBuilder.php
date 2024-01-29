@@ -1,8 +1,8 @@
 <?php
 
-namespace VedianSOFT\CMS\Builders;
+namespace VedianSoft\VedianCms\Builders;
 
-use VedianSOFT\CMS\Contracts\ColumnContract;
+use VedianSoft\VedianCms\Contracts\ColumnContract;
 
 /**
  * Class ColumnBuilder

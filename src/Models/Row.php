@@ -1,14 +1,14 @@
 <?php
 
-namespace VedianSOFT\CMS\Models;
+namespace VedianSoft\VedianCms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use VedianSOFT\CMS\Contracts\RowContract;
-use VedianSOFT\CMS\Traits\HasAuthor;
-use VedianSOFT\CMS\Traits\HasStatus;
-use VedianSOFT\CMS\Traits\HasVisibility;
-use VedianSOFT\CMS\Traits\IsVisibleBetween;
+use VedianSoft\VedianCms\Contracts\RowContract;
+use VedianSoft\VedianCms\Traits\HasAuthor;
+use VedianSoft\VedianCms\Traits\HasStatus;
+use VedianSoft\VedianCms\Traits\HasVisibility;
+use VedianSoft\VedianCms\Traits\IsVisibleBetween;
 
 /**
  * Class Row
@@ -17,7 +17,7 @@ use VedianSOFT\CMS\Traits\IsVisibleBetween;
  * It extends the Eloquent Model class and implements the RowContract interface.
  * It also uses several traits for additional functionality.
  *
- * @package VedianSOFT\CMS\Models
+ * @package VedianSoft\VedianCms\Models
  */
 class Row extends Model implements RowContract
 {

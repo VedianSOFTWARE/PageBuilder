@@ -4,7 +4,7 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "VedianSOFT\\CMS\\": "src/"
+            "VedianSoft\\VedianCms\\": "src/"
         }
     },
     "require": {
@@ -15,7 +15,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VedianSOFT\\CMS\\ServiceProvider"
+                "VedianSoft\\VedianCms\\CmsServiceProvider"
             ]
         }
     },

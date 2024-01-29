@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSOFT\CMS\Contracts;
+namespace VedianSoft\VedianCms\Contracts;
 
 interface ColumnContract
 {
