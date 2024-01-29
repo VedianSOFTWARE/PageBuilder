@@ -1,20 +1,20 @@
 <?php
 
-namespace VedianSoft\VedianCms\Builders;
+namespace VedianSoft\VedianCms\Service;
 
 use VedianSoft\VedianCms\Contracts\ModelContract;
 
 /**
- * Class Builder
+ * Class Service
  * 
- * This class represents a builder for creating CMS pages.
+ * This class represents a Service for creating CMS pages.
  */
-class Builder
+class CmsService
 {
     /**
-     * Constructor method for the builder.
+     * Constructor method for the Service.
      *
-     * @param BuilderContract $model The model instance.
+     * @param ServiceContract $model The model instance.
      * @return void
      */
     public function __construct(
@@ -26,7 +26,7 @@ class Builder
     /**
      * Get the model instance.
      *
-     * @return BuilderContract The model instance.
+     * @return ServiceContract The model instance.
      */
     public function getModel()
     {
@@ -36,7 +36,7 @@ class Builder
     /**
      * Set the model instance.
      *
-     * @param BuilderContract $model The model instance.
+     * @param ServiceContract $model The model instance.
      * @return void
      */
     public function setModel($model)

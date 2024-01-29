@@ -2,7 +2,7 @@
 
 namespace VedianSoft\VedianCms\Controllers;
 
-use VedianSoft\VedianCms\Builders\RowBuilder;
+use VedianSoft\VedianCms\Service\RowService;
 
 /**
  * Class RowController
@@ -14,10 +14,10 @@ class RowController extends Controller
     /**
      * Create a new row.
      * 
-     * @param RowBuilder $pb The row builder instance.
+     * @param RowBuilder $pb The row Service instance.
      * @return int The ID of the created row.
      */
-    public function create(RowBuilder $pb)
+    public function create(RowService $pb)
     {
         dd($pb->getModel(), $this);
         return 666;

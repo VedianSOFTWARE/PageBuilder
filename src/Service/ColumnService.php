@@ -1,15 +1,15 @@
 <?php
 
-namespace VedianSoft\VedianCms\Builders;
+namespace VedianSoft\VedianCms\Service;
 
 use VedianSoft\VedianCms\Contracts\ColumnContract;
 
 /**
- * Class ColumnBuilder
+ * Class ColumnService
  * 
  * This class is responsible for building blocks in the VedianSOFT CMS.
  */
-class ColumnBuilder extends Builder
+class ColumnService extends CmsService
 {
     
 }

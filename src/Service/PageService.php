@@ -1,18 +1,18 @@
 <?php
 
-namespace VedianSoft\VedianCms\Builders;
+namespace VedianSoft\VedianCms\Service;
 
 use VedianSoft\VedianCms\Contracts\PageContract;
 use VedianSoft\VedianCms\Enumerations\Status;
 use VedianSoft\VedianCms\Enumerations\Visibility;
 
 /**
- * Class PageBuilder
+ * Class PageService
  * 
- * This class represents a builder for creating and modifying page models in the VedianSOFT CMS.
- * It extends the Builder class and implements the BuilderContract interface.
+ * This class represents a Service for creating and modifying page models in the VedianSOFT CMS.
+ * It extends the Builder class and implements the ServiceContract interface.
  */
-class PageBuilder extends Builder
+class PageService extends CmsService
 {
     // Site meta
     /**

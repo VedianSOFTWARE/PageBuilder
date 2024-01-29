@@ -4,9 +4,9 @@ namespace VedianSoft\VedianCms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
-use VedianSoft\VedianCms\Builders\ColumnBuilder;
-use VedianSoft\VedianCms\Builders\PageBuilder;
-use VedianSoft\VedianCms\Builders\RowBuilder;
+use VedianSoft\VedianCms\Service\ColumnService;
+use VedianSoft\VedianCms\Service\PageService;
+use VedianSoft\VedianCms\Service\RowService;
 use VedianSoft\VedianCms\Contracts\ModelContract;
 use VedianSoft\VedianCms\Models\Page;
 use VedianSoft\VedianCms\Models\Row;
@@ -20,7 +20,7 @@ use VedianSoft\VedianCms\Models\Column;
  *
  * @package VedianSoft\VedianCms
  */
-class CmsServiceProvider extends Provider
+class VedianServiceProvider extends Provider
 {
     protected $commands = [];
 
@@ -52,32 +52,32 @@ class CmsServiceProvider extends Provider
     {
 
         /**
-         * Binds the BuilderContract interface to the PageContract class for PageBuilder.
+         * Binds the BuilderContract interface to the PageContract class for PageService.
          *
-         * @var \VedianSoftware\VedianCms\Contracts\ModelContract $builderContract
+         * @var \VedianSoftware\VedianCms\Contracts\ModelContract $ServiceContract
          * @var \VedianSoft\VedianCms\Contracts\PageContract $pageContract
          */
-        $this->app->when(PageBuilder::class)
+        $this->app->when(PageService::class)
             ->needs(ModelContract::class)
                 ->give(Page::class);
 
             /**
-             * Binds the BuilderContract interface to the RowContract class for RowBuilder.
+             * Binds the BuilderContract interface to the RowContract class for RowService.
              *
-             * @var \VedianSoft\VedianCms\Contracts\ModelContract $builderContract
+             * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
              * @var \VedianSoft\VedianCms\Contracts\RowContract $rowContract
              */
-            $this->app->when(RowBuilder::class)
+            $this->app->when(RowService::class)
                 ->needs(ModelContract::class)
                 ->give(Row::class);
 
             /**
-             * Binds the BuilderContract interface to the ColumnContract class for ColumnBuilder.
+             * Binds the BuilderContract interface to the ColumnContract class for ColumnService.
              *
-             * @var \VedianSoft\VedianCms\Contracts\ModelContract $builderContract
+             * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
              * @var \VedianSoft\VedianCms\Models\ColumnContract $columnContract
              */
-            $this->app->when(ColumnBuilder::class)
+            $this->app->when(ColumnService::class)
                 ->needs(ModelContract::class)
                 ->give(Row::class);
     }

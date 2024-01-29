@@ -2,11 +2,11 @@
 
 namespace VedianSoft\VedianCms\Controllers;
 
-use VedianSoft\VedianCms\Builders\ColumnBuilder;
+use VedianSoft\VedianCms\Service\ColumnService;
 
 class ColumnController extends Controller
 {
-    public function create(ColumnBuilder $bb)
+    public function create(ColumnService $bb)
     {
         dd($bb->getModel(), $this);
         return 666;

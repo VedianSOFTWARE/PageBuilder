@@ -12,12 +12,12 @@ use VedianSoft\VedianCms\Traits\IsVisibleBetween;
  * Class Row
  *
  * This class represents a row in the CMS system.
- * It extends the Eloquent Model class and implements the BuilderContract interface.
+ * It extends the Eloquent Model class and implements the ServiceContract interface.
  * It also uses several traits for additional functionality.
  *
  * @package VedianSoft\VedianCms\Models
  */
-class Row extends BuilderModel
+class Row extends ServiceModel
 {
     use HasAuthor, HasVisibility, HasStatus, IsVisibleBetween, SoftDeletes;
 

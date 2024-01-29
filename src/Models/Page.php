@@ -17,7 +17,7 @@ use VedianSoft\VedianCms\Traits\IsVisibleBetween;
  *
  * @package VedianSoft\VedianCms\Models
  */
-class Page extends BuilderModel
+class Page extends ServiceModel
 {
     use HasAuthor, HasVisibility, HasStatus, IsVisibleBetween, SoftDeletes;
 
