@@ -4,6 +4,7 @@ namespace VedianSoft\VedianCms\Service;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
+use VedianSoft\VedianCms\Enumerations\ContentType;
 use VedianSoft\VedianCms\Enumerations\Status;
 use VedianSoft\VedianCms\Enumerations\Visibility;
 
@@ -21,8 +22,11 @@ class PageService extends CmsService
     protected string $title;
     protected string $slug;
     protected string $excerpt;
+
+    protected ContentType $contentType;
     protected Visibility $visibility;
     protected Status $status;
+
     protected Date $visible_from;
     protected Date $visible_to;
     

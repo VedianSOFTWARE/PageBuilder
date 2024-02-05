@@ -14,15 +14,21 @@ return new class extends Migration
         Schema::create('rows', function (Blueprint $table) {
             $table->id();
             
+            // TODO: in later revisino this probably changes
             $table->string('title');
-            $table->string('slug')->unique();
-            
-            $table->tinyText('description')->nullable();
-            $table->string('template')->nullable();
-            $table->tinyText('style')->nullable();
+            $table->text('body')->nullable();
 
-            $table->dateTime('visible_from')->nullable();
-            $table->dateTime('visible_till')->nullable();
+            // $table->string('title');
+
+            // Necessary for creating reusable components
+            // $table->string('slug')->unique();
+            
+            // $table->tinyText('description')->nullable();
+            // $table->string('template')->nullable();
+            // $table->tinyText('style')->nullable();
+
+            // $table->dateTime('visible_from')->nullable();
+            // $table->dateTime('visible_till')->nullable();
 
             $table->timestamp('published_at')->nullable();
             $table->foreignId('created_by')->constrained('users');
