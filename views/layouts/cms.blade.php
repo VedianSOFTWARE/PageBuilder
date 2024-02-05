@@ -26,7 +26,8 @@
 
                         </dl>
                         <div class="mt-6 border-t border-gray-900/5 px-6 py-6 text-right">
-                            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                            <button type="submit"
+                                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
                         </div>
                     </div>
                 </div>
@@ -34,22 +35,9 @@
                 <div
                     class="-mx-4 px-2 py-2 bg-white shadow-sm ring-1 ring-gray-900/5 sm:mx-0 sm:rounded-lg sm:px-4 sm:pb-14 lg:col-span-2 lg:row-span-2 lg:row-end-2 xl:px-8 xl:pb-5 xl:pt-4">
 
-                    <div class="py-4">
-                        <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
-                        <div class="mt-2">
-                            <input type="text" name="title" id="title"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                placeholder="Enter the name of your page">
-                        </div>
-                    </div>
-                    <div class="py-4">
-                        <label for="slug" class="block text-sm font-medium leading-6 text-gray-900">Slug</label>
-                        <div class="mt-2">
-                            <input type="text" name="slug" id="slug"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                placeholder="enter-the-slug-of-your-page">
-                        </div>
-                    </div>
+                    {{-- @livewire('vedian::title-slug') --}}
+                    <livewire:vedian::title-slug />
+                   
                 </div>
             </div>
 
