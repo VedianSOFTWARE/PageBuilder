@@ -4,10 +4,12 @@ namespace VedianSoft\VedianCms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
+use Livewire\Livewire;
 use VedianSoft\VedianCms\Service\ColumnService;
 use VedianSoft\VedianCms\Service\PageService;
 use VedianSoft\VedianCms\Service\RowService;
 use VedianSoft\VedianCms\Contracts\ModelContract;
+use VedianSoft\VedianCms\Livewire\TitleSlugComposer;
 use VedianSoft\VedianCms\Models\Page;
 use VedianSoft\VedianCms\Models\Row;
 use VedianSoft\VedianCms\Models\Column;
@@ -42,6 +44,8 @@ class VedianServiceProvider extends Provider
         $this->vendorLoaders();
         $this->vendorPublishers();
         $this->vendorBladeComponents();
+        
+        Livewire::component('vedian::title-slug', TitleSlugComposer::class);
     }
 
     /**
