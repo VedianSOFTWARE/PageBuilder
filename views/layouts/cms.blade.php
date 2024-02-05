@@ -19,6 +19,12 @@
                             </div>
 
                         </dl>
+                        <dl class="flex flex-wrap">
+                            <div class="flex-auto pl-6 pt-6">
+                                <x-vedian::page-status />
+                            </div>
+
+                        </dl>
                         <div class="mt-6 border-t border-gray-900/5 px-6 py-6">
                             <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Download receipt
                                 <span aria-hidden="true">&rarr;</span></a>
