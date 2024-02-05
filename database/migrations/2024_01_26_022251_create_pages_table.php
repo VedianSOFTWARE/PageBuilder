@@ -24,14 +24,6 @@ return new class extends Migration
             // Unique slug for the page
             $table->string('slug')->unique();
 
-            // Description / short text for a page
-            $table->tinyText('excerpt')->nullable();
-
-            // Content of the page
-            $table->enum('content_type', 
-                ContentType::getValues()
-            )->default(ContentType::PAGE->value);
-
             // Visibility of the page
             $table->enum(
                 'visibility',
