@@ -27,6 +27,7 @@ class VedianServiceProvider extends Provider
     public function register()
     {
         $this->commands($this->commands);
+
         $this->bindings();
         $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
     }
@@ -59,27 +60,27 @@ class VedianServiceProvider extends Provider
          */
         $this->app->when(PageService::class)
             ->needs(ModelContract::class)
-                ->give(Page::class);
+            ->give(Page::class);
 
-            /**
-             * Binds the BuilderContract interface to the RowContract class for RowService.
-             *
-             * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
-             * @var \VedianSoft\VedianCms\Contracts\RowContract $rowContract
-             */
-            $this->app->when(RowService::class)
-                ->needs(ModelContract::class)
-                ->give(Row::class);
+        /**
+         * Binds the BuilderContract interface to the RowContract class for RowService.
+         *
+         * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
+         * @var \VedianSoft\VedianCms\Contracts\RowContract $rowContract
+         */
+        $this->app->when(RowService::class)
+            ->needs(ModelContract::class)
+            ->give(Row::class);
 
-            /**
-             * Binds the BuilderContract interface to the ColumnContract class for ColumnService.
-             *
-             * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
-             * @var \VedianSoft\VedianCms\Models\ColumnContract $columnContract
-             */
-            $this->app->when(ColumnService::class)
-                ->needs(ModelContract::class)
-                ->give(Row::class);
+        /**
+         * Binds the BuilderContract interface to the ColumnContract class for ColumnService.
+         *
+         * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
+         * @var \VedianSoft\VedianCms\Models\ColumnContract $columnContract
+         */
+        $this->app->when(ColumnService::class)
+            ->needs(ModelContract::class)
+            ->give(Row::class);
     }
 
 
@@ -90,7 +91,7 @@ class VedianServiceProvider extends Provider
      */
     protected function vendorBladeComponents()
     {
-        Blade::componentNamespace('VedianSoft\\VedianCms\\Views\\Components', 'vedian');
+        Blade::componentNamespace('VedianSoft\\VedianCms\\View\\Components', 'vedian');
     }
 
     /**
