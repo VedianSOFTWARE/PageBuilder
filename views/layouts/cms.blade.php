@@ -15,8 +15,7 @@
                     <div class="rounded-lg bg-white shadow-sm ring-1 ring-gray-900/5">
                         <dl class="flex flex-wrap">
                             <div class="flex-auto pl-6 pt-6">
-                                <dt class="text-sm font-semibold leading-6 text-gray-900">Amount</dt>
-                                <dd class="mt-1 text-base font-semibold leading-6 text-gray-900">$10,560.00</dd>
+                                <x-vedian::page-visibility />
                             </div>
 
                         </dl>
@@ -28,7 +27,7 @@
                 </div>
                 <!-- Invoice -->
                 <div
-                    class="-mx-4 px-2 py-2 bg-white shadow-sm ring-1 ring-gray-900/5 sm:mx-0 sm:rounded-lg sm:px-8 sm:pb-14 lg:col-span-2 lg:row-span-2 lg:row-end-2 xl:px-16 xl:pb-10 xl:pt-8">
+                    class="-mx-4 px-2 py-2 bg-white shadow-sm ring-1 ring-gray-900/5 sm:mx-0 sm:rounded-lg sm:px-4 sm:pb-14 lg:col-span-2 lg:row-span-2 lg:row-end-2 xl:px-8 xl:pb-5 xl:pt-4">
 
                     <div class="py-4">
                         <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
