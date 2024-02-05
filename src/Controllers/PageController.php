@@ -20,7 +20,7 @@ class PageController extends Controller
     {
         $page = $pb->getModel();
 
-        dd($page->getFillable());
+        // dd($page->getFillable());
         return view ('vedian::page.create');
     }
 }
