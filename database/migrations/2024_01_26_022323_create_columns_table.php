@@ -13,14 +13,11 @@ return new class extends Migration
     {
         Schema::create('columns', function (Blueprint $table) {
             
-
-            // $table->tinyInteger('order')->default(0);
-            // $table->foreignId('row_id')->constrained('rows');
             $table->id();
             
+            // TODO: in later revisino this probably changes
             $table->string('title');
-            $table->text('description')->nullable();
-            $table->json('style')->nullable();
+            $table->text('body')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

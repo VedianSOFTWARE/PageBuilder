@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use VedianSoft\VedianCms\Enumerations\ContentType;
 use VedianSoft\VedianCms\Enumerations\Status;
 use VedianSoft\VedianCms\Enumerations\Visibility;
 
@@ -17,25 +18,40 @@ return new class extends Migration
 
             $table->id();
             
+            // Title of the page
             $table->string('title');
+
+            // Unique slug for the page
             $table->string('slug')->unique();
-            
+
+            // Description / short text for a page
             $table->tinyText('excerpt')->nullable();
 
+            // Content of the page
+            $table->enum('content_type', 
+                ContentType::getValues()
+            )->default(ContentType::PAGE->value);
+
+            // Visibility of the page
             $table->enum(
                 'visibility',
                 Visibility::getValues()
             )->default(Visibility::PUBLIC->value);
-
+            
+            // Status of the page
             $table->enum(
                 'status',
                 Status::getValues()
             )->default(Status::DRAFT->value);
-
+            
+            // Time between which the page is visible
             $table->dateTime('visible_from')->nullable();
             $table->dateTime('visible_till')->nullable();
-
+            
+            // Time when the page was published
             $table->timestamp('published_at')->nullable();
+
+            // Need trait to handle this functionality
             $table->foreignId('created_by')->constrained('users');
 
             $table->timestamps();
