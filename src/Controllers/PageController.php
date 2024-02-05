@@ -18,8 +18,9 @@ class PageController extends Controller
      */
     public function create(PageService $pb)
     {
-        dd($pb->getModel(), $this);
-        return view('dashboard');
-        return 666;
+        $page = $pb->getModel();
+
+        dd($page->getFillable());
+        return view ('vedian::page.create');
     }
 }
