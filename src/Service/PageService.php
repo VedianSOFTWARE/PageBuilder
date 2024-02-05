@@ -29,4 +29,8 @@ class PageService extends CmsService
         $this->rows->forget($row);
     }
 
+    public function sortRows()
+    {
+        // needs to be implemented as custom sorting logic
+    }
 }
