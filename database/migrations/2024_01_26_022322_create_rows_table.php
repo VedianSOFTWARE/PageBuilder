@@ -18,19 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('body')->nullable();
 
-            // $table->string('title');
 
-            // Necessary for creating reusable components
-            // $table->string('slug')->unique();
-            
-            // $table->tinyText('description')->nullable();
-            // $table->string('template')->nullable();
-            // $table->tinyText('style')->nullable();
-
-            // $table->dateTime('visible_from')->nullable();
-            // $table->dateTime('visible_till')->nullable();
-
-            $table->timestamp('published_at')->nullable();
             $table->foreignId('created_by')->constrained('users');
 
             $table->timestamps();
