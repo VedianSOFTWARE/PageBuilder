@@ -17,6 +17,8 @@ class TitleSlugComposer extends Component
 
     public function modifySlug()
     { 
+
+        
         $this->slug = Str::slug($this->slug, '-');
     }
 
