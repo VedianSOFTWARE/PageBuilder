@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use VedianSoft\VedianCms\Controllers\PageController;
-use VedianSoft\VedianCms\Controllers\RowController;
-use VedianSoft\VedianCms\Controllers\ColumnController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +27,5 @@ Route::group([
 ], function () {
     Route::prefix('page')->group(function () {
         Route::get('create', [PageController::class, 'create']);
-        Route::get('add/row', [RowController::class, 'create']);
-        Route::get('add/column', [ColumnController::class, 'create']);
     });
 });

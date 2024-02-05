@@ -9,7 +9,7 @@ use VedianSoft\VedianCms\Contracts\ModelContract;
  * 
  * This class represents a Service for creating CMS pages.
  */
-class CmsService
+abstract class CmsService
 {
     /**
      * Constructor method for the Service.
@@ -43,4 +43,6 @@ class CmsService
     {
         $this->model = $model;
     }
+
+    abstract function save();
 }

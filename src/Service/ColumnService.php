@@ -2,7 +2,6 @@
 
 namespace VedianSoft\VedianCms\Service;
 
-use VedianSoft\VedianCms\Contracts\ColumnContract;
 
 /**
  * Class ColumnService
@@ -11,5 +10,8 @@ use VedianSoft\VedianCms\Contracts\ColumnContract;
  */
 class ColumnService extends CmsService
 {
-    
+    public function create()
+    {
+
+    }
 }

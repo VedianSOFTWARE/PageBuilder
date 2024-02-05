@@ -2,8 +2,14 @@
 
 namespace VedianSoft\VedianCms\Service;
 
-use VedianSoft\VedianCms\Contracts\RowContract;
+use Illuminate\Support\Collection;
 
 class RowService extends CmsService
 {
+    protected Collection $columns;
+    
+    public function save()
+    {
+
+    }
 }

@@ -2,9 +2,7 @@
 
 namespace VedianSoft\VedianCms\Service;
 
-use VedianSoft\VedianCms\Contracts\PageContract;
-use VedianSoft\VedianCms\Enumerations\Status;
-use VedianSoft\VedianCms\Enumerations\Visibility;
+use Illuminate\Support\Collection;
 
 /**
  * Class PageService
@@ -14,54 +12,21 @@ use VedianSoft\VedianCms\Enumerations\Visibility;
  */
 class PageService extends CmsService
 {
-    // Site meta
-    /**
-     * The title of the page.
-     *
-     * @var string
-     */
-    protected string $title;
+    protected Collection $rows;
+    
+    public function save()
+    {
+        
+    }
 
-    /**
-     * The slug of the page.
-     *
-     * @var string
-     */
-    protected string $slug;
+    public function addRow(RowService $row)
+    {
+        $this->rows->push($row);
+    }
 
-    // Short description
-    /**
-     * The excerpt of the page.
-     *
-     * @var string
-     */
-    protected string $excerpt;
+    public function removeRow(RowService $row)
+    {
+        $this->rows->forget($row);
+    }
 
-    /**
-     * The visibility of the page.
-     *
-     * @var Visibility
-     */
-    protected Visibility $visibility;
-
-    /**
-     * The status of the page.
-     *
-     * @var Status
-     */
-    protected Status $status;
-
-    /**
-     * The start date and time when the page is visible.
-     *
-     * @var \DateTime|null
-     */
-    protected ?\DateTime $visible_from;
-
-    /**
-     * The end date and time when the page is visible.
-     *
-     * @var \DateTime|null
-     */
-    protected ?\DateTime $visible_till;
 }
