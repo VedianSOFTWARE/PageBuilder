@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use VedianSOFT\CMS\Controllers\PageController;
-use VedianSOFT\CMS\Controllers\RowController;
-use VedianSOFT\CMS\Controllers\ColumnController;
+use VedianSoft\VedianCms\Controllers\PageController;
+use VedianSoft\VedianCms\Controllers\RowController;
+use VedianSoft\VedianCms\Controllers\ColumnController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

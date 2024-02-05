@@ -1,22 +1,22 @@
 <?php
 
-namespace VedianSOFT\CMS\Controllers;
+namespace VedianSoft\VedianCms\Controllers;
 
-use VedianSOFT\CMS\Builders\PageBuilder;
+use VedianSoft\VedianCms\Service\PageService;
 
 /**
  * Class PageController
- * @package VedianSOFT\CMS\Controllers
+ * @package VedianSoft\VedianCms\Controllers
  */
 class PageController extends Controller
 {
     /**
      * Create a new page.
      *
-     * @param PageBuilder $pb The page builder instance.
+     * @param PageBuilder $pb The page Service instance.
      * @return int The created page ID.
      */
-    public function create(PageBuilder $pb)
+    public function create(PageService $pb)
     {
         dd($pb->getModel(), $this);
         return view('dashboard');

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace VedianSOFT\CMS\Traits;
+namespace VedianSoft\VedianCms\Traits;
 
 /**
  * Trait EnumToArray

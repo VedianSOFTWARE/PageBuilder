@@ -2,16 +2,14 @@
 
 use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
 
-        // dump(config('jetstream.middleware', ['auth:sanctum']));
 return [
 
     'middleware' => ['web'],
     'auth_session' => AuthenticateSession::class,
-    'guard' => 'sanctum',
+    'guard' => 'auth:sanctum',
 
 
     'prefix' => [
-        'admin' => 'admin',
-
+        'cms_dashboard' => env('VEDIAN_CMS_PREFIX_DASHBOARD', 'dashboard/cms'),
     ],
 ];

@@ -1,8 +1,8 @@
 <?php
 
-namespace VedianSOFT\CMS\Traits;
+namespace VedianSoft\VedianCms\Traits;
 
-use VedianSOFT\CMS\Enumerations\Visibility;
+use VedianSoft\VedianCms\Enumerations\Visibility;
 
 /**
  * Trait HasVisibility

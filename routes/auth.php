@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use VedianSOFT\CMS\Controllers\PageController;
-use VedianSOFT\CMS\Controllers\RowController;
-use VedianSOFT\CMS\Controllers\ColumnController;
+use VedianSoft\VedianCms\Controllers\PageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +13,19 @@ use VedianSOFT\CMS\Controllers\ColumnController;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified'])->get('page', function () {
-    return view('dashboard');
-})->name('dashboard');
+$authMiddleware = config('vedian.guard')
+    ? config('vedian.guard')
+    : 'auth';
 
-Route::get('pages/create', [PageController::class, 'create']);
-Route::get('add/row', [RowController::class, 'create']);
-Route::get('add/column', [ColumnController::class, 'create']);
+$authSessionMiddleware = config('vedian.auth_session', false)
+    ? config('vedian.auth_session')
+    : null;
+
+Route::group([
+    'middleware' => array_values(array_filter(['web', $authMiddleware, $authSessionMiddleware])),
+    'prefix' => config('vedian.prefix.cms_dashboard'),
+], function () {
+    Route::prefix('page')->group(function () {
+        Route::get('create', [PageController::class, 'create']);
+    });
+});
