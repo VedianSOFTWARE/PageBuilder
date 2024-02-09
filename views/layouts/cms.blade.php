@@ -11,7 +11,6 @@
                 class="mx-auto grid max-w-2xl grid-cols-1 grid-rows-1 items-start gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                 <!-- Page sidebar options -->
                 <div class="lg:col-start-3 lg:row-end-1">
-                    <h2 class="sr-only">Summary</h2>
                     <div class="rounded-lg bg-white shadow-sm ring-1 ring-gray-900/5">
                         <dl class="flex flex-wrap">
                             <div class="flex-auto pl-6 pt-6">
@@ -29,6 +28,7 @@
                         <dl class="flex flex-wrap">
                             <div class="flex-auto pl-6 pt-6">
                                 <x-vedian::page-status />
+
                             </div>
 
                         </dl>
@@ -46,8 +46,9 @@
 
                     <livewire:vedian::title-slug />
                 </div>
-            </div>
+            </div> 
 
 
             {{ $slot ?? '' }}
 </x-app-layout>
+ 
