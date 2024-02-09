@@ -7,69 +7,57 @@ use Illuminate\Support\Collection; // Add missing import
 use Reflection;
 use ReflectionMethod;
 use ReflectionParameter;
-use VedianSoft\VedianCms\Contracts\StylingServiceContract;
+use VedianSoft\VedianCms\Contracts\ServiceContract;
 
 /**
  * Represents a CSS class generator.
- * @param private string $maxWidth The maximum width class.
+ * @param protected string $maxWidth The maximum width class.
  */
-abstract class StylingService
+class StylingService implements ServiceContract
 {
-    public function __construct(
-        public StylingServiceContract $css,
-        // public string $class = '',
-        // public string $maxWidth = '',
-        // public string $margin = '',
-        // public string $padding = '',
-        // public string $sm = '',
-        // public string $lg = ''
-    ) {
-
-        $this->parameters = new Collection();
-        $this->classes = new Collection();
-        // $this->setReflection();
-        // $this->setConstructor();
-        // $this->setParameters();
-        // $this->setClasses();
-        // $this->setHtmlAttr('class', $this->classes->values()->implode(' '));
-
-
-
-        // $this->setReflection();
-        // $this->setConstructor();
-        // $this->setParameters();
-        // $this->setClasses();
-        // $this->setHtmlAttr('class', $this->classes->values()->implode(' '));
-
-    }
     /**
      * Represents the HTML attributes.
      */
-    private array $htmlAttr = [];
+    protected array $htmlAttr = [];
 
     /**
      * Represents the Css class.
      *
      * This class is responsible for handling CSS-related operations.
      */
-    private ReflectionClass $reflection;
+    protected ReflectionClass $reflection;
 
     /**
      * Represents the constructor method of the Css class.
      */
-    private ReflectionMethod $constructor;
+    protected ReflectionMethod $constructor;
 
     /**
      * Represents the parameters collection of the Css class.
      */
-    private Collection $parameters;
+    protected Collection $parameters;
 
     /**
      * Represents the classes collection of the Css class.
      */
-    private Collection $classes;
+    protected Collection $classes;
 
-    private function setHtmlAttr($name, $value)
+    /**
+     * Represents the constructor method of the Css class.
+     */
+    protected function init()
+    {
+        $this->parameters = collect();
+        $this->classes = collect();
+        $this->setReflection();
+        $this->setConstructor();
+        $this->setParameters();
+        $this->setClasses();
+        $this->setHtmlAttr('class', $this->classes->values()->implode(' '));
+    }
+
+
+    protected function setHtmlAttr($name, $value)
     {
         $this->htmlAttr[$name] = $value;
     }
@@ -79,7 +67,7 @@ abstract class StylingService
      *
      * @return void
      */
-    private function setReflection(): void
+    protected function setReflection(): void
     {
         $this->reflection = new ReflectionClass($this);
     }
@@ -89,7 +77,7 @@ abstract class StylingService
      *
      * @return void
      */
-    private function setConstructor(): void
+    protected function setConstructor(): void
     {
         $this->constructor = $this->reflection->getConstructor();
     }
@@ -99,7 +87,7 @@ abstract class StylingService
      *
      * @return void
      */
-    private function setParameters(): void
+    protected function setParameters(): void
     {
         if ($this->constructor) {
             $this->parameters = collect($this->constructor->getParameters());
@@ -111,7 +99,7 @@ abstract class StylingService
      *
      * @return void
      */
-    private function setClasses(): void
+    protected function setClasses(): void
     {
         $this->parameters->each(function ($parameter) {
             $this->classes->put($parameter->getName(), $this->{$parameter->getName()});

@@ -2,12 +2,15 @@
 
 namespace VedianSoft\VedianCms;
 
+use Faker\Container\Container;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
 use Livewire\Livewire;
+use Livewire\Mechanisms\HandleComponents\ComponentContext;
 use VedianSoft\VedianCms\Contracts\StylingServiceContract;
 use VedianSoft\VedianCms\Contracts\ModelContract;
 use VedianSoft\VedianCms\Contracts\ComponentContract;
+use VedianSoft\VedianCms\Contracts\ServiceContract;
 use VedianSoft\VedianCms\Livewire\RowToolbar;
 use VedianSoft\VedianCms\Livewire\TitleSlugComposer;
 use VedianSoft\VedianCms\Models\Page;
@@ -31,12 +34,13 @@ class VedianServiceProvider extends Provider
         ModelContract::class => [
             PageService::class => Page::class,
         ],
-        StylingServiceContract::class => [
-            ContainerService::class => StylingService::class
-        ],
         ComponentContract::class => [
-            ContainerComponent::class => StylingComponent::class
-        ]
+            ContainerComponent::class => StylingComponent::class,
+        ],
+        ServiceContract::class => [
+            ContainerService::class => StylingService::class,
+            ContainerComponent::class => ContainerService::class
+        ],
 
     ];
 
@@ -93,7 +97,6 @@ class VedianServiceProvider extends Provider
     {
         $this->getCmsBindings()->each(function ($bindings, $needs) {
             $bindings->each(function ($give, $when) use ($needs) {
-                // dump($when, $needs, $give);
                 $this->app->when($when)
                     ->needs($needs)
                     ->give($give);
