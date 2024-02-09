@@ -54,7 +54,6 @@ class StylingService implements ServiceContract
         $this->setParameters();
         $this->setClasses();
         $this->setHtmlAttr('class', $this->classes->values()->implode(' '));
-        // dump($this);
     }
 
 
