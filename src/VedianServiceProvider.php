@@ -50,7 +50,7 @@ class VedianServiceProvider extends Provider
         // dd($this->cmsBindings);
 
         $this->bindings();
-        $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
+        $this->configs();
     }
 
     /**
@@ -145,6 +145,10 @@ class VedianServiceProvider extends Provider
         // });
     }
 
+    protected function configs()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/vedian-cms.php', 'vedian-cms');
+    }
 
     /**
      * Register the vendor blade components.
