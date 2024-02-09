@@ -7,16 +7,16 @@ use Illuminate\Support\Collection; // Add missing import
 use Reflection;
 use ReflectionMethod;
 use ReflectionParameter;
-use VedianSoft\VedianCms\Contracts\CssServiceContract;
+use VedianSoft\VedianCms\Contracts\StylingServiceContract;
 
 /**
  * Represents a CSS class generator.
  * @param private string $maxWidth The maximum width class.
  */
-abstract class CssService
+abstract class StylingService
 {
     public function __construct(
-        public CssServiceContract $css,
+        public StylingServiceContract $css,
         // public string $class = '',
         // public string $maxWidth = '',
         // public string $margin = '',

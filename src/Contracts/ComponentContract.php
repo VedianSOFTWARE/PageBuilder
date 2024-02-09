@@ -7,4 +7,5 @@ namespace VedianSoft\VedianCms\Contracts;
  */
 interface ComponentContract
 {
+    
 }
