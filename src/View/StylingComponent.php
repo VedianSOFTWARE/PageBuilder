@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use VedianSoft\VedianCms\Contracts\ComponentContract;
 
-class CssComponent extends Component implements ComponentContract
+class StylingComponent extends Component implements ComponentContract
 {
     protected string $viewName = 'css';
 

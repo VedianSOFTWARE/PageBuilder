@@ -2,12 +2,13 @@
 
 namespace VedianSoft\VedianCms\Service;
 
-use VedianSoft\VedianCms\Contracts\CssServiceContract;
+use VedianSoft\VedianCms\Contracts\StylingServiceContract;
 
-class ContainerService extends CssService implements CssServiceContract
+class ContainerService extends StylingService implements StylingServiceContract
 {
     public function __construct(
-        public CssServiceContract $css
+        public StylingServiceContract $css
     ) {
+        dump($this->css);
     }
 }
