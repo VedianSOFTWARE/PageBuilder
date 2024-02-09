@@ -1,12 +1,12 @@
 <?php
 
-namespace VedianSoft\VedianCms\View\Components;
+namespace VedianSoft\VedianCms\View;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class CmsLayout extends Component
+abstract class ToolbarBase extends Component
 {
     public array $actions = [];
 
@@ -23,6 +23,6 @@ class CmsLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('vedian::layouts.cms');
+        return view('vedian::components.toolbar-base');
     }
 }

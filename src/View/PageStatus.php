@@ -1,13 +1,13 @@
 <?php
 
-namespace VedianSoft\VedianCms\View\Components;
+namespace VedianSoft\VedianCms\View;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use VedianSoft\VedianCms\Enumerations\Visibility;
+use VedianSoft\VedianCms\Enumerations\Status;
 
-class PageVisibility extends Component
+class PageStatus extends Component
 {
 
     /**
@@ -17,7 +17,7 @@ class PageVisibility extends Component
         public $options = []
     )
     {
-        $this->options = Visibility::cases();
+        $this->options = Status::cases();
     }
 
     /**
@@ -25,6 +25,6 @@ class PageVisibility extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('vedian::components.page-visibility');
+        return view('vedian::components.page-status');
     }
 }

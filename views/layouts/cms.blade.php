@@ -4,9 +4,5 @@
             {{ __('Create Page') }}
         </h2>
     </x-slot>
-
-
-  
-
-
+    <x-vedian::parts.container />
 </x-app-layout>

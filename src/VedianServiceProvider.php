@@ -5,6 +5,10 @@ namespace VedianSoft\VedianCms;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
 use Livewire\Livewire;
+use Reflection;
+use ReflectionClass;
+use VedianSoft\VedianCms\Classes\Css;
+use VedianSoft\VedianCms\Contracts\CssContract;
 use VedianSoft\VedianCms\Service\ColumnService;
 use VedianSoft\VedianCms\Service\PageService;
 use VedianSoft\VedianCms\Service\RowService;
@@ -46,7 +50,7 @@ class VedianServiceProvider extends Provider
         $this->vendorLoaders();
         $this->vendorPublishers();
         $this->vendorBladeComponents();
-        
+
         Livewire::component('vedian::title-slug', TitleSlugComposer::class);
         Livewire::component('vedian::row-toolbar', RowToolbar::class);
     }
@@ -88,6 +92,8 @@ class VedianServiceProvider extends Provider
         $this->app->when(ColumnService::class)
             ->needs(ModelContract::class)
             ->give(Row::class);
+
+        $this->app->bind(CssContract::class, Css::class);
     }
 
 
@@ -98,7 +104,7 @@ class VedianServiceProvider extends Provider
      */
     protected function vendorBladeComponents()
     {
-        Blade::componentNamespace('VedianSoft\\VedianCms\\View\\Components', 'vedian');
+        Blade::componentNamespace('VedianSoft\\VedianCms\\View', 'vedian');
     }
 
     /**
