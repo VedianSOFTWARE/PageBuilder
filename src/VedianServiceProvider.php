@@ -5,20 +5,17 @@ namespace VedianSoft\VedianCms;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
 use Livewire\Livewire;
-use Reflection;
-use ReflectionClass;
-use VedianSoft\VedianCms\Classes\Css;
-use VedianSoft\VedianCms\Contracts\CssContract;
-use VedianSoft\VedianCms\Service\ColumnService;
-use VedianSoft\VedianCms\Service\PageService;
-use VedianSoft\VedianCms\Service\RowService;
+use VedianSoft\VedianCms\Contracts\CssServiceContract;
 use VedianSoft\VedianCms\Contracts\ModelContract;
-use VedianSoft\VedianCms\Livewire\PageBuilder;
+use VedianSoft\VedianCms\Contracts\ComponentContract;
 use VedianSoft\VedianCms\Livewire\RowToolbar;
 use VedianSoft\VedianCms\Livewire\TitleSlugComposer;
 use VedianSoft\VedianCms\Models\Page;
-use VedianSoft\VedianCms\Models\Row;
-use VedianSoft\VedianCms\Models\Column;
+use VedianSoft\VedianCms\Service\ContainerService;
+use VedianSoft\VedianCms\Service\CssService;
+use VedianSoft\VedianCms\Service\PageService;
+use VedianSoft\VedianCms\View\ContainerComponent;
+use VedianSoft\VedianCms\View\CssComponent;
 
 /**
  * Class CmsServiceProvider
@@ -30,14 +27,46 @@ use VedianSoft\VedianCms\Models\Column;
  */
 class VedianServiceProvider extends Provider
 {
-    protected $commands = [];
+    protected $cmsBindings = [
+        ModelContract::class => [
+            PageService::class => Page::class,
+        ],
+        CssServiceContract::class => [
+            ContainerService::class => CssService::class
+        ],
+        ComponentContract::class => [
+            ContainerComponent::class => CssComponent::class
+        ]
+
+    ];
+
 
     public function register()
     {
-        $this->commands($this->commands);
+        // dd($this->cmsBindings);
 
         $this->bindings();
         $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
+    }
+
+    /**
+     * This code block represents the current selection.
+     * It was generated as a result of a previous interaction with GitHub Copilot.
+     * Please refer to the previous messages for more context.
+     */
+    private function getCmsBindings()
+    {
+        return $this->walkArrayToCollection($this->cmsBindings);
+    }
+
+    private function walkArrayToCollection($array)
+    {
+        return collect($array)->map(function ($item) {
+            if (is_array($item)) {
+                return $this->walkArrayToCollection($item);
+            }
+            return $item;
+        });
     }
 
     /**
@@ -62,38 +91,55 @@ class VedianServiceProvider extends Provider
      */
     protected function bindings()
     {
+        $this->getCmsBindings()->each(function ($bindings, $needs) {
+            $bindings->each(function ($give, $when) use ($needs) {
+                // dump($when, $needs, $give);
+                $this->app->when($when)
+                    ->needs($needs)
+                    ->give($give);
+            });
+        });
 
-        /**
-         * Binds the BuilderContract interface to the PageContract class for PageService.
-         *
-         * @var \VedianSoftware\VedianCms\Contracts\ModelContract $ServiceContract
-         * @var \VedianSoft\VedianCms\Contracts\PageContract $pageContract
-         */
-        $this->app->when(PageService::class)
-            ->needs(ModelContract::class)
-            ->give(Page::class);
 
-        /**
-         * Binds the BuilderContract interface to the RowContract class for RowService.
-         *
-         * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
-         * @var \VedianSoft\VedianCms\Contracts\RowContract $rowContract
-         */
-        $this->app->when(RowService::class)
-            ->needs(ModelContract::class)
-            ->give(Row::class);
+        // $this->app->bind(CssContract::class, Container::class);
+        // dd(123);
+        // $this->app->bind(Container::class, Css::class);
+        // $this->app->bind(CssContract::class, CssContainer::class);
+        // $this->app->bind(CssContract::class, Css::class);
+        // $this->app->bind(CssContainerContract::class, CssContainer::class);
 
-        /**
-         * Binds the BuilderContract interface to the ColumnContract class for ColumnService.
-         *
-         * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
-         * @var \VedianSoft\VedianCms\Models\ColumnContract $columnContract
-         */
-        $this->app->when(ColumnService::class)
-            ->needs(ModelContract::class)
-            ->give(Row::class);
+        // /**
+        //  * Binds the BuilderContract interface to the PageContract class for PageService.
+        //  *
+        //  * @var \VedianSoftware\VedianCms\Contracts\ModelContract $ServiceContract
+        //  * @var \VedianSoft\VedianCms\Contracts\PageContract $pageContract
+        //  */
 
-        $this->app->bind(CssContract::class, Css::class);
+        // /**
+        //  * Binds the BuilderContract interface to the RowContract class for RowService.
+        //  *
+        //  * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
+        //  * @var \VedianSoft\VedianCms\Contracts\RowContract $rowContract
+        //  */
+        // $this->app->when(RowService::class)
+        //     ->needs(ModelContract::class)
+        //     ->give(Row::class);
+
+        // /**
+        //  * Binds the BuilderContract interface to the ColumnContract class for ColumnService.
+        //  *
+        //  * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
+        //  * @var \VedianSoft\VedianCms\Models\ColumnContract $columnContract
+        //  */
+        // $this->app->when(ColumnService::class)
+        //     ->needs(ModelContract::class)
+        //     ->give(Column::class);
+
+        // $this->app->bind(CssContract::class, Css::class);
+        // $this->app->bind(CssContainerContract::class, Container::class);
+        // $this->getGiveBinding()->each(function ($concrete, $abstract) {
+        //     $this->app->bind($abstract, $concrete);
+        // });
     }
 
 

@@ -7,4 +7,5 @@ use VedianSoft\VedianCms\Contracts\ModelContract;
 
 class ServiceModel extends Model implements ModelContract
 {
+    
 }

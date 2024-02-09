@@ -1,20 +1,52 @@
 <?php
 
-namespace VedianSoft\VedianCms\Classes;
+namespace VedianSoft\VedianCms\Service;
 
 use ReflectionClass;
 use Illuminate\Support\Collection; // Add missing import
 use Reflection;
 use ReflectionMethod;
 use ReflectionParameter;
-use VedianSoft\VedianCms\Contracts\CssContract;
+use VedianSoft\VedianCms\Contracts\CssServiceContract;
 
 /**
  * Represents a CSS class generator.
  * @param private string $maxWidth The maximum width class.
  */
-class Css implements CssContract
+abstract class CssService
 {
+    public function __construct(
+        public CssServiceContract $css,
+        // public string $class = '',
+        // public string $maxWidth = '',
+        // public string $margin = '',
+        // public string $padding = '',
+        // public string $sm = '',
+        // public string $lg = ''
+    ) {
+
+        $this->parameters = new Collection();
+        $this->classes = new Collection();
+        // $this->setReflection();
+        // $this->setConstructor();
+        // $this->setParameters();
+        // $this->setClasses();
+        // $this->setHtmlAttr('class', $this->classes->values()->implode(' '));
+
+
+
+        // $this->setReflection();
+        // $this->setConstructor();
+        // $this->setParameters();
+        // $this->setClasses();
+        // $this->setHtmlAttr('class', $this->classes->values()->implode(' '));
+
+    }
+    /**
+     * Represents the HTML attributes.
+     */
+    private array $htmlAttr = [];
+
     /**
      * Represents the Css class.
      *
@@ -37,28 +69,9 @@ class Css implements CssContract
      */
     private Collection $classes;
 
-    /**
-     * Constructs a new Css instance.
-     *
-     * @param public string $maxWidth The maximum width class.
-     * @param public string $margin The margin class.
-     * @param public string $padding The padding class.
-     * @param public string $sm The small screen class.
-     * @param public string $lg The large screen class.
-     */
-    public function __construct(
-        public string $maxWidth = 'max-w-7xl',
-        public string $margin = 'mx-auto',
-        public string $padding = 'py-6 px-4',
-        public string $sm = 'sm:px-6',
-        public string $lg = 'lg:px-8'
-    ) {
-        $this->parameters = new Collection();
-        $this->classes = new Collection();
-        $this->setReflection();
-        $this->setConstructor();
-        $this->setParameters();
-        $this->setClasses();
+    private function setHtmlAttr($name, $value)
+    {
+        $this->htmlAttr[$name] = $value;
     }
 
     /**
