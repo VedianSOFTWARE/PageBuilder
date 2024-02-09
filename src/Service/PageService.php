@@ -34,19 +34,4 @@ class PageService extends CmsService
     {
         
     }
-
-    public function addRow(RowService $row)
-    {
-        $this->rows->push($row);
-    }
-
-    public function removeRow(RowService $row)
-    {
-        $this->rows->forget($row);
-    }
-
-    public function sortRows()
-    {
-        // needs to be implemented as custom sorting logic
-    }
 }

@@ -10,7 +10,7 @@ namespace VedianSoft\VedianCms\Service;
  */
 class ColumnService extends CmsService
 {
-    public function create()
+    public function save()
     {
 
     }

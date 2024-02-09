@@ -9,6 +9,8 @@ use VedianSoft\VedianCms\Service\ColumnService;
 use VedianSoft\VedianCms\Service\PageService;
 use VedianSoft\VedianCms\Service\RowService;
 use VedianSoft\VedianCms\Contracts\ModelContract;
+use VedianSoft\VedianCms\Livewire\PageBuilder;
+use VedianSoft\VedianCms\Livewire\RowToolbar;
 use VedianSoft\VedianCms\Livewire\TitleSlugComposer;
 use VedianSoft\VedianCms\Models\Page;
 use VedianSoft\VedianCms\Models\Row;
@@ -46,6 +48,7 @@ class VedianServiceProvider extends Provider
         $this->vendorBladeComponents();
         
         Livewire::component('vedian::title-slug', TitleSlugComposer::class);
+        Livewire::component('vedian::row-toolbar', RowToolbar::class);
     }
 
     /**
