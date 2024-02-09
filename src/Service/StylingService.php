@@ -45,7 +45,7 @@ class StylingService implements ServiceContract
     /**
      * Represents the constructor method of the Css class.
      */
-    protected function init()
+    public function init()
     {
         $this->parameters = collect();
         $this->classes = collect();
@@ -54,6 +54,7 @@ class StylingService implements ServiceContract
         $this->setParameters();
         $this->setClasses();
         $this->setHtmlAttr('class', $this->classes->values()->implode(' '));
+        // dump($this);
     }
 
 
@@ -90,7 +91,11 @@ class StylingService implements ServiceContract
     protected function setParameters(): void
     {
         if ($this->constructor) {
-            $this->parameters = collect($this->constructor->getParameters());
+            $this->parameters = collect($this->constructor->getParameters())->reject(function ($parameter) {
+                return
+                    $this->{$parameter->getName()} instanceof ServiceContract ||
+                    !is_string($this->{$parameter->getName()});
+            });
         }
     }
 
@@ -102,8 +107,13 @@ class StylingService implements ServiceContract
     protected function setClasses(): void
     {
         $this->parameters->each(function ($parameter) {
-            $this->classes->put($parameter->getName(), $this->{$parameter->getName()});
+            $this->putClasses($parameter);
         });
+    }
+
+    protected function putClasses(ReflectionParameter $parameter)
+    {
+        $this->classes->put($parameter->getName(), $this->{$parameter->getName()});
     }
 
     /**

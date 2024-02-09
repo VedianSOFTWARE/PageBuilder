@@ -10,20 +10,16 @@ use VedianSoft\VedianCms\Contracts\ServiceContract;
  * This class represents a Service for creating and modifying page models in the VedianSOFT CMS.
  * It extends the Builder class and implements the ServiceContract interface.
  */
-class ContainerService implements ServiceContract
+class ContainerService extends StylingService implements ServiceContract
 {
     public function __construct(
         public ServiceContract $stylingService,
-        public string $class = '',
-        public string $maxWidth = '',
-        public string $margin = '',
-        public string $padding = '',
-        public string $sm = '',
-        public string $lg = ''
+        public string $maxWidth = 'max-w-7xl',
+        public string $margin = 'mx-auto',
+        public string $padding = 'py-6 px-4',
+        public string $sm = 'sm:px-6',
+        public string $lg = 'lg:px-8'
     ) {
-        // dd($this->stylingService);
         $this->init();
-
     }
-    
 }
