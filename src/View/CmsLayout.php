@@ -1,23 +1,21 @@
 <?php
 
-namespace VedianSoft\VedianCms\View\Components;
+namespace VedianSoft\VedianCms\View;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use VedianSoft\VedianCms\Enumerations\Status;
 
-class PageStatus extends Component
+class CmsLayout extends Component
 {
+    public array $actions = [];
 
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public $options = []
-    )
+    public function __construct()
     {
-        $this->options = Status::cases();
+        //
     }
 
     /**
@@ -25,6 +23,6 @@ class PageStatus extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('vedian::components.page-status');
+        return view('vedian::layouts.cms');
     }
 }
