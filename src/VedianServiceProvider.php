@@ -2,7 +2,6 @@
 
 namespace VedianSoft\VedianCms;
 
-use Faker\Container\Container;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
 use Livewire\Livewire;
@@ -14,11 +13,12 @@ use VedianSoft\VedianCms\Contracts\ServiceContract;
 use VedianSoft\VedianCms\Livewire\RowToolbar;
 use VedianSoft\VedianCms\Livewire\TitleSlugComposer;
 use VedianSoft\VedianCms\Models\Page;
-use VedianSoft\VedianCms\Service\ContainerService;
 use VedianSoft\VedianCms\Service\StylingService;
 use VedianSoft\VedianCms\Service\PageService;
+use VedianSoft\VedianCms\Service\ContainerService;
+use VedianSoft\VedianCms\View\Component\Container;
+use VedianSoft\VedianCms\View\Component\Styling;
 use VedianSoft\VedianCms\View\ContainerComponent;
-use VedianSoft\VedianCms\View\StylingComponent;
 
 /**
  * Class CmsServiceProvider
@@ -35,11 +35,11 @@ class VedianServiceProvider extends Provider
             PageService::class => Page::class,
         ],
         ComponentContract::class => [
-            ContainerComponent::class => StylingComponent::class,
+            Container::class => Styling::class,
         ],
         ServiceContract::class => [
             ContainerService::class => StylingService::class,
-            ContainerComponent::class => ContainerService::class
+            Container::class => ContainerService::class
         ],
 
     ];
