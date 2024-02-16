@@ -1,13 +1,13 @@
 <?php
 
-namespace VedianSoft\VedianCms\View;
+namespace VedianSoft\VedianCms\View\Component;
 
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use VedianSoft\VedianCms\Contracts\ComponentContract;
 
-class CssComponent extends Component implements ComponentContract
+class Styling extends Component implements ComponentContract
 {
     protected string $viewName = 'css';
 
