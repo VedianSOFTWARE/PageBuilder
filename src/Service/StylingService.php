@@ -8,12 +8,13 @@ use Reflection;
 use ReflectionMethod;
 use ReflectionParameter;
 use VedianSoft\VedianCms\Contracts\ServiceContract;
+use VedianSoft\VedianCms\Contracts\StylingContract;
 
 /**
  * Represents a CSS class generator.
  * @param protected string $maxWidth The maximum width class.
  */
-class StylingService implements ServiceContract
+class StylingService implements StylingContract
 {
     /**
      * Represents the HTML attributes.
