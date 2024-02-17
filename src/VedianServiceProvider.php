@@ -4,10 +4,17 @@ namespace VedianSoftware\Cms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
+use Mockery\Matcher\Contains;
 use ReflectionClass;
+use VedianSoftware\Cms\Contracts\ReflectionClassContract;
+use VedianSoftware\Cms\Contracts\ReflectionContainerContract;
+use VedianSoftware\Cms\Contracts\ReflectionContract;
+use VedianSoftware\Cms\Contracts\ViewContract;
+use VedianSoftware\Cms\Service\ReflectionContainer;
+use VedianSoftware\Cms\Service\ReflectionService;
+use VedianSoftware\Cms\View\Component;
 use VedianSoftware\Cms\View\Container;
 use VedianSoftware\Cms\View\Panel;
-use VedianSoftware\Cms\View\Component;
 
 /**
  * Class CmsServiceProvider
@@ -29,26 +36,17 @@ class VedianServiceProvider extends Provider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
 
-        /**
-         * Bind the reflection service to the container.
-         */
-        $this->bindReflection(Component::class);
-        $this->bindReflection(Panel::class);
-        $this->bindReflection(Container::class);
+        $this->bindReflectionClass(Panel::class);
+        $this->bindReflectionClass(Container::class);
     }
 
     /**
-     * Bind a reflection class to the container.
+     * Create a callback for a reflection class.
      *
      * @param string $abstract
-     * @return void
+     * @return \Closure
      */
-    private function bindReflection($abstract): void
-    {
-        $this->app->bind($abstract, $this->callbackReflection($abstract));
-    }
-
-    private function callbackReflection($abstract)
+    private function callbackReflectionClass($abstract)
     {
         return fn () => new $abstract(new ReflectionClass($abstract));
     }
@@ -59,9 +57,9 @@ class VedianServiceProvider extends Provider
      * @param string $abstract
      * @return void
      */
-    private function bind($abstract, $concrete): void
+    private function bindReflectionClass($abstract): void
     {
-        $this->app->bind($abstract, fn () => new $abstract($concrete));
+        $this->app->bind($abstract, $this->callbackReflectionClass($abstract));
     }
 
     /**
