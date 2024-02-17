@@ -2,6 +2,6 @@
 
 namespace VedianSoftware\Cms\Contracts;
 
-interface ReflectionContract
+interface StylingContract
 {
 }

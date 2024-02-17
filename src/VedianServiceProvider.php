@@ -9,10 +9,13 @@ use ReflectionClass;
 use VedianSoftware\Cms\Contracts\ReflectionClassContract;
 use VedianSoftware\Cms\Contracts\ReflectionContainerContract;
 use VedianSoftware\Cms\Contracts\ReflectionContract;
+use VedianSoftware\Cms\Contracts\StylingContract;
 use VedianSoftware\Cms\Contracts\ViewContract;
 use VedianSoftware\Cms\Service\ReflectionContainer;
 use VedianSoftware\Cms\Service\ReflectionService;
+use VedianSoftware\Cms\Service\StylingService;
 use VedianSoftware\Cms\View\Component;
+use VedianSoftware\Cms\View\Component\Styling;
 use VedianSoftware\Cms\View\Container;
 use VedianSoftware\Cms\View\Panel;
 
@@ -36,10 +39,13 @@ class VedianServiceProvider extends Provider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
 
+        $this->app->bind(StylingContract::class, StylingService::class);
+        
         $this->bindReflectionClass(Panel::class);
         $this->bindReflectionClass(Container::class);
-    }
 
+    }
+    
     /**
      * Create a callback for a reflection class.
      *
@@ -48,7 +54,7 @@ class VedianServiceProvider extends Provider
      */
     private function callbackReflectionClass($abstract)
     {
-        return fn () => new $abstract(new ReflectionClass($abstract));
+        return fn () => new $abstract(new ReflectionClass($abstract), $this->app->make(StylingContract::class));
     }
 
     /**

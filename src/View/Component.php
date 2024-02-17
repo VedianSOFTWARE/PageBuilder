@@ -8,6 +8,7 @@ use VedianSoftware\Cms\Contracts\ViewContract;
 use Illuminate\Support\Str;
 use Illuminate\View\View as IlluminateView;
 use VedianSoftware\Cms\Contracts\ReflectionContract;
+use VedianSoftware\Cms\Contracts\StylingContract;
 
 /**
  * Class View
@@ -42,7 +43,8 @@ class Component extends ViewComponent implements ViewContract
      * View constructor.
      */
     public function __construct(
-        protected ReflectionClass $reflection
+        protected ReflectionClass $reflection,
+        protected StylingContract $styling
     ) {
         $this->setView();
         $this->setDirectory();
