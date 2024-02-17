@@ -2,12 +2,25 @@
 
 namespace VedianSoftware\Cms;
 
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
+use Mockery\Matcher\Contains;
 use ReflectionClass;
+use VedianSoftware\Cms\Contracts\ContainerContract;
+use VedianSoftware\Cms\Contracts\ReflectionClassContract;
+use VedianSoftware\Cms\Contracts\ReflectionContainerContract;
+use VedianSoftware\Cms\Contracts\ReflectionContract;
+use VedianSoftware\Cms\Contracts\StylingServiceContract;
+use VedianSoftware\Cms\Contracts\ViewContract;
+use VedianSoftware\Cms\Service\ReflectionContainer;
+use VedianSoftware\Cms\Service\ReflectionService;
+use VedianSoftware\Cms\Service\StylingService;
+use VedianSoftware\Cms\View\Component;
+use VedianSoftware\Cms\View\Component\Styling;
 use VedianSoftware\Cms\View\Container;
 use VedianSoftware\Cms\View\Panel;
-use VedianSoftware\Cms\View\Component;
 
 /**
  * Class CmsServiceProvider
@@ -29,39 +42,65 @@ class VedianServiceProvider extends Provider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
 
-        /**
-         * Bind the reflection service to the container.
-         */
-        $this->bindReflection(Component::class);
-        $this->bindReflection(Panel::class);
-        $this->bindReflection(Container::class);
-    }
+        $this->app->bind(StylingServiceContract::class, StylingService::class);
+        $this->app->bind(ContainerContract::class, Container::class);
+        $this->app->bind(ViewContract::class, ContainerContract::class);
 
+        $this->bindViewComponents(
+            Container::class,
+            [
+                StylingService::class
+            ]
+        );
+        // $this->app->bind(ContainerContract::class, function ($app) {
+
+        //     return new Container($app->make(StylingServiceContract::class));
+        // });
+    }
     /**
      * Bind a reflection class to the container.
      *
      * @param string $abstract
      * @return void
      */
-    private function bindReflection($abstract): void
+    private function bindViewComponents($reflection, $serviceContracts): void
     {
-        $this->app->bind($abstract, $this->callbackReflection($abstract));
+        $this->app->bind($reflection, $this->callbackReflectionClass($reflection, $serviceContracts));
     }
 
-    private function callbackReflection($abstract)
+    public function makeViewComponent($reflection, ...$args)
     {
-        return fn () => new $abstract(new ReflectionClass($abstract));
+        return $this->callbackReflectionClass($reflection, ...$args);
+
+        // return new $abstract(, $this->app->make(StylingServiceContract::class));
     }
 
     /**
-     * Bind a reflection class to the container.
+     * Create a callback for a reflection class.
      *
      * @param string $abstract
-     * @return void
+     * @return \Closure
      */
-    private function bind($abstract, $concrete): void
+    private function callbackReflectionClass($reflection, $serviceContracts)
     {
-        $this->app->bind($abstract, fn () => new $abstract($concrete));
+        return fn () => new $reflection(
+            new ReflectionClass($reflection),
+            $this->makeServiceContracts($serviceContracts)
+        );
+    }
+
+
+    /**
+     * Make service contracts.
+     *
+     * @param array $args
+     * @return array
+     */
+    private function makeServiceContracts($args)
+    {
+        return collect($args)->map(function ($arg, $key) {
+            return $arg;
+        });
     }
 
     /**

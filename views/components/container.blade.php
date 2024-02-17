@@ -1,9 +1,5 @@
-<div>
-    <div class="border border-red-500 mb-4">
-        Container blade
-
-    </div>
-    <div class="mb-4">
+<div class="py-12">
+    <div {!! $attributes->merge([]) !!}>
         {{ $slot }}
     </div>
 </div>
