@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoft\VedianCms\View;
+namespace VedianSoftware\Cms\View;
 
 use Closure;
 use Illuminate\Contracts\View\View;

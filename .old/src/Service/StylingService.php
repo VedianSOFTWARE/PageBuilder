@@ -1,12 +1,12 @@
 <?php
 
-namespace VedianSoft\VedianCms\Service;
+namespace VedianSoftware\Cms\Service;
 
 use ReflectionClass;
 use Illuminate\Support\Collection; // Add missing import
 use ReflectionMethod;
 use ReflectionParameter;
-use VedianSoft\VedianCms\Contracts\StylingContract;
+use VedianSoftware\Cms\Contracts\StylingContract;
 
 /**
  * This class represents a base styling service that can be extended by other styling services.

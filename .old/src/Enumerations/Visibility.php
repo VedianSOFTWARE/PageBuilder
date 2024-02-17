@@ -1,8 +1,8 @@
 <?php
 
-namespace VedianSoft\VedianCms\Enumerations;
+namespace VedianSoftware\Cms\Enumerations;
 
-use VedianSoft\VedianCms\Traits\EnumToArray;
+use VedianSoftware\Cms\Traits\EnumToArray;
 
 enum Visibility: string
 {

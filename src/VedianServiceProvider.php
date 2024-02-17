@@ -1,24 +1,13 @@
 <?php
 
-namespace VedianSoft\VedianCms;
+namespace VedianSoftware\Cms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
-use Livewire\Livewire;
-use VedianSoft\VedianCms\Contracts\ContainerStylingContract;
-use VedianSoft\VedianCms\Contracts\ModelContract;
-use VedianSoft\VedianCms\Contracts\StylingContract;
-use VedianSoft\VedianCms\Contracts\ViewContract;
-use VedianSoft\VedianCms\Livewire\RowToolbar;
-use VedianSoft\VedianCms\Livewire\TitleSlugComposer;
-use VedianSoft\VedianCms\Models\Page;
-use VedianSoft\VedianCms\Service\ContainerStylingService;
-use VedianSoft\VedianCms\Service\StylingService;
-use VedianSoft\VedianCms\Service\PageService;
-use VedianSoft\VedianCms\View\Component\Container;
-use VedianSoft\VedianCms\View\Component\Styling;
-use VedianSoft\VedianCms\View\ContainerComponent;
-use VedianSoft\VedianCms\View\ViewComponent;
+use ReflectionClass;
+use VedianSoftware\Cms\View\Container;
+use VedianSoftware\Cms\View\Panel;
+use VedianSoftware\Cms\View\Component;
 
 /**
  * Class CmsServiceProvider
@@ -26,7 +15,7 @@ use VedianSoft\VedianCms\View\ViewComponent;
  * This class is the service provider for the VedianCMS package.
  * It registers and bootstraps the necessary services and components.
  *
- * @package VedianSoft\VedianCms
+ * @package VedianSoftware\Cms
  */
 class VedianServiceProvider extends Provider
 {
@@ -39,6 +28,40 @@ class VedianServiceProvider extends Provider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
+
+        /**
+         * Bind the reflection service to the container.
+         */
+        $this->bindReflection(Component::class);
+        $this->bindReflection(Panel::class);
+        $this->bindReflection(Container::class);
+    }
+
+    /**
+     * Bind a reflection class to the container.
+     *
+     * @param string $abstract
+     * @return void
+     */
+    private function bindReflection($abstract): void
+    {
+        $this->app->bind($abstract, $this->callbackReflection($abstract));
+    }
+
+    private function callbackReflection($abstract)
+    {
+        return fn () => new $abstract(new ReflectionClass($abstract));
+    }
+
+    /**
+     * Bind a reflection class to the container.
+     *
+     * @param string $abstract
+     * @return void
+     */
+    private function bind($abstract, $concrete): void
+    {
+        $this->app->bind($abstract, fn () => new $abstract($concrete));
     }
 
     /**
@@ -64,10 +87,10 @@ class VedianServiceProvider extends Provider
         // Load dependencies
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         $this->loadViewsFrom(__DIR__ . '/../views', 'vedian');
-        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        // $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/auth.php');
 
         // Register blade components
-        Blade::componentNamespace('VedianSoft\\VedianCms\\View', 'vedian');
+        Blade::componentNamespace('VedianSoftware\\Cms\\View', 'vedian');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoft\VedianCms\Service;
+namespace VedianSoftware\Cms\Service;
 
 
 /**

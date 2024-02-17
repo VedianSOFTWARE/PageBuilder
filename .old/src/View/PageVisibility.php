@@ -1,11 +1,11 @@
 <?php
 
-namespace VedianSoft\VedianCms\View;
+namespace VedianSoftware\Cms\View;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use VedianSoft\VedianCms\Enumerations\Visibility;
+use VedianSoftware\Cms\Enumerations\Visibility;
 
 class PageVisibility extends Component
 {

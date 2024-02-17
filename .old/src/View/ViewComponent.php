@@ -1,15 +1,15 @@
 <?php
 
-namespace VedianSoft\VedianCms\View;
+namespace VedianSoftware\Cms\View;
 
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
-use VedianSoft\VedianCms\Contracts\StylingContract;
-use VedianSoft\VedianCms\Contracts\ViewContract;
+use VedianSoftware\Cms\Contracts\StylingContract;
+use VedianSoftware\Cms\Contracts\ViewContract;
 
-class ViewComponent extends Component implements ViewContract
+class View extends Component implements ViewContract
 {
     protected string $name = 'default';
 

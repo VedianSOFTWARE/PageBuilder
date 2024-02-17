@@ -1,24 +1,24 @@
 <?php
 
-namespace VedianSoft\VedianCms;
+namespace VedianSoftware\Cms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
 use Livewire\Livewire;
 use Livewire\Mechanisms\HandleComponents\ComponentContext;
-use VedianSoft\VedianCms\Contracts\StylingServiceContract;
-use VedianSoft\VedianCms\Contracts\ModelContract;
-use VedianSoft\VedianCms\Contracts\ComponentContract;
-use VedianSoft\VedianCms\Contracts\ServiceContract;
-use VedianSoft\VedianCms\Livewire\RowToolbar;
-use VedianSoft\VedianCms\Livewire\TitleSlugComposer;
-use VedianSoft\VedianCms\Models\Page;
-use VedianSoft\VedianCms\Service\StylingService;
-use VedianSoft\VedianCms\Service\PageService;
-use VedianSoft\VedianCms\Service\ContainerService;
-use VedianSoft\VedianCms\View\Component\Container;
-use VedianSoft\VedianCms\View\Component\Styling;
-use VedianSoft\VedianCms\View\ContainerComponent;
+use VedianSoftware\Cms\Contracts\StylingServiceContract;
+use VedianSoftware\Cms\Contracts\ModelContract;
+use VedianSoftware\Cms\Contracts\ComponentContract;
+use VedianSoftware\Cms\Contracts\ServiceContract;
+use VedianSoftware\Cms\Livewire\RowToolbar;
+use VedianSoftware\Cms\Livewire\TitleSlugComposer;
+use VedianSoftware\Cms\Models\Page;
+use VedianSoftware\Cms\Service\StylingService;
+use VedianSoftware\Cms\Service\PageService;
+use VedianSoftware\Cms\Service\ContainerService;
+use VedianSoftware\Cms\View\Component\Container;
+use VedianSoftware\Cms\View\Component\Styling;
+use VedianSoftware\Cms\View\ContainerComponent;
 
 /**
  * Class CmsServiceProvider
@@ -26,7 +26,7 @@ use VedianSoft\VedianCms\View\ContainerComponent;
  * This class is the service provider for the VedianCMS package.
  * It registers and bootstraps the necessary services and components.
  *
- * @package VedianSoft\VedianCms
+ * @package VedianSoftware\Cms
  */
 class VedianServiceProvider extends Provider
 {
@@ -102,14 +102,14 @@ class VedianServiceProvider extends Provider
         //  * Binds the BuilderContract interface to the PageContract class for PageService.
         //  *
         //  * @var \VedianSoftware\VedianCms\Contracts\ModelContract $ServiceContract
-        //  * @var \VedianSoft\VedianCms\Contracts\PageContract $pageContract
+        //  * @var \VedianSoftware\Cms\Contracts\PageContract $pageContract
         //  */
 
         // /**
         //  * Binds the BuilderContract interface to the RowContract class for RowService.
         //  *
-        //  * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
-        //  * @var \VedianSoft\VedianCms\Contracts\RowContract $rowContract
+        //  * @var \VedianSoftware\Cms\Contracts\ModelContract $ServiceContract
+        //  * @var \VedianSoftware\Cms\Contracts\RowContract $rowContract
         //  */
         // $this->app->when(RowService::class)
         //     ->needs(ModelContract::class)
@@ -118,8 +118,8 @@ class VedianServiceProvider extends Provider
         // /**
         //  * Binds the BuilderContract interface to the ColumnContract class for ColumnService.
         //  *
-        //  * @var \VedianSoft\VedianCms\Contracts\ModelContract $ServiceContract
-        //  * @var \VedianSoft\VedianCms\Models\ColumnContract $columnContract
+        //  * @var \VedianSoftware\Cms\Contracts\ModelContract $ServiceContract
+        //  * @var \VedianSoftware\Cms\Models\ColumnContract $columnContract
         //  */
         // $this->app->when(ColumnService::class)
         //     ->needs(ModelContract::class)

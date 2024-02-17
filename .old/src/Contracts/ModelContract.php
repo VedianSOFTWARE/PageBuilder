@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoft\VedianCms\Contracts;
+namespace VedianSoftware\Cms\Contracts;
 
 /**
  * The ModelContract interface defines the contract for model classes in the Vedian CMS package.

@@ -1,8 +1,8 @@
 <?php
 
-namespace VedianSoft\VedianCms\Service;
+namespace VedianSoftware\Cms\Service;
 
-use VedianSoft\VedianCms\Contracts\ModelContract;
+use VedianSoftware\Cms\Contracts\ModelContract;
 
 /**
  * Class Service

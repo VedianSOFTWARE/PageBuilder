@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use VedianSoft\VedianCms\Controllers\PageController;
+use VedianSoftware\Cms\Controllers\PageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,7 @@ $authSessionMiddleware = config('vedian.auth_session', false)
 
 Route::group([
     'middleware' => array_values(array_filter(['web', $authMiddleware, $authSessionMiddleware])),
-    'prefix' => config('vedian.prefix.cms_dashboard'),
+    'prefix' => config('vedian.prefix'),
 ], function () {
     Route::prefix('page')->group(function () {
         Route::get('create', [PageController::class, 'create']);
