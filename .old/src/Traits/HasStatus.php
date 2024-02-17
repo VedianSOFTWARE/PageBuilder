@@ -1,8 +1,8 @@
 <?php
 
-namespace VedianSoft\VedianCms\Traits;
+namespace VedianSoftware\Cms\Traits;
 
-use VedianSoft\VedianCms\Enumerations\Status;
+use VedianSoftware\Cms\Enumerations\Status;
 
 /**
  * Trait HasStatus

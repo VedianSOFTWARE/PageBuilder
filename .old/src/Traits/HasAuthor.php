@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoft\VedianCms\Traits;
+namespace VedianSoftware\Cms\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 

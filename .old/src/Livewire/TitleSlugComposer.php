@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoft\VedianCms\Livewire;
+namespace VedianSoftware\Cms\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Str;

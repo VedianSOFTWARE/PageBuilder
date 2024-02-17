@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use VedianSoft\VedianCms\Enumerations\ContentType;
-use VedianSoft\VedianCms\Enumerations\Status;
-use VedianSoft\VedianCms\Enumerations\Visibility;
+use VedianSoftware\Cms\Enumerations\ContentType;
+use VedianSoftware\Cms\Enumerations\Status;
+use VedianSoftware\Cms\Enumerations\Visibility;
 
 return new class extends Migration
 {

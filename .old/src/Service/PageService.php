@@ -1,12 +1,12 @@
 <?php
 
-namespace VedianSoft\VedianCms\Service;
+namespace VedianSoftware\Cms\Service;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
-use VedianSoft\VedianCms\Enumerations\ContentType;
-use VedianSoft\VedianCms\Enumerations\Status;
-use VedianSoft\VedianCms\Enumerations\Visibility;
+use VedianSoftware\Cms\Enumerations\ContentType;
+use VedianSoftware\Cms\Enumerations\Status;
+use VedianSoftware\Cms\Enumerations\Visibility;
 
 /**
  * Class PageService

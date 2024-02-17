@@ -1,12 +1,12 @@
 <?php
 
-namespace VedianSoft\VedianCms\View\Component;
+namespace VedianSoftware\Cms\View\Component;
 
 use Illuminate\View\ComponentAttributeBag;
-use VedianSoft\VedianCms\Contracts\StylingContract;
-use VedianSoft\VedianCms\View\ViewComponent;
+use VedianSoftware\Cms\Contracts\StylingContract;
+use VedianSoftware\Cms\View\View;
 
-class Container extends ViewComponent
+class Container extends View
 {
     protected string $name = 'container';
 

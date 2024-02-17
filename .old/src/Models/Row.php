@@ -1,12 +1,12 @@
 <?php
 
-namespace VedianSoft\VedianCms\Models;
+namespace VedianSoftware\Cms\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use VedianSoft\VedianCms\Traits\HasAuthor;
-use VedianSoft\VedianCms\Traits\HasStatus;
-use VedianSoft\VedianCms\Traits\HasVisibility;
-use VedianSoft\VedianCms\Traits\IsVisibleBetween;
+use VedianSoftware\Cms\Traits\HasAuthor;
+use VedianSoftware\Cms\Traits\HasStatus;
+use VedianSoftware\Cms\Traits\HasVisibility;
+use VedianSoftware\Cms\Traits\IsVisibleBetween;
 
 /**
  * Class Row
@@ -15,7 +15,7 @@ use VedianSoft\VedianCms\Traits\IsVisibleBetween;
  * It extends the Eloquent Model class and implements the ServiceContract interface.
  * It also uses several traits for additional functionality.
  *
- * @package VedianSoft\VedianCms\Models
+ * @package VedianSoftware\Cms\Models
  */
 class Row extends ServiceModel
 {
