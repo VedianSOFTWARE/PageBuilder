@@ -49,6 +49,10 @@ class Component extends ViewComponent implements ViewContract
         $this->setView();
         $this->setDirectory();
         $this->setNamespace();
+        $this->styling->add('background', 'red');
+        $this->styling->add('color', 'white');
+        $this->styling->add('padding', '10px');
+        $this->styling->add('margin', '10px');
         dd($this);
     }
 
