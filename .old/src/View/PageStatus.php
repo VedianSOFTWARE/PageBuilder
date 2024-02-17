@@ -1,11 +1,11 @@
 <?php
 
-namespace VedianSoft\VedianCms\View;
+namespace VedianSoftware\Cms\View;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use VedianSoft\VedianCms\Enumerations\Status;
+use VedianSoftware\Cms\Enumerations\Status;
 
 class PageStatus extends Component
 {

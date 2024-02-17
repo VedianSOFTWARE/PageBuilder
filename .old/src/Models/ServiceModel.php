@@ -1,9 +1,9 @@
 <?php
 
-namespace VedianSoft\VedianCms\Models;
+namespace VedianSoftware\Cms\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use VedianSoft\VedianCms\Contracts\ModelContract;
+use VedianSoftware\Cms\Contracts\ModelContract;
 
 class ServiceModel extends Model implements ModelContract
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace VedianSoft\VedianCms\Service;
+namespace VedianSoftware\Cms\Service;
 
 use Illuminate\Support\Collection;
-use VedianSoft\VedianCms\Contracts\ContainerStylingContract;
+use VedianSoftware\Cms\Contracts\ContainerStylingContract;
 
 /**
  * Class PageService

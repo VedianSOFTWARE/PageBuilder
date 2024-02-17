@@ -8,8 +8,5 @@ return [
     'auth_session' => AuthenticateSession::class,
     'guard' => 'auth:sanctum',
 
-
-    'prefix' => [
-        'cms_dashboard' => env('VEDIAN_CMS_PREFIX_DASHBOARD', 'dashboard/cms'),
-    ],
+    'prefix' => env('VEDIAN_CMS_PREFIX', 'dashboard/cms'),
 ];
