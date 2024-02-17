@@ -7,6 +7,7 @@ use ReflectionClass;
 use VedianSoftware\Cms\Contracts\ViewContract;
 use Illuminate\Support\Str;
 use Illuminate\View\View as IlluminateView;
+use VedianSoftware\Cms\Contracts\ReflectionContract;
 
 /**
  * Class View
@@ -33,14 +34,20 @@ class Component extends ViewComponent implements ViewContract
     protected string $namespace = 'vedian';
 
     /**
+     * @var ReflectionClass The reflection of the class.
+     */
+
+
+    /**
      * View constructor.
      */
     public function __construct(
-        public ReflectionClass $reflection,
+        protected ReflectionClass $reflection
     ) {
         $this->setView();
         $this->setDirectory();
         $this->setNamespace();
+        dd($this);
     }
 
     protected function setView(): void
@@ -48,7 +55,7 @@ class Component extends ViewComponent implements ViewContract
         $this->view = $this->className();
     }
 
-    protected function class()
+    protected function setR()
     {
         return $this->reflection;
     }
