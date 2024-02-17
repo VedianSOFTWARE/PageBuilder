@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => $class ?? '']) }}>
-    
+<div {{ $attributes->merge($styling->getAttributes()) }}>
+    asdasd
     {{ $slot }}
 </div>

@@ -5,6 +5,7 @@ namespace VedianSoft\VedianCms;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
 use Livewire\Livewire;
+use VedianSoft\VedianCms\Contracts\ContainerStylingContract;
 use VedianSoft\VedianCms\Contracts\ModelContract;
 use VedianSoft\VedianCms\Contracts\StylingContract;
 use VedianSoft\VedianCms\Contracts\ViewContract;
@@ -36,12 +37,18 @@ class VedianServiceProvider extends Provider
         StylingContract::class => [
             Container::class => ContainerStylingService::class,
         ],
+        StylingService::class => [
+            Container::class => StylingService::class,
+        ],
+        ViewContract::class => [
+            Container::class => ViewComponent::class,
+            // Styling::class => ViewComponent::class,
+        ],
     ];
 
 
     public function register()
     {
-        // dd($this->cmsBindings);
 
         $this->bindings();
         $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
@@ -89,6 +96,15 @@ class VedianServiceProvider extends Provider
      */
     protected function bindings()
     {
+
+        /**
+         * Binds the dependencies for the CMS service provider.
+         *
+         * This method binds the dependencies required by the CMS service provider.
+         * It iterates over the CMS bindings and registers them with the application container.
+         *
+         * @return void
+         */
         $this->getCmsBindings()->each(function ($bindings, $needs) {
             $bindings->each(function ($give, $when) use ($needs) {
                 $this->app->when($when)
