@@ -2,16 +2,12 @@
 
 namespace VedianSoft\VedianCms\View\Component;
 
-use VedianSoft\VedianCms\Contracts\ComponentContract;
-use VedianSoft\VedianCms\Contracts\ServiceContract;
-use VedianSoft\VedianCms\View\Component\Styling;
+use Illuminate\View\ComponentAttributeBag;
+use VedianSoft\VedianCms\Contracts\StylingContract;
+use VedianSoft\VedianCms\View\ViewComponent;
 
-class Container extends Styling
+class Container extends ViewComponent
 {
-    public function __construct(
-        public ComponentContract $stylingComponent,
-        public ServiceContract $stylingService
-    ) {
-        dump($this->stylingComponent, $this->stylingService);
-    }
+    protected string $name = 'container';
+
 }

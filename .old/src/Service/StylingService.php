@@ -4,124 +4,94 @@ namespace VedianSoft\VedianCms\Service;
 
 use ReflectionClass;
 use Illuminate\Support\Collection; // Add missing import
-use Reflection;
 use ReflectionMethod;
 use ReflectionParameter;
-use VedianSoft\VedianCms\Contracts\ServiceContract;
+use VedianSoft\VedianCms\Contracts\StylingContract;
 
 /**
- * Represents a CSS class generator.
- * @param protected string $maxWidth The maximum width class.
+ * This class represents a base styling service that can be extended by other styling services.
+ * It implements the StylingContract interface.
  */
-class StylingService implements ServiceContract
+abstract class StylingService implements StylingContract
 {
     /**
-     * Represents the HTML attributes.
-     */
-    protected array $htmlAttr = [];
-
-    /**
-     * Represents the Css class.
+     * The array of classes associated with the styling service.
      *
-     * This class is responsible for handling CSS-related operations.
+     * @var array
      */
-    protected ReflectionClass $reflection;
+    public array $classes = [];
+
+    // /**
+    //  * The reflection class instance.
+    //  *
+    //  * @var ReflectionClass
+    //  */
+    // protected ReflectionClass $reflection;
+
+    // /**
+    //  * The reflection method instance.
+    //  *
+    //  * @var ReflectionMethod
+    //  */
+    // protected ReflectionMethod $constructor;
+
+    // /**
+    //  * The collection of parameters.
+    //  *
+    //  * @var Collection
+    //  */
+    // protected Collection $parameters;
 
     /**
-     * Represents the constructor method of the Css class.
+     * Constructs a new StylingService instance.
+     *
+     * @param Collection $attributes The collection of attributes.
      */
-    protected ReflectionMethod $constructor;
-
-    /**
-     * Represents the parameters collection of the Css class.
-     */
-    protected Collection $parameters;
-
-    /**
-     * Represents the classes collection of the Css class.
-     */
-    protected Collection $classes;
-
-    /**
-     * Represents the constructor method of the Css class.
-     */
-    public function init()
-    {
-        $this->parameters = collect();
-        $this->classes = collect();
-        $this->setReflection();
-        $this->setConstructor();
-        $this->setParameters();
-        $this->setClasses();
-        $this->setHtmlAttr('class', $this->classes->values()->implode(' '));
-    }
-
-
-    protected function setHtmlAttr($name, $value)
-    {
-        $this->htmlAttr[$name] = $value;
+    public function __construct(
+        protected Collection $attributes,
+    ) {
+        $this->putAttributes('class', $this->getClassAttribute());
     }
 
     /**
-     * Sets the reflection object for the Css class.
+     * Get the classes associated with the styling service.
      *
+     * @return array The array of classes.
+     */
+    public function getClasses()
+    {
+        return $this->classes;
+    }
+
+    /**
+     * Get the class attribute by concatenating the classes.
+     *
+     * @return string The concatenated class attribute.
+     */
+    public function getClassAttribute()
+    {
+        return implode(' ', $this->getClasses());
+    }
+
+    /**
+     * Put an attribute into the attributes collection.
+     *
+     * @param string $key The key of the attribute.
+     * @param mixed $value The value of the attribute.
      * @return void
      */
-    protected function setReflection(): void
+    protected function putAttributes(string $key, $value)
     {
-        $this->reflection = new ReflectionClass($this);
+        $this->attributes->put($key, $value);
     }
 
     /**
-     * Sets the constructor method for the Css class.
+     * Get the attributes associated with the styling service.
      *
-     * @return void
+     * @return Collection The collection of attributes.
      */
-    protected function setConstructor(): void
+    public function getAttributes()
     {
-        $this->constructor = $this->reflection->getConstructor();
-    }
-
-    /**
-     * Sets the parameters for the constructor method.
-     *
-     * @return void
-     */
-    protected function setParameters(): void
-    {
-        if ($this->constructor) {
-            $this->parameters = collect($this->constructor->getParameters())->reject(function ($parameter) {
-                return
-                    $this->{$parameter->getName()} instanceof ServiceContract ||
-                    !is_string($this->{$parameter->getName()});
-            });
-        }
-    }
-
-    /**
-     * Sets the classes for the Css instance.
-     *
-     * @return void
-     */
-    protected function setClasses(): void
-    {
-        $this->parameters->each(function ($parameter) {
-            $this->putClasses($parameter);
-        });
-    }
-
-    protected function putClasses(ReflectionParameter $parameter)
-    {
-        $this->classes->put($parameter->getName(), $this->{$parameter->getName()});
-    }
-
-    /**
-     * Converts the Css instance to a string representation.
-     *
-     * @return string The string representation of the Css instance.
-     */
-    public function __toString(): string
-    {
-        return $this->classes->values()->implode(' ');
+        return $this->attributes->toArray();
     }
 }
