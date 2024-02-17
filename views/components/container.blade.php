@@ -1,5 +1,3 @@
-<div class="py-12">
-    <div {!! $attributes->merge([]) !!}>
-        {{ $slot }}
-    </div>
+<div {!! $attributes->merge([]) !!}>
+    {{ $slot }}asd
 </div>

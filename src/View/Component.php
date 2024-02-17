@@ -6,9 +6,10 @@ use Illuminate\Support\Collection;
 use Illuminate\View\Component as ViewComponent;
 use ReflectionClass;
 use VedianSoftware\Cms\Contracts\ViewContract;
-use Illuminate\Support\Str;
 use Illuminate\View\View as IlluminateView;
+use VedianSoftware\Cms\Contracts\ReflectionServiceContract;
 use VedianSoftware\Cms\Contracts\StylingServiceContract;
+use VedianSoftware\Cms\Services\ReflectionService;
 
 /**
  * Class Component
@@ -45,7 +46,7 @@ class Component extends ViewComponent implements ViewContract
      *
      * @var string
      */
-    protected string $view;
+    protected string $view = 'view';
 
     /**
      * The directory where the view is located.
@@ -76,13 +77,6 @@ class Component extends ViewComponent implements ViewContract
     protected Collection $classAttribute;
 
     /**
-     * The reflection class of the component.
-     *
-     * @var \ReflectionClass
-     */
-    protected ReflectionClass $reflectionClass;
-
-    /**
      * The styling service contract.
      *
      * @var StylingServiceContract
@@ -92,17 +86,18 @@ class Component extends ViewComponent implements ViewContract
     /**
      * Component constructor.
      *
-     * @param ReflectionClass $reflectionClass The reflection class of the component.
-     * @param Collection $services The collection of services.
+     * @param ReflectionService $reflection The reflection service contract.
+     * @param Collection $serviceContracts The collection of service contracts.
      */
     public function __construct(
-        ReflectionClass $reflectionClass,
-        Collection $services
+        protected ReflectionClass|ReflectionService|ReflectionServiceContract $reflection,
+        protected Collection $serviceContracts
     ) {
-        $this->initializeComponent($reflectionClass);
-        $this->setServiceContracts($services);
-        $this->addHtmlAttribute('class', $this->getComponentClasses());
+        // Initialize the component.
+        $this->initializeComponent();
 
+        // Initialize the HTML and class attributes.
+        $this->addHtmlAttribute('class', $this->class);
         $this->withAttributes($this->getHtmlAttributes());
     }
 
@@ -111,15 +106,18 @@ class Component extends ViewComponent implements ViewContract
      *
      * @return void
      */
-    protected function initializeComponent($reflectionClass): void
+    protected function initializeComponent(): void
     {
         $this->htmlAttributes = collect();
         $this->classAttribute = collect();
-        $this->reflectionClass = $reflectionClass;
+        $this->class = collect($this->class);
+        $this->view = $this->reflection->getReflectionName() ?? $this->view;
 
-        $this->setView();
-        $this->setDirectory();
-        $this->setNamespace();
+        $this->reflection
+            ->mapContracts($this->serviceContracts)
+            ->each(function ($service, $property) {
+                $this->$property = $service;
+            });
     }
 
     /**
@@ -150,57 +148,12 @@ class Component extends ViewComponent implements ViewContract
     /**
      * Get the HTML attributes of the component.
      *
-     * @return array
+     * @param string $attr The attribute name.
+     * @return array|string
      */
-    public function getHtmlAttributes(): array
+    public function getHtmlAttributes(string $attr = '')
     {
-        return $this->htmlAttributes->toArray();
-    }
-
-    /**
-     * Get the CSS classes of the component.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function getComponentClasses(): Collection
-    {
-        return collect($this->class);
-    }
-
-    /**
-     * Set the service contracts.
-     *
-     * @param Collection $services The collection of services.
-     * @return void
-     */
-    protected function setServiceContracts(Collection &$services): void
-    {
-        $services
-            ->mapWithKeys(function ($service, $key) {
-                return [$this->getShortName($service, 'Contract') =>  new $service];
-            })
-            ->each(function ($service, $property) {
-                $this->$property = $service;
-            });
-    }
-
-    /**
-     * Get the short name of a class.
-     *
-     * @param string $service The class name.
-     * @param string $replace The string to be replaced.
-     * @return string
-     */
-    private function getShortName($service, $replace = ''): string
-    {
-        $service = (new ReflectionClass($service))->getShortName();
-        $service = Str::of($service)->lcfirst();
-
-        if (!empty($replace)) {
-            $service = $service->replace($replace, '');
-        }
-
-        return $service->toString();
+        return !empty($attr) ? $this->htmlAttributes->get($attr) : $this->htmlAttributes->toArray();
     }
 
     /**
@@ -210,55 +163,15 @@ class Component extends ViewComponent implements ViewContract
      */
     protected function setView(): void
     {
-        $this->view = $this->className();
+        $this->view = $this->reflection->getReflectionName();
     }
 
     /**
-     * Get the class name of the component.
+     * Get the view viewPath.
      *
      * @return string
      */
-    public function className(): string
-    {
-        return Str::lower($this->class()->getShortName());
-    }
-
-    /**
-     * Get the reflection class of the component.
-     *
-     * @return \ReflectionClass
-     */
-    public function class(): ReflectionClass
-    {
-        return $this->reflectionClass;
-    }
-
-    /**
-     * Set the directory property.
-     *
-     * @return void
-     */
-    protected function setDirectory(): void
-    {
-        $this->directory = $this->directory;
-    }
-
-    /**
-     * Set the namespace property.
-     *
-     * @return void
-     */
-    protected function setNamespace(): void
-    {
-        $this->namespace = $this->namespace;
-    }
-
-    /**
-     * Get the view path.
-     *
-     * @return string
-     */
-    public function path(): string
+    public function viewPath(): string
     {
         return $this->namespace . '::' . $this->directory . '.' . $this->view;
     }
@@ -270,6 +183,6 @@ class Component extends ViewComponent implements ViewContract
      */
     public function render(): IlluminateView
     {
-        return view($this->path());
+        return view($this->viewPath());
     }
 }

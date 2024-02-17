@@ -12,11 +12,12 @@ use VedianSoftware\Cms\Contracts\ContainerContract;
 use VedianSoftware\Cms\Contracts\ReflectionClassContract;
 use VedianSoftware\Cms\Contracts\ReflectionContainerContract;
 use VedianSoftware\Cms\Contracts\ReflectionContract;
+use VedianSoftware\Cms\Contracts\ReflectionServiceContract;
 use VedianSoftware\Cms\Contracts\StylingServiceContract;
 use VedianSoftware\Cms\Contracts\ViewContract;
-use VedianSoftware\Cms\Service\ReflectionContainer;
-use VedianSoftware\Cms\Service\ReflectionService;
-use VedianSoftware\Cms\Service\StylingService;
+use VedianSoftware\Cms\Services\ReflectionContainer;
+use VedianSoftware\Cms\Services\ReflectionService;
+use VedianSoftware\Cms\Services\StylingService;
 use VedianSoftware\Cms\View\Component;
 use VedianSoftware\Cms\View\Component\Styling;
 use VedianSoftware\Cms\View\Container;
@@ -46,16 +47,14 @@ class VedianServiceProvider extends Provider
         $this->app->bind(ContainerContract::class, Container::class);
         $this->app->bind(ViewContract::class, ContainerContract::class);
 
+        $this->app->bind(ReflectionServiceContract::class, ReflectionService::class);
+
         $this->bindViewComponents(
             Container::class,
             [
                 StylingService::class
             ]
         );
-        // $this->app->bind(ContainerContract::class, function ($app) {
-
-        //     return new Container($app->make(StylingServiceContract::class));
-        // });
     }
     /**
      * Bind a reflection class to the container.
@@ -84,7 +83,7 @@ class VedianServiceProvider extends Provider
     private function callbackReflectionClass($reflection, $serviceContracts)
     {
         return fn () => new $reflection(
-            new ReflectionClass($reflection),
+            new ReflectionService(new ReflectionClass($reflection)),
             $this->makeServiceContracts($serviceContracts)
         );
     }

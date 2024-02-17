@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoftware\Cms\Service;
+namespace VedianSoftware\Cms\Services;
 
 use VedianSoftware\Cms\Contracts\ServiceContract;
 
