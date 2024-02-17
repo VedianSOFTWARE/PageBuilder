@@ -30,20 +30,26 @@ use VedianSoft\VedianCms\View\ContainerComponent;
  */
 class VedianServiceProvider extends Provider
 {
-    public $bindings = [];
+    protected $cmsBindings = [
+        ModelContract::class => [
+            PageService::class => Page::class,
+        ],
+        ComponentContract::class => [
+            Container::class => Styling::class,
+        ],
+        ServiceContract::class => [
+            ContainerService::class => StylingService::class,
+            Container::class => ContainerService::class
+        ],
+
+    ];
+
 
     public function register()
     {
-        $this->getBindings()->each(function ($bindings, $needs) {
-            if (!empty($bindings)) {
-                $bindings->each(function ($give, $when) use ($needs) {
-                    $this->app->when($when)
-                        ->needs($needs)
-                        ->give($give);
-                });
-            }
-        });
+        // dd($this->cmsBindings);
 
+        $this->bindings();
         $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
     }
 
@@ -52,16 +58,11 @@ class VedianServiceProvider extends Provider
      * It was generated as a result of a previous interaction with GitHub Copilot.
      * Please refer to the previous messages for more context.
      */
-    private function getBindings()
+    private function getCmsBindings()
     {
-        return $this->walkArrayToCollection($this->bindings);
+        return $this->walkArrayToCollection($this->cmsBindings);
     }
 
-    /**
-     * This code block represents the current selection.
-     * It was generated as a result of a previous interaction with GitHub Copilot.
-     * Please refer to the previous messages for more context.
-     */
     private function walkArrayToCollection($array)
     {
         return collect($array)->map(function ($item) {
@@ -82,6 +83,9 @@ class VedianServiceProvider extends Provider
         $this->vendorLoaders();
         $this->vendorPublishers();
         $this->vendorBladeComponents();
+
+        Livewire::component('vedian::title-slug', TitleSlugComposer::class);
+        Livewire::component('vedian::row-toolbar', RowToolbar::class);
     }
 
     /**
@@ -91,6 +95,13 @@ class VedianServiceProvider extends Provider
      */
     protected function bindings()
     {
+        $this->getCmsBindings()->each(function ($bindings, $needs) {
+            $bindings->each(function ($give, $when) use ($needs) {
+                $this->app->when($when)
+                    ->needs($needs)
+                    ->give($give);
+            });
+        });
 
 
         // $this->app->bind(CssContract::class, Container::class);
