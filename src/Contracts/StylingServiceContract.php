@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 namespace VedianSoftware\Cms\Contracts;
 
-interface StylingContract
+interface StylingServiceContract
 {
     public function add($key, $value);
 }

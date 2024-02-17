@@ -2,17 +2,12 @@
 
 namespace VedianSoftware\Cms\Service;
 
-use VedianSoftware\Cms\Contracts\StylingContract;
+use VedianSoftware\Cms\Contracts\StylingServiceContract;
 
-class StylingService implements StylingContract
+class StylingService implements StylingServiceContract
 {
-    public function __construct()
-    {
-    }
-
     public function add($key, $value)
     {
         $this->$key = $value;
-        
     }
 }

@@ -5,8 +5,7 @@
         </h2>
     </x-slot>
 
-    <x-vedian::container :width="'max-w-7xl'">
-    </x-vedian::container>
+    <x-vedian::container />
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

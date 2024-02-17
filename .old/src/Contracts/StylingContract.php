@@ -7,6 +7,6 @@ namespace VedianSoftware\Cms\Contracts;
  * 
  * @param string $viewName
  */
-interface StylingContract
+interface StylingServiceContract
 {
 }
