@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
-use VedianSoftware\Cms\Contracts\StylingContract;
+use VedianSoftware\Cms\Contracts\StylingServiceContract;
 use VedianSoftware\Cms\Contracts\ViewContract;
 
 class View extends Component implements ViewContract
@@ -15,7 +15,7 @@ class View extends Component implements ViewContract
 
 
     public function __construct(
-        public StylingContract $styling,
+        public StylingServiceContract $styling,
     ) {
     }
 

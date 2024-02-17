@@ -6,13 +6,13 @@ use ReflectionClass;
 use Illuminate\Support\Collection; // Add missing import
 use ReflectionMethod;
 use ReflectionParameter;
-use VedianSoftware\Cms\Contracts\StylingContract;
+use VedianSoftware\Cms\Contracts\StylingServiceContract;
 
 /**
  * This class represents a base styling service that can be extended by other styling services.
- * It implements the StylingContract interface.
+ * It implements the StylingServiceContract interface.
  */
-abstract class StylingService implements StylingContract
+abstract class StylingService implements StylingServiceContract
 {
     /**
      * The array of classes associated with the styling service.

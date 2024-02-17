@@ -3,7 +3,7 @@
 namespace VedianSoftware\Cms\Service;
 
 use Illuminate\Support\Collection;
-use VedianSoftware\Cms\Contracts\ContainerStylingContract;
+use VedianSoftware\Cms\Contracts\ContainerStylingServiceContract;
 
 /**
  * Class PageService
@@ -11,7 +11,7 @@ use VedianSoftware\Cms\Contracts\ContainerStylingContract;
  * This class represents a Service for creating and modifying page models in the VedianSOFT CMS.
  * It extends the Builder class and implements the ServiceContract interface.
  */
-class ContainerStylingService extends StylingService implements ContainerStylingContract
+class ContainerStylingService extends StylingService implements ContainerStylingServiceContract
 {
     public array $classes = [
         'p' => 'p-2',

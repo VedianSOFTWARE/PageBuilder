@@ -2,11 +2,14 @@
 
 namespace VedianSoftware\Cms\View;
 
-use ReflectionClass;
-use VedianSoftware\Cms\Contracts\ReflectionClassContract;
-use VedianSoftware\Cms\Contracts\ReflectionContract;
+use VedianSoftware\Cms\Contracts\ContainerContract;
 
-class Container extends Component
+class Container extends Component implements ContainerContract
 {
-    
+    public $class = [
+        'bg-white',
+        'p-2',
+        'rounded-lg',
+        'shadow-md'
+    ];
 }

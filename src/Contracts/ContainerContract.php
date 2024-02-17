@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 namespace VedianSoftware\Cms\Contracts;
 
-interface ReflectionContract
+interface ContainerContract
 {
 }
