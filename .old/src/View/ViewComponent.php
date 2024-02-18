@@ -7,9 +7,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
 use VedianSoftware\Cms\Contracts\StylingServiceContract;
-use VedianSoftware\Cms\Contracts\ViewContract;
+use VedianSoftware\Cms\Contracts\ElementContract;
 
-class View extends Component implements ViewContract
+class View extends Component implements ElementContract
 {
     protected string $name = 'default';
 

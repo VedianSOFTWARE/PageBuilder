@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoftware\Cms\Service;
+namespace VedianSoftware\Cms\Services;
 
 use ReflectionClass;
 use Illuminate\Support\Collection; // Add missing import

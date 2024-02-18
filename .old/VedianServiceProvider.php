@@ -13,9 +13,9 @@ use VedianSoftware\Cms\Contracts\ServiceContract;
 use VedianSoftware\Cms\Livewire\RowToolbar;
 use VedianSoftware\Cms\Livewire\TitleSlugComposer;
 use VedianSoftware\Cms\Models\Page;
-use VedianSoftware\Cms\Service\StylingService;
-use VedianSoftware\Cms\Service\PageService;
-use VedianSoftware\Cms\Service\ContainerService;
+use VedianSoftware\Cms\Services\StylingService;
+use VedianSoftware\Cms\Services\PageService;
+use VedianSoftware\Cms\Services\ContainerService;
 use VedianSoftware\Cms\View\Component\Container;
 use VedianSoftware\Cms\View\Component\Styling;
 use VedianSoftware\Cms\View\ContainerComponent;
@@ -28,7 +28,7 @@ use VedianSoftware\Cms\View\ContainerComponent;
  *
  * @package VedianSoftware\Cms
  */
-class VedianServiceProvider extends Provider
+class CmsServiceProvider extends Provider
 {
     protected $cmsBindings = [
     ];
