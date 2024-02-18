@@ -15,7 +15,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VedianSoftware\\Cms\\VedianServiceProvider"
+                "VedianSoftware\\Cms\\CmsServiceProvider"
             ]
         }
     },

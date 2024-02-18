@@ -1,14 +1,14 @@
 <?php
 
-namespace VedianSoftware\Cms\View;
+namespace VedianSoftware\Cms\View\Html;
 
 use Illuminate\Support\Collection;
-use Illuminate\View\Component as ViewComponent;
+use Illuminate\View\Component;
 use ReflectionClass;
-use VedianSoftware\Cms\Contracts\ViewContract;
 use Illuminate\View\View as IlluminateView;
 use VedianSoftware\Cms\Contracts\ReflectionServiceContract;
 use VedianSoftware\Cms\Contracts\StylingServiceContract;
+use VedianSoftware\Cms\Contracts\View\HtmlElement;
 use VedianSoftware\Cms\Services\ReflectionService;
 
 /**
@@ -18,7 +18,7 @@ use VedianSoftware\Cms\Services\ReflectionService;
  *
  * @package VedianSoftware\Cms\View
  */
-class Component extends ViewComponent implements ViewContract
+abstract class Element extends Component implements HtmlElement
 {
     /**
      * The HTML content of the component.

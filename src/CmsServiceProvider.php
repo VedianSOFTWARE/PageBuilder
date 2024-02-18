@@ -2,36 +2,19 @@
 
 namespace VedianSoftware\Cms;
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as Provider;
-use Mockery\Matcher\Contains;
 use ReflectionClass;
-use VedianSoftware\Cms\Contracts\ContainerContract;
-use VedianSoftware\Cms\Contracts\ReflectionClassContract;
-use VedianSoftware\Cms\Contracts\ReflectionContainerContract;
-use VedianSoftware\Cms\Contracts\ReflectionContract;
-use VedianSoftware\Cms\Contracts\ReflectionServiceContract;
-use VedianSoftware\Cms\Contracts\StylingServiceContract;
-use VedianSoftware\Cms\Contracts\ViewContract;
-use VedianSoftware\Cms\Services\ReflectionContainer;
 use VedianSoftware\Cms\Services\ReflectionService;
-use VedianSoftware\Cms\Services\StylingService;
-use VedianSoftware\Cms\View\Component;
-use VedianSoftware\Cms\View\Component\Styling;
-use VedianSoftware\Cms\View\Container;
-use VedianSoftware\Cms\View\Panel;
 
 /**
  * Class CmsServiceProvider
- *
- * This class is the service provider for the VedianCMS package.
- * It registers and bootstraps the necessary services and components.
+ * 
+ * The service provider for the Vedian CMS.
  *
  * @package VedianSoftware\Cms
  */
-class VedianServiceProvider extends Provider
+class CmsServiceProvider extends Provider
 {
 
     /**
@@ -43,19 +26,20 @@ class VedianServiceProvider extends Provider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
 
-        $this->app->bind(StylingServiceContract::class, StylingService::class);
-        $this->app->bind(ContainerContract::class, Container::class);
-        $this->app->bind(ViewContract::class, ContainerContract::class);
+        // $this->app->bind(StylingServiceContract::class, StylingService::class);
+        // $this->app->bind(ContainerContract::class, Container::class);
+        // $this->app->bind(ElementContract::class, ContainerContract::class);
 
-        $this->app->bind(ReflectionServiceContract::class, ReflectionService::class);
+        // $this->app->bind(ReflectionServiceContract::class, ReflectionService::class);
 
-        $this->bindViewComponents(
-            Container::class,
-            [
-                StylingService::class
-            ]
-        );
+        // $this->bindViewComponents(
+        //     Container::class,
+        //     [
+        //         StylingService::class
+        //     ]
+        // );
     }
+
     /**
      * Bind a reflection class to the container.
      *
@@ -129,6 +113,7 @@ class VedianServiceProvider extends Provider
         $this->loadRoutesFrom(__DIR__ . '/../routes/auth.php');
 
         // Register blade components
+        Blade::componentNamespace('VedianSoftware\\Cms\\View\\Html', 'element');
         Blade::componentNamespace('VedianSoftware\\Cms\\View', 'vedian');
     }
 }

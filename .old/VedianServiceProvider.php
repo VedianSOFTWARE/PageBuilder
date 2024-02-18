@@ -28,7 +28,7 @@ use VedianSoftware\Cms\View\ContainerComponent;
  *
  * @package VedianSoftware\Cms
  */
-class VedianServiceProvider extends Provider
+class CmsServiceProvider extends Provider
 {
     protected $cmsBindings = [
     ];
