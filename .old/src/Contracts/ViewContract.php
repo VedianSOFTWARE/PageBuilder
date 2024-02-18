@@ -7,6 +7,6 @@ namespace VedianSoftware\Cms\Contracts;
  * 
  * @param string $viewName
  */
-interface ViewContract
+interface ElementContract
 {
 }

@@ -2,7 +2,7 @@
 
 namespace VedianSoftware\Cms\Controllers;
 
-use VedianSoftware\Cms\Service\PageService;
+use VedianSoftware\Cms\Services\PageService;
 
 /**
  * Class PageController
