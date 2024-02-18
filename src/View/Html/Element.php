@@ -106,7 +106,6 @@ abstract class Element extends Component implements HtmlElement
         // Initialize the HTML and class attributes.
         $this->addHtmlAttribute('class', $this->class);
         $this->withAttributes($this->getHtmlAttributes());
-        dd($this);
     }
 
     /**
@@ -191,7 +190,6 @@ abstract class Element extends Component implements HtmlElement
      */
     public function render(): IlluminateView
     {
-        return view('vedian::components.container');
         return view($this->viewPath());
     }
 }
