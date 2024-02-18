@@ -53,7 +53,7 @@ abstract class Element extends Component implements HtmlElement
      *
      * @var string
      */
-    protected string $directory = 'components';
+    protected string $directory = 'html';
 
     /**
      * The namespace of the view.
