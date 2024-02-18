@@ -83,6 +83,10 @@ abstract class Element extends Component implements HtmlElement
      */
     protected StylingServiceContract $stylingService;
 
+    protected Collection $serviceContracts;
+
+    protected ReflectionService $reflection;
+
     /**
      * Component constructor.
      *
@@ -90,15 +94,19 @@ abstract class Element extends Component implements HtmlElement
      * @param Collection $serviceContracts The collection of service contracts.
      */
     public function __construct(
-        protected ReflectionClass|ReflectionService|ReflectionServiceContract $reflection,
-        protected Collection $serviceContracts
+        // protected ReflectionClass|ReflectionService|ReflectionServiceContract $reflection,
+        $serviceContracts,
+        ReflectionServiceContract $reflection
     ) {
+        $this->serviceContracts = $serviceContracts;
+        $this->reflection = $reflection;
         // Initialize the component.
         $this->initializeComponent();
 
         // Initialize the HTML and class attributes.
         $this->addHtmlAttribute('class', $this->class);
         $this->withAttributes($this->getHtmlAttributes());
+        dd($this);
     }
 
     /**
@@ -111,7 +119,7 @@ abstract class Element extends Component implements HtmlElement
         $this->htmlAttributes = collect();
         $this->classAttribute = collect();
         $this->class = collect($this->class);
-        $this->view = $this->reflection->getReflectionName() ?? $this->view;
+        $this->view = $this->reflection?->getReflectionName() ?? $this->view;
 
         $this->reflection
             ->mapContracts($this->serviceContracts)
@@ -183,6 +191,7 @@ abstract class Element extends Component implements HtmlElement
      */
     public function render(): IlluminateView
     {
+        return view('vedian::components.container');
         return view($this->viewPath());
     }
 }

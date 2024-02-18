@@ -2,6 +2,8 @@
 
 namespace VedianSoftware\Cms\View\Html;
 
+use Illuminate\View\Component;
+use Illuminate\View\View;
 use VedianSoftware\Cms\Contracts\View\HtmlContainer;
 
 class Container extends Element implements HtmlContainer
@@ -12,4 +14,9 @@ class Container extends Element implements HtmlContainer
         'rounded-lg',
         'shadow-md'
     ];
+
+    public function render(): View
+    {
+        return view('vedian::html.container');
+    }
 }

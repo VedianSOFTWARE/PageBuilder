@@ -34,10 +34,10 @@ class ReflectionService implements ReflectionServiceContract
      * @param mixed $service
      * @return mixed
      */
-    public function mapContracts(Collection &$service): Collection
+    public function mapContracts(Collection &$service)
     {
-        return $service->map(function ($service) {
-            return $this->replaceReflectionName($service);
+        return $service->mapWithKeys(function ($service) {
+            return [$this->serviceName($service) => new $service];
         });
     }
 
@@ -47,13 +47,10 @@ class ReflectionService implements ReflectionServiceContract
      * @param string $service
      * @return string
      */
-    private function replaceReflectionName(string $service): string
+    private function serviceName($service): string
     {
-        return Str::of($service)
-            ->lcfirst()
-            ->replace('Service', '')
-            ->replace('Contract', '')
-            ->toString();
+        return $this->stringableName($service)
+            ->lcfirst();
     }
 
     /**
@@ -73,7 +70,7 @@ class ReflectionService implements ReflectionServiceContract
      */
     protected function setReflectionName(): void
     {
-        $this->name = $this->stringableName()
+        $this->name = $this->stringableName($this->reflection)
             ->lcfirst();
     }
 
@@ -92,8 +89,11 @@ class ReflectionService implements ReflectionServiceContract
      *
      * @return Stringable
      */
-    protected function stringableName(): Stringable
+    protected function stringableName(ReflectionClass|string $reflection): Stringable
     {
-        return Str::of($this->reflection->getShortName());
+        if (is_string($reflection)) {
+            $reflection = new ReflectionClass($reflection);
+        }
+        return Str::of($reflection->getShortName());
     }
 }
