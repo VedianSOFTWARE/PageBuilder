@@ -20,6 +20,7 @@ use VedianSoftware\Cms\Services\ReflectionService;
  */
 abstract class Element extends Component implements HtmlElement
 {
+
     /**
      * The HTML content of the component.
      *
@@ -83,9 +84,14 @@ abstract class Element extends Component implements HtmlElement
      */
     protected StylingServiceContract $stylingService;
 
-    protected Collection $serviceContracts;
 
-    protected ReflectionService $reflection;
+
+    /**
+     * The HTML classes of the component.
+     *
+     * @var array
+     */
+    public $htmlClasses;
 
     /**
      * Component constructor.
@@ -95,19 +101,18 @@ abstract class Element extends Component implements HtmlElement
      */
     public function __construct(
         // protected ReflectionClass|ReflectionService|ReflectionServiceContract $reflection,
-        $serviceContracts,
-        ReflectionServiceContract $reflection
+        protected Collection $serviceContracts,
+        protected ReflectionServiceContract $reflection
     ) {
-        $this->serviceContracts = $serviceContracts;
-        $this->reflection = $reflection;
         // Initialize the component.
         $this->initializeComponent();
 
         // Initialize the HTML and class attributes.
-        $this->addHtmlAttribute('class', $this->class);
+        $this->addHtmlAttribute('class', $this->htmlClasses);
+
         $this->withAttributes($this->getHtmlAttributes());
     }
-
+    
     /**
      * Initialize the HTML and class attributes.
      *
@@ -117,8 +122,9 @@ abstract class Element extends Component implements HtmlElement
     {
         $this->htmlAttributes = collect();
         $this->classAttribute = collect();
-        $this->class = collect($this->class);
-        $this->view = $this->reflection?->getReflectionName() ?? $this->view;
+
+        $this->htmlClasses = collect($this->htmlClasses);
+        $this->view = $this->reflection->getReflectionName() ?? $this->view;
 
         $this->reflection
             ->mapContracts($this->serviceContracts)
