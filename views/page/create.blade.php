@@ -4,8 +4,8 @@
             {{ __('Cms Layout Title') }}
         </h2>
     </x-slot>
-
-    <x-element::container />
+asdasd
+    {{-- <x-element::container /> --}}
 
     {{-- <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white overflow-hidden shadow-xl sm:rounded-lg">

@@ -22,7 +22,7 @@ use VedianSoftware\Cms\View\Html\Element;
  *
  * @package VedianSoftware\Cms
  */
-class VedianCmsProvider extends ServiceProvider
+class VedianCmsServiceProvider extends ServiceProvider
 {
     /** 
      * 
@@ -32,6 +32,7 @@ class VedianCmsProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
     }
 
     /**
@@ -61,15 +62,7 @@ class VedianCmsProvider extends ServiceProvider
         // $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/auth.php');
 
-        Blade::componentNamespace('VedianSoftware\\Cms\\View\\Html', 'element');
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function registerHtmlElementDriver()
-    {
+        // Blade::componentNamespace('VedianSoftware\\Cms\\View\\Html', 'element');
+        Blade::componentNamespace('VedianSoftware\\Cms\\View', 'vedian');
     }
 }

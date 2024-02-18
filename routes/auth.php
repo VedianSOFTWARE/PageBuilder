@@ -26,6 +26,7 @@ Route::group([
     'middleware' => array_values(array_filter(['web', $authMiddleware, $authSessionMiddleware])),
     'prefix' => config('vedian.prefix'),
 ], function () {
+
     Route::prefix('page')->group(function () {
         Route::get('create', [PageController::class, 'create']);
     });

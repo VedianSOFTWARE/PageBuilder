@@ -22,6 +22,7 @@ class PageController extends Controller
      */
     public function create()
     {
+        dd(env('VEDIAN_CMS_PREFIX', 'dashboard/cms'));
         return view('vedian::page.create');
     }
 }
