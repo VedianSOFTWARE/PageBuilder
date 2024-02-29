@@ -12,7 +12,7 @@ use Illuminate\Support\ServiceProvider;
  *
  * @package VedianSoftware\VedianCMS
  */
-class VedianCmsServiceProvider extends ServiceProvider
+class VedianCMSProvider extends ServiceProvider
 {
     /** 
      * 
@@ -38,9 +38,9 @@ class VedianCmsServiceProvider extends ServiceProvider
                 '/../database/migrations' => database_path('migrations/vedian-cms')
         ], 'vedian-cms-migrations');
 
-        $this->publishes([
-            __DIR__ . '/../config/app.php' => config_path('vedian-cms.php'),
-        ], 'vedian-cms-config');
+        // $this->publishes([
+        //     __DIR__ . '/../config/app.php' => config_path('vedian-cms.php'),
+        // ], 'vedian-cms-config');
 
         $this->publishes([
             __DIR__ . '/../views' => resource_path('views/vendor/vedian-cms'),
