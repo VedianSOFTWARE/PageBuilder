@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoftware\Cms;
+namespace VedianSoftware\VedianCMS;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
  * 
  * The service provider for the Vedian CMS.
  *
- * @package VedianSoftware\Cms
+ * @package VedianSoftware\VedianCMS
  */
 class VedianCmsServiceProvider extends ServiceProvider
 {

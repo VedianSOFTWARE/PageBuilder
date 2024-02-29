@@ -1,10 +1,10 @@
 <?php
 
-namespace VedianSoftware\Cms\Controllers;
+namespace VedianSoftware\VedianCMS\Controllers;
 
 /**
  * Class PageController
- * @package VedianSoftware\Cms\Controllers
+ * @package VedianSoftware\VedianCMS\Controllers
  */
 class PageController extends Controller
 {
