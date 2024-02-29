@@ -2,12 +2,6 @@
 
 namespace VedianSoftware\Cms\Controllers;
 
-use ReflectionClass;
-use VedianSoftware\Cms\Contracts\StylingServiceContract;
-use VedianSoftware\Cms\Services\ReflectionService;
-use VedianSoftware\Cms\Services\StylingService;
-use VedianSoftware\Cms\View\Html\Container;
-
 /**
  * Class PageController
  * @package VedianSoftware\Cms\Controllers
@@ -22,7 +16,6 @@ class PageController extends Controller
      */
     public function create()
     {
-        dd(env('VEDIAN_CMS_PREFIX', 'dashboard/cms'));
         return view('vedian::page.create');
     }
 }

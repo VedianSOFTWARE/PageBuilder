@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoftware\Cms;
+namespace VedianSoftware\Vedian;
 
 
 class VedianCms

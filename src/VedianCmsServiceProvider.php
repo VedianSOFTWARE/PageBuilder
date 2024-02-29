@@ -4,16 +4,6 @@ namespace VedianSoftware\Cms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Reflection;
-use ReflectionClass;
-use VedianSoftware\Cms\Contracts\ReflectionServiceContract;
-use VedianSoftware\Cms\Contracts\StylingServiceContract;
-use VedianSoftware\Cms\Contracts\View\HtmlContainer;
-use VedianSoftware\Cms\Contracts\View\HtmlElement;
-use VedianSoftware\Cms\Services\ReflectionService;
-use VedianSoftware\Cms\Services\StylingService;
-use VedianSoftware\Cms\View\Html\Container;
-use VedianSoftware\Cms\View\Html\Element;
 
 /**
  * Class CmsServiceProvider
