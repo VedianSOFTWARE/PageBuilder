@@ -15,25 +15,14 @@ return new class extends Migration
     public function up(): void
     {
 
-        // Create the template sections table
-        // Schema::create('section_templates', function (Blueprint $table) {
-
-        //     $table->id();
-
-        //     $this->duplicateColumns($table);
-
-        //     $table->timestamps();
-        //     $table->softDeletes();
-        // });
-
         // Create the page sections table
-        Schema::create('page_sections', function (Blueprint $table) {
+        Schema::create('page_rows', function (Blueprint $table) {
             $table->id();
-            
-            VedianSchema::styling($table);
 
+            VedianSchema::styling($table);
+            
             // TODO: Make it able to resolve from ::class or string
-            VedianSchema::foreignId($table, 'pages');
+            VedianSchema::foreignId($table, 'page_sections');
 
             // VedianSchema::author($table);
             // VedianSchema::timestamps($table);
@@ -45,7 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page_sections');
-        // Schema::dropIfExists('template_sections');
+        Schema::dropIfExists('page_rows');
     }
 };

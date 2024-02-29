@@ -18,16 +18,29 @@ class VedianSchemaSupport
 {
 
     /**
+     * Add the content columns to the table.
+     *
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     * @return void
+     */
+    public function content(Blueprint $table)
+    {
+        $table->json('content')->nullable(); // The content of the section
+    }
+
+    /**
      * Add the styling columns to the table.
      *
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @return void
      */
-    public function styling(Blueprint $table)
+    public function styling(Blueprint $table, bool $withTag = true)
     {
-        $table->string('element_tag')->nullable(); // The tag of the element
-        $table->string('element_class')->nullable(); // The class of the element
+        if ($withTag) {
+            $table->string('element_tag')->nullable(); // The tag of the element
+        }
         $table->string('element_id')->nullable(); // The id of the element
+        $table->string('element_class')->nullable(); // The class of the element
         $table->json('element_style')->nullable(); // Overwrite the styling of the section
     }
 
