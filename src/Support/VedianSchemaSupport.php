@@ -2,7 +2,9 @@
 
 namespace VedianSoftware\VedianCMS\Support;
 
+use Closure;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 /**
@@ -14,18 +16,31 @@ use Illuminate\Support\Str;
  */
 class VedianSchemaSupport
 {
+
     /**
      * Add the styling columns to the table.
      *
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @return void
      */
-    public function stylingColumns(Blueprint $table)
+    public function styling(Blueprint $table)
     {
         $table->string('element_tag')->nullable(); // The tag of the element
         $table->string('element_class')->nullable(); // The class of the element
         $table->string('element_id')->nullable(); // The id of the element
-        $table->json('styling')->nullable(); // Overwrite the styling of the section
+        $table->json('element_style')->nullable(); // Overwrite the styling of the section
+    }
+
+    /**
+     * Add the status columns to the table.
+     *
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     * @return void
+     */
+    public function status(Blueprint $table)
+    {
+        $table->string('post_status')->default('draft');     // draft, published, unpublished
+        $table->tinyInteger('post_visibility')->default(1);  // 1 = private, 0 = public
     }
 
     /**
@@ -34,22 +49,31 @@ class VedianSchemaSupport
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @return void
      */
-    public function titleColumns(Blueprint $table)
+    public function title(Blueprint $table)
     {
-        $table->string('title')->nullable(); // The title of the section
-        $table->text('description')->nullable(); // The description of the section
+        $table->string('title'); // The title of the section
     }
 
     /**
-     * Add the soft delete timestamps to the table.
+     * Add the title and description columns to the table.
      *
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @return void
      */
-    public function softDeleteTimestamps(Blueprint $table)
+    public function description(Blueprint $table)
     {
-        $table->timestamps();
-        $table->softDeletes();
+        $table->text('description')->nullable(); // The description of the section
+    }
+
+    /**
+     * Add the title and description columns to the table.
+     *
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     * @return void
+     */
+    public function slug(Blueprint $table)
+    {
+        $table->string('slug')->unique(); // The slug of the section (unique identifier   
     }
 
     /**
@@ -58,13 +82,42 @@ class VedianSchemaSupport
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @return void
      */
-    public function authorColumns(Blueprint $table)
+    public function author(Blueprint $table)
     {
-        $table->foreignId('author')->constrained('users');
+        $table->foreignId('created_by')
+            ->constrained('users');
+
+        $table->foreignId('updated_by')
+            ->nullable()
+            ->constrained('users');
     }
 
     /**
-     * Add a foreign id to the table.
+     * Add the timestamps to the table.
+     *
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     * @return void
+     */
+    public function timestamps(Blueprint $table)
+    {
+        $table->timestamps();
+        $table->softDeletes();
+    }
+
+    /**
+     * Add the publishable timestamps to the table.
+     *
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     * @return void
+     */
+    public function publishableTimestamps(Blueprint $table)
+    {
+        $table->timestamp('published_at')->nullable();
+        $this->timestamps($table);
+    }
+
+    /**
+     * Add the foreign id to the table.
      *
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @param string $constrained
@@ -75,9 +128,22 @@ class VedianSchemaSupport
     {
         $column = $this->constrainedToId($constrained);
 
-        $table->foreignId($column)
+        $table
+            ->foreignId($column)
             ->nullable($nullable)
             ->constrained($constrained);
+    }
+
+    /**
+     * Add the between columns to the table.
+     *
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     * @return void
+     */
+    public function between(Blueprint $table)
+    {
+        $table->dateTime('active_from')->nullable();
+        $table->dateTime('active_till')->nullable();
     }
 
     /**

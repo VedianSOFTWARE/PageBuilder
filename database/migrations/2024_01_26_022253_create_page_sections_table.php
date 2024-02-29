@@ -4,9 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use VedianSoftware\VedianCMS\Facades\VedianSchema;
+use VedianSoftware\VedianCMS\Vedian;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
      */
@@ -14,27 +16,29 @@ return new class extends Migration
     {
 
         // Create the template sections table
-        Schema::create('template_sections', function (Blueprint $table) {
-            $table->id();
+        // Schema::create('section_templates', function (Blueprint $table) {
 
-            VedianSchema::titleColumns($table);
-            VedianSchema::stylingColumns($table);
-            VedianSchema::authorColumns($table);
-            VedianSchema::softDeleteTimestamps($table);
-        });
+        //     $table->id();
+
+        //     $this->duplicateColumns($table);
+
+        //     $table->timestamps();
+        //     $table->softDeletes();
+        // });
 
         // Create the page sections table
         Schema::create('page_sections', function (Blueprint $table) {
             $table->id();
 
-            VedianSchema::titleColumns($table);
-            VedianSchema::stylingColumns($table);
-            VedianSchema::authorColumns($table);
+            VedianSchema::title($table);
+            VedianSchema::description($table);
+            VedianSchema::styling($table);
 
+            // TODO: Make it able to resolve from ::class or string
             VedianSchema::foreignId($table, 'pages');
-            VedianSchema::foreignId($table, 'template_sections');
 
-            VedianSchema::softDeleteTimestamps($table);
+            VedianSchema::author($table);
+            VedianSchema::timestamps($table);
         });
     }
 
@@ -43,6 +47,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('page_sections');
+        // Schema::dropIfExists('template_sections');
     }
 };

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use VedianSoftware\VedianCMS\Facades\VedianSchema;
 
 return new class extends Migration
 {
@@ -14,34 +15,22 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
 
             $table->id();
-            
-            // Title of the page
-            $table->string('title');
 
-            // Unique slug for the page
-            $table->string('slug')->unique();
+            VedianSchema::title($table);
+            VedianSchema::description($table);
+            VedianSchema::slug($table);
 
-            // Type of the page
-            $table->string('page_type')->default('page');
+            VedianSchema::status($table);
 
             // Type of the page
-            // $table->string('page_layout')->default('full-width');
+            // $table->string('page_type')->default('page');
 
-            // Content of the page
-            $table->string('status')->default('draft');     // draft, published, unpublished
-            $table->tinyInteger('is_private')->default(1);  // 1 = private, 0 = public
+            // Type of the page
+            // $table->string('page_layout')->default('full-width');'
 
-            // Visibility of the page
-            $table->dateTime('active_from')->nullable(); // null = always active
-            $table->dateTime('active_till')->nullable();
-
-            // Time when the page was published
-            $table->timestamp('published_at')->nullable();
-            $table->foreignId('created_by')->constrained('users');
-
-            // 
-            $table->timestamps();
-            $table->softDeletes();
+            VedianSchema::between($table);
+            VedianSchema::author($table);
+            VedianSchema::publishableTimestamps($table);
         });
     }
 
