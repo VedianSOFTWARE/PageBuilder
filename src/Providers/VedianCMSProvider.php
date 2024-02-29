@@ -1,12 +1,9 @@
 <?php
 
-namespace VedianSoftware\VedianCMS;
+namespace VedianSoftware\VedianCMS\Providers;
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use VedianSoftware\VedianCMS\Facades\VedianSchema;
 use VedianSoftware\VedianCMS\Support\VedianCMSSupport;
 use VedianSoftware\VedianCMS\Support\VedianSchemaSupport;
 
@@ -27,7 +24,7 @@ class VedianCMSProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/vedian.php', 'vedian');
+        $this->mergeConfigFrom(__DIR__ . '/../Resources/config/vedian-cms.php', 'vedian');
 
         $this->app->bind('vedian-cms', function () {
             return new VedianCMSSupport();
@@ -48,22 +45,22 @@ class VedianCMSProvider extends ServiceProvider
         // publish dependencies
         $this->publishes([
             __DIR__ .
-                '/../database/migrations' => database_path('migrations/vedian-cms')
+                '/../Resources/database/migrations' => database_path('migrations/vedian-cms')
         ], 'vedian-cms-migrations');
 
         // $this->publishes([
-        //     __DIR__ . '/../config/app.php' => config_path('vedian-cms.php'),
+        //     __DIR__ . '/../Resources/config/app.php' => config_path('vedian-cms.php'),
         // ], 'vedian-cms-config');
 
         $this->publishes([
-            __DIR__ . '/../views' => resource_path('views/vendor/vedian-cms'),
+            __DIR__ . '/../Resources/views' => resource_path('views/vendor/vedian-cms'),
         ], 'vedian-cms-views');
 
         // Load dependencies
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        $this->loadViewsFrom(__DIR__ . '/../views', 'vedian');
-        // $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
-        $this->loadRoutesFrom(__DIR__ . '/../routes/auth.php');
+        $this->loadMigrationsFrom(__DIR__ . '/../Resources/database/migrations');
+        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'vedian');
+        // $this->loadRoutesFrom(__DIR__ . '/../Resources/routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/../Resources/routes/web.php');
 
         // Blade::componentNamespace('VedianSoftware\\Cms\\View\\Html', 'element');
         Blade::componentNamespace('VedianSoftware\\Cms\\View', 'vedian');

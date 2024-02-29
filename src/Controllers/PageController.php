@@ -2,12 +2,17 @@
 
 namespace VedianSoftware\VedianCMS\Controllers;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller;
+
 /**
  * Class PageController
  * @package VedianSoftware\VedianCMS\Controllers
  */
 class PageController extends Controller
 {
+    use AuthorizesRequests, ValidatesRequests;
     // /**
     //  * Create a new page.
     //  *
