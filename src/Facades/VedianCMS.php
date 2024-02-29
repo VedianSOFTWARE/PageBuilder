@@ -5,11 +5,9 @@ namespace VedianSoftware\VedianCMS\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class VedianCMSFacade
+ * @method static void test()
  * 
- * The facade for the Vedian CMS.
- *
- * @package VedianSoftware\VedianCMS
+ * @see \VedianSoftware\VedianCMS\Support\VedianCMSSupport
  */
 class VedianCMS extends Facade 
 {

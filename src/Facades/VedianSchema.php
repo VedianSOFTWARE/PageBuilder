@@ -5,14 +5,14 @@ namespace VedianSoftware\VedianCMS\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static void stylingColumns(\Illuminate\Database\Schema\Blueprint $table)
- * @method static void titleDescriptionColumns(\Illuminate\Database\Schema\Blueprint $table)
- * @method static void softDeleteTimestamps(\Illuminate\Database\Schema\Blueprint $table)
- * @method static void authorColumns(\Illuminate\Database\Schema\Blueprint $table)
- * @method static void publishableTimestamps(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void title(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void description(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void slug(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void status(\Illuminate\Database\Schema\Blueprint $table)
  * @method static void between(\Illuminate\Database\Schema\Blueprint $table)
- * @method static void foreignId(\Illuminate\Database\Schema\Blueprint $table, string $table_name)
- * @method static void postStatus(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void author(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void publishableTimestamps(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void styling(\Illuminate\Database\Schema\Blueprint $table)
  * 
  * @see \VedianSoftware\VedianCMS\Support\VedianCMS
  */
