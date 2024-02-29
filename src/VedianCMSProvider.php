@@ -3,12 +3,11 @@
 namespace VedianSoftware\VedianCMS;
 
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\App;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use VedianSoftware\VedianCMS\Support\VedianCMS;
+use VedianSoftware\VedianCMS\Facades\VedianSchema;
 use VedianSoftware\VedianCMS\Support\VedianCMSSupport;
-use VedianSoftware\VedianCMS\Support\VedianSchema;
 use VedianSoftware\VedianCMS\Support\VedianSchemaSupport;
 
 /**
