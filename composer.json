@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VedianSoftware\\VedianCMS\\VedianCMSProvider"
+                "VedianSoftware\\VedianCMS\\Providers\\VedianCMSProvider"
             ],
             "aliases": {
                 "VedianCMS": "VedianSoftware\\VedianCMS\\Facades\\VedianCMS",
