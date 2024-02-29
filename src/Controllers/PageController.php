@@ -2,12 +2,6 @@
 
 namespace VedianSoftware\Cms\Controllers;
 
-use ReflectionClass;
-use VedianSoftware\Cms\Contracts\StylingServiceContract;
-use VedianSoftware\Cms\Services\ReflectionService;
-use VedianSoftware\Cms\Services\StylingService;
-use VedianSoftware\Cms\View\Html\Container;
-
 /**
  * Class PageController
  * @package VedianSoftware\Cms\Controllers
