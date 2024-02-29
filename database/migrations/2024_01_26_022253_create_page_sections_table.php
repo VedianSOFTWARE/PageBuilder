@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use VedianSoftware\VedianCMS\Facades\VedianSchema;
 
 return new class extends Migration
 {
@@ -16,37 +17,25 @@ return new class extends Migration
         Schema::create('template_sections', function (Blueprint $table) {
             $table->id();
 
-            $this->sharedColumns($table);
+            VedianSchema::titleColumns($table);
+            VedianSchema::stylingColumns($table);
+            VedianSchema::authorColumns($table);
+            VedianSchema::softDeleteTimestamps($table);
         });
 
         // Create the page sections table
         Schema::create('page_sections', function (Blueprint $table) {
             $table->id();
 
-            // The page the section belongs to
-            $table->foreignId('page_id')->constrained('pages');
+            VedianSchema::titleColumns($table);
+            VedianSchema::stylingColumns($table);
+            VedianSchema::authorColumns($table);
 
-            // The template section the page section belongs to if chosen
-            $table->foreignId('template_section_id')
-                ->nullable()
-                ->constrained('template_sections');
+            VedianSchema::foreignId($table, 'pages');
+            VedianSchema::foreignId($table, 'template_sections');
 
-            $this->sharedColumns($table);
+            VedianSchema::softDeleteTimestamps($table);
         });
-    }
-
-    private function sharedColumns(Blueprint $table): void
-    {
-        // For template reasoning
-        $table->string('title');
-        $table->text('description')->nullable();
-
-        // Element styling and naming
-        $table->string('element_tag')->nullable(); // The tag of the element
-        $table->string('element_class')->nullable(); // The class of the element
-        $table->string('element_id')->nullable(); // The id of the element
-        $table->json('styling')->nullable(); // Overwrite the styling of the section
-
     }
 
     /**

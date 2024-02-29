@@ -1,6 +1,13 @@
 {
     "name": "vediansoftware/vedian-cms",
     "description": "Content management system for laravel",
+    "keywords": [
+        "cms",
+        "laravel",
+        "vedian"
+    ],
+    "license": "MIT",
+    "version": "1.0.0",
     "type": "library",
     "autoload": {
         "psr-4": {
@@ -16,7 +23,11 @@
         "laravel": {
             "providers": [
                 "VedianSoftware\\VedianCMS\\VedianCMSProvider"
-            ]
+            ],
+            "aliases": {
+                "VedianCMS": "VedianSoftware\\VedianCMS\\Facades\\VedianCMS",
+                "VedianSchema": "VedianSoftware\\VedianCMS\\Facades\\VedianSchema"
+            }
         }
     },
     "authors": [
