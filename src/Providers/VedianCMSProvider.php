@@ -25,17 +25,8 @@ class VedianCMSProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->mergeConfigFrom(__DIR__ . '/../Resources/config/vedian-cms.php', 'vedian');
-        
-        $this->app->bind('vedian-cms', function () {
-            return new VedianCMS();
-        });
-        
-        $this->app->bind('vedian-schema', function () {
-            return new VedianSchema();
-        });
-
-        $this->mergeConfigFrom(VedianPaths::config(), 'vedian');
+        $this->binding();
+        $this->merging();
     }
 
     /**
@@ -45,27 +36,72 @@ class VedianCMSProvider extends ServiceProvider
      */
     public function boot()
     {
-        // publish dependencies
+        $this->publishing();
+        $this->loading();
+        $this->componentNamespaces();
+    }
+
+    /**
+     * Register the component namespaces.
+     *
+     * @return void
+     */
+    protected function componentNamespaces()
+    {
+        Blade::componentNamespace('VedianCMS\\View', 'vedian');
+    }
+
+    /**
+     * Publish the package resources.
+     *
+     * @return void
+     */
+    protected function publishing()
+    {
         $this->publishes([
-            __DIR__ .
-                '/../Resources/database/migrations' => database_path('migrations/vedian-cms')
+            VedianPaths::migrations() => database_path('migrations/vedian-cms')
         ], 'vedian-cms-migrations');
 
-        // $this->publishes([
-        //     __DIR__ . '/../Resources/config/app.php' => config_path('vedian-cms.php'),
-        // ], 'vedian-cms-config');
-
         $this->publishes([
-            __DIR__ . '/../Resources/views' => resource_path('views/vendor/vedian-cms'),
+            VedianPaths::views() => resource_path('views/vendor/vedian-cms'),
         ], 'vedian-cms-views');
+    }
 
-        // Load dependencies
-        $this->loadMigrationsFrom(__DIR__ . '/../Resources/database/migrations');
-        $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'vedian');
-        // $this->loadRoutesFrom(__DIR__ . '/../Resources/routes/web.php');
-        $this->loadRoutesFrom(__DIR__ . '/../Resources/routes/web.php');
+    /**
+     * Load the package resources.
+     *
+     * @return void
+     */
+    protected function loading()
+    {
+        $this->loadMigrationsFrom(VedianPaths::migrations());
+        $this->loadViewsFrom(VedianPaths::views(), 'vedian');
+        $this->loadRoutesFrom(VedianPaths::routes('web'));
+    }
 
-        // Blade::componentNamespace('Cms\\View\\Html', 'element');
-        Blade::componentNamespace('Cms\\View', 'vedian');
+    /**
+     * Merge the package configuration.
+     *
+     * @return void
+     */
+    protected function merging()
+    {
+        $this->mergeConfigFrom(VedianPaths::config(), 'vedian');
+    }
+
+    /**
+     * Bind the service container.
+     *
+     * @return void
+     */
+    protected function binding()
+    {
+        $this->app->bind('vedian-cms', function () {
+            return new VedianCMS();
+        });
+
+        $this->app->bind('vedian-schema', function () {
+            return new VedianSchema();
+        });
     }
 }
