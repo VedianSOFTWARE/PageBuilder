@@ -1,20 +1,20 @@
 <?php
 
-namespace VedianSoftware\VedianCMS\Support;
+namespace Vedian\PageBuilder\Schema;
 
-use Closure;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Vedian\PageBuilder\Enum\Status;
+use Vedian\PageBuilder\Enum\Visibility;
 
 /**
- * Class VedianSchema
+ * Class Schema
  * 
  * The schema for the Vedian CMS.
  *
- * @package VedianSoftware\VedianCMS
+ * @package Cms
  */
-class VedianSchema
+class PageSchema
 {
 
     /**
@@ -52,8 +52,9 @@ class VedianSchema
      */
     public function status(Blueprint $table)
     {
-        $table->string('post_status')->default('draft');     // draft, published, unpublished
-        $table->tinyInteger('post_visibility')->default(1);  // 1 = private, 0 = public
+        // draft, published, archived deleted
+        $table->enum('status', Status::schema())->default(Status::DRAFT);
+        $table->enum('visibility', Visibility::schema())->default(Visibility::PRIVATE);
     }
 
     /**
@@ -97,10 +98,10 @@ class VedianSchema
      */
     public function author(Blueprint $table)
     {
-        $table->foreignId('created_by')
+        $table->foreignId('author_id')
             ->constrained('users');
 
-        $table->foreignId('updated_by')
+        $table->foreignId('editor_id')
             ->nullable()
             ->constrained('users');
     }
@@ -114,19 +115,50 @@ class VedianSchema
     public function timestamps(Blueprint $table)
     {
         $table->timestamps();
-        $table->softDeletes();
     }
 
     /**
-     * Add the publishable timestamps to the table.
+     * Add the editors to the table.
      *
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @return void
      */
-    public function publishableTimestamps(Blueprint $table)
+    public function editors(Blueprint $table)
     {
-        $table->timestamp('published_at')->nullable();
-        $this->timestamps($table);
+        $table->foreignId('created_by')
+            ->constrained('users');
+
+        $table->foreignId('updated_by')
+            ->nullable()
+            ->constrained('users');
+
+        $table->foreignId('deleted_by')
+            ->nullable()
+            ->constrained('users');
+    }
+
+    /**
+     * Add the soft deletes to the table.
+     *
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     * @return void
+     */
+    public function softDeletes(Blueprint $table)
+    {
+        $table->softDeletes();
+    }
+
+    /**
+     * Add the publishable columns to the table.
+     *
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     * @return void
+     */
+    public function publishable(Blueprint $table)
+    {
+        $this->editors($table);
+        $table->timestamps();
+        $table->softDeletes();
     }
 
     /**
@@ -148,15 +180,15 @@ class VedianSchema
     }
 
     /**
-     * Add the between columns to the table.
+     * Add the expirable columns to the table.
      *
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @return void
      */
-    public function between(Blueprint $table)
+    public function expirable(Blueprint $table)
     {
-        $table->dateTime('active_from')->nullable();
-        $table->dateTime('active_till')->nullable();
+        $table->dateTime('activates')->nullable();
+        $table->dateTime('expires')->nullable();
     }
 
     /**

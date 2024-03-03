@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoftware\VedianCMS\Controllers;
+namespace Vedian\PageBuilder\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 
 /**
  * Class PageController
- * @package VedianSoftware\VedianCMS\Controllers
+ * @package Vedian\PageBuilder\Controllers
  */
 class PageController extends Controller
 {
