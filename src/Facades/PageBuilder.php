@@ -18,6 +18,6 @@ class PageBuilder extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'pagebuilder';
+        return 'pagebuilder'; // the IoC container binding
     }
 }
