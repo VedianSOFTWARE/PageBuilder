@@ -1,6 +1,6 @@
 <?php
 
-namespace Vedian\Cms\Enum;
+namespace Vedian\PageBuilder\Enum;
 
 enum Status: string
 {

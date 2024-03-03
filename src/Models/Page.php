@@ -1,12 +1,12 @@
 <?php
 
-namespace Vedian\Cms\Models;
+namespace Vedian\PageBuilder\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Vedian\Cms\Enum\Status;
-use Vedian\Cms\Enum\Visibility;
-use Vedian\Cms\Traits\HasCreator;
+use Vedian\PageBuilder\Enum\Status;
+use Vedian\PageBuilder\Enum\Visibility;
+use Vedian\PageBuilder\Traits\HasCreator;
 
 class Page extends Model
 {

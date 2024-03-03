@@ -1,16 +1,16 @@
 <?php
 
-namespace Vedian\Cms\Class;
+namespace Vedian\PageBuilder\Class;
 
 class PageBuilder
 {
     public static $userModel = 'App\\Models\\User';
 
-    public static $pageModel = 'Vedian\\Cms\\Models\\Page';
+    public static $pageModel = 'Vedian\\PageBuilder\\Models\\Page';
 
-    public static $rowModel = 'Vedian\\Cms\\Models\\Row';
+    public static $rowModel = 'Vedian\\PageBuilder\\Models\\Row';
 
-    public static $columnModel = 'Vedian\\Cms\\Models\\Column';
+    public static $columnModel = 'Vedian\\PageBuilder\\Models\\Column';
 
     public static function userModel()
     {

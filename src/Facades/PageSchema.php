@@ -1,6 +1,6 @@
 <?php 
 
-namespace Vedian\Cms\Facades;
+namespace Vedian\PageBuilder\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

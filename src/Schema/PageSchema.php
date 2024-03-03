@@ -1,11 +1,11 @@
 <?php
 
-namespace Vedian\Cms\Schema;
+namespace Vedian\PageBuilder\Schema;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Str;
-use Vedian\Cms\Enum\Status;
-use Vedian\Cms\Enum\Visibility;
+use Vedian\PageBuilder\Enum\Status;
+use Vedian\PageBuilder\Enum\Visibility;
 
 /**
  * Class Schema

@@ -1,13 +1,13 @@
 <?php 
 
-namespace Vedian\Cms\Facades;
+namespace Vedian\PageBuilder\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static void test()
  * 
- * @see Vedian\Cms\Class\PageBuilder
+ * @see Vedian\PageBuilder\Class\PageBuilder
  */
 class PageBuilder extends Facade 
 {

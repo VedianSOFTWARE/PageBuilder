@@ -1,14 +1,14 @@
 <?php
 
-namespace Vedian\Cms\Providers;
+namespace Vedian\PageBuilder\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Vedian\Cms\Class\PageBuilder;
-use Vedian\Cms\Facades\PageSchema;
-use Vedian\Cms\Support\Paths;
-use Vedian\Cms\Support\Cms;
-use Vedian\Cms\Support\Schema;
+use Vedian\PageBuilder\Class\PageBuilder;
+use Vedian\PageBuilder\Facades\PageSchema;
+use Vedian\PageBuilder\Support\Paths;
+use Vedian\PageBuilder\Support\Cms;
+use Vedian\PageBuilder\Support\Schema;
 
 /**
  * Class CmsServiceProvider
@@ -17,7 +17,7 @@ use Vedian\Cms\Support\Schema;
  *
  * @package Cms
  */
-class CmsProvider extends ServiceProvider
+class PageBuilderProvider extends ServiceProvider
 {
     /** 
      * 
