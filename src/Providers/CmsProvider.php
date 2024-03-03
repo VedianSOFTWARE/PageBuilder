@@ -4,16 +4,18 @@ namespace Vedian\Cms\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Vedian\Cms\Support\VedianPaths;
-use Vedian\Cms\Support\VedianCMS;
-use Vedian\Cms\Support\VedianSchema;
+use Vedian\Cms\Class\PageBuilder;
+use Vedian\Cms\Facades\PageSchema;
+use Vedian\Cms\Support\Paths;
+use Vedian\Cms\Support\Cms;
+use Vedian\Cms\Support\Schema;
 
 /**
  * Class CmsServiceProvider
  * 
  * The service provider for the Vedian CMS.
  *
- * @package VedianCMS
+ * @package Cms
  */
 class CmsProvider extends ServiceProvider
 {
@@ -48,7 +50,7 @@ class CmsProvider extends ServiceProvider
      */
     protected function componentNamespaces()
     {
-        Blade::componentNamespace('VedianCMS\\View', 'vedian');
+        Blade::componentNamespace('Cms\\View', 'vedian');
     }
 
     /**
@@ -59,11 +61,11 @@ class CmsProvider extends ServiceProvider
     protected function publishing()
     {
         $this->publishes([
-            VedianPaths::database('migrations') => database_path('migrations/vedian-cms')
+            Paths::database('migrations') => database_path('migrations/vedian-cms')
         ], 'vedian-cms-migrations');
 
         $this->publishes([
-            VedianPaths::views() => resource_path('views/vendor/vedian-cms'),
+            Paths::views() => resource_path('views/vendor/vedian-cms'),
         ], 'vedian-cms-views');
     }
 
@@ -74,9 +76,9 @@ class CmsProvider extends ServiceProvider
      */
     protected function loading()
     {
-        $this->loadMigrationsFrom(VedianPaths::database('migrations'));
-        $this->loadViewsFrom(VedianPaths::views(), 'vedian');
-        $this->loadRoutesFrom(VedianPaths::routes('web'));
+        $this->loadMigrationsFrom(Paths::database('migrations'));
+        $this->loadViewsFrom(Paths::views(), 'vedian');
+        $this->loadRoutesFrom(Paths::routes('web'));
     }
 
     /**
@@ -86,7 +88,7 @@ class CmsProvider extends ServiceProvider
      */
     protected function merging()
     {
-        $this->mergeConfigFrom(VedianPaths::config('vedian-cms'), 'vedian');
+        $this->mergeConfigFrom(Paths::config('vedian-cms'), 'vedian');
     }
 
     /**
@@ -96,12 +98,12 @@ class CmsProvider extends ServiceProvider
      */
     protected function binding()
     {
-        $this->app->bind('vedian-cms', function () {
-            return new VedianCMS();
+        $this->app->bind('vedian-page-builder', function () {
+            return new PageBuilder();
         });
 
-        $this->app->bind('vedian-schema', function () {
-            return new VedianSchema();
+        $this->app->bind('vedian-page-schema', function () {
+            return new PageSchema();
         });
     }
 }

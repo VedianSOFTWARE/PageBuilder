@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Vedian\Cms\Facades\VedianSchema;
+use Vedian\Cms\Facades\PageSchema;
 use Vedian\Cms\Vedian;
 
 return new class extends Migration
@@ -19,13 +19,13 @@ return new class extends Migration
         Schema::create('page_rows', function (Blueprint $table) {
             $table->id();
 
-            VedianSchema::styling($table);
+            PageSchema::styling($table);
             
             // TODO: Make it able to resolve from ::class or string
-            VedianSchema::foreignId($table, 'pages');
+            PageSchema::foreignId($table, 'pages');
 
-            // VedianSchema::author($table);
-            // VedianSchema::timestamps($table);
+            // PageSchema::author($table);
+            // PageSchema::timestamps($table);
         });
     }
 

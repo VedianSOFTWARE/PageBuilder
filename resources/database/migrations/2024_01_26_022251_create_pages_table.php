@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Vedian\Cms\Facades\VedianSchema;
+use Vedian\Cms\Facades\PageSchema;
 use Vedian\Cms\Vedian;
 
 return new class extends Migration
@@ -18,16 +18,16 @@ return new class extends Migration
             $table->id();
 
             // Content functionality
-            VedianSchema::title($table);
-            VedianSchema::description($table);
-            VedianSchema::slug($table);
+            PageSchema::title($table);
+            PageSchema::description($table);
+            PageSchema::slug($table);
 
             // Status functionality
-            VedianSchema::status($table);
-            VedianSchema::expirable($table);
+            PageSchema::status($table);
+            PageSchema::expirable($table);
 
             // Author functionality
-            VedianSchema::publishable($table);
+            PageSchema::publishable($table);
         });
     }
 

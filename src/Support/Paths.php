@@ -2,8 +2,7 @@
 
 namespace Vedian\Cms\Support;
 
-
-class VedianPaths
+class Paths
 {
     /**
      * Get the directory path within the resources directory.

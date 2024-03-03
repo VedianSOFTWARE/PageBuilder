@@ -1,22 +1,20 @@
 <?php
 
-namespace Vedian\Cms\Support;
+namespace Vedian\Cms\Schema;
 
-use Closure;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Vedian\Cms\Enum\Status;
 use Vedian\Cms\Enum\Visibility;
 
 /**
- * Class VedianSchema
+ * Class Schema
  * 
  * The schema for the Vedian CMS.
  *
- * @package VedianCMS
+ * @package Cms
  */
-class VedianSchema
+class PageSchema
 {
 
     /**

@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static void test()
  * 
- * @see \VedianCMS\Support\VedianCMS
+ * @see Vedian\Cms\Class\PageBuilder
  */
-class VedianCMS extends Facade 
+class PageBuilder extends Facade 
 {
     /**
      * Get the registered name of the component.
@@ -18,6 +18,6 @@ class VedianCMS extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'vedian-cms';
+        return 'vedian-page-builder';
     }
 }

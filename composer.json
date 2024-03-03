@@ -28,8 +28,8 @@
                 "Vedian\\Cms\\Providers\\CmsProvider"
             ],
             "aliases": {
-                "VedianCMS": "Vedian\\Cms\\Facades\\VedianCMS",
-                "VedianSchema": "Vedian\\Cms\\Facades\\VedianSchema"
+                "Cms": "Vedian\\Cms\\Facades\\Cms",
+                "Schema": "Vedian\\Cms\\Facades\\Schema"
             }
         }
     },
