@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Facade;
  * @method static void author(\Illuminate\Database\Schema\Blueprint $table)
  * @method static void publishableTimestamps(\Illuminate\Database\Schema\Blueprint $table)
  * @method static void styling(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void content(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void softDeletes(\Illuminate\Database\Schema\Blueprint $table)
  * 
- * @see \VedianCMS\Support\VedianCMS
+ * 
+ * @see \VedianCMS\Support\VedianSchema
  */
 class VedianSchema extends Facade 
 {
