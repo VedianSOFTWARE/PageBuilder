@@ -4,7 +4,7 @@ namespace VedianCMS\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use VedianCMS\Helpers\VedianPaths;
+use VedianCMS\Support\VedianPaths;
 use VedianCMS\Support\VedianCMS;
 use VedianCMS\Support\VedianSchema;
 

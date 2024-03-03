@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianCMS\Helpers;
+namespace VedianCMS\Support;
 
 
 class VedianPaths
