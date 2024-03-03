@@ -75,4 +75,16 @@ class VedianPaths
 
         return self::root("resources") . $path;
     }
+
+    /**
+     * Get the path to the resources directory.
+     *
+     * @return string
+     */
+    public static function models(string $path = null)
+    {
+        $path = $path ? "/{$path}" : "";
+
+        return self::src("Models") . $path;
+    }
 }
