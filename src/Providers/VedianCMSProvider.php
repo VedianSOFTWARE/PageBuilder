@@ -59,7 +59,7 @@ class VedianCMSProvider extends ServiceProvider
     protected function publishing()
     {
         $this->publishes([
-            VedianPaths::migrations() => database_path('migrations/vedian-cms')
+            VedianPaths::database('migrations') => database_path('migrations/vedian-cms')
         ], 'vedian-cms-migrations');
 
         $this->publishes([
@@ -74,7 +74,7 @@ class VedianCMSProvider extends ServiceProvider
      */
     protected function loading()
     {
-        $this->loadMigrationsFrom(VedianPaths::migrations());
+        $this->loadMigrationsFrom(VedianPaths::database('migrations'));
         $this->loadViewsFrom(VedianPaths::views(), 'vedian');
         $this->loadRoutesFrom(VedianPaths::routes('web'));
     }
@@ -86,7 +86,7 @@ class VedianCMSProvider extends ServiceProvider
      */
     protected function merging()
     {
-        $this->mergeConfigFrom(VedianPaths::config(), 'vedian');
+        $this->mergeConfigFrom(VedianPaths::config('vedian-cms'), 'vedian');
     }
 
     /**

@@ -16,26 +16,17 @@ class VedianPaths
         $path = $arguments[0] ?? null;
 
         // If the path is a config or routes file, append the file extension
-        switch ($name && $path === null) {
-            case 'config':
-                $path = "vedian-cms";
-                break;
-        }
-
-        // If the path is a config or routes file, append the file extension
-        switch ($name && $path) {
+        switch ($name) {
             case 'config':
             case 'routes':
                 $path = "{$name}/{$path}.php";
-                break;
-            case 'migrations':
-                $path = "database/migrations/{$path}";
                 break;
             default:
                 $path = "{$name}/{$path}";
                 break;
         }
 
+        $path = $path ? $path : $name;
 
         // Return the resources path
         return self::resources($path);

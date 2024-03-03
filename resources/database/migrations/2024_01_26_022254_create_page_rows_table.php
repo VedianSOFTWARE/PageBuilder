@@ -22,7 +22,7 @@ return new class extends Migration
             VedianSchema::styling($table);
             
             // TODO: Make it able to resolve from ::class or string
-            VedianSchema::foreignId($table, 'page_sections');
+            VedianSchema::foreignId($table, 'pages');
 
             // VedianSchema::author($table);
             // VedianSchema::timestamps($table);
