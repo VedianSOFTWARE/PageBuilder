@@ -1,18 +1,18 @@
 <?php
 
-namespace VedianSoftware\VedianCMS\Providers;
+namespace VedianCMS\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use VedianSoftware\VedianCMS\Support\VedianCMS;
-use VedianSoftware\VedianCMS\Support\VedianSchema;
+use VedianCMS\Support\VedianCMS;
+use VedianCMS\Support\VedianSchema;
 
 /**
  * Class CmsServiceProvider
  * 
  * The service provider for the Vedian CMS.
  *
- * @package VedianSoftware\VedianCMS
+ * @package VedianCMS
  */
 class VedianCMSProvider extends ServiceProvider
 {
@@ -62,7 +62,7 @@ class VedianCMSProvider extends ServiceProvider
         // $this->loadRoutesFrom(__DIR__ . '/../Resources/routes/web.php');
         $this->loadRoutesFrom(__DIR__ . '/../Resources/routes/web.php');
 
-        // Blade::componentNamespace('VedianSoftware\\Cms\\View\\Html', 'element');
-        Blade::componentNamespace('VedianSoftware\\Cms\\View', 'vedian');
+        // Blade::componentNamespace('Cms\\View\\Html', 'element');
+        Blade::componentNamespace('Cms\\View', 'vedian');
     }
 }

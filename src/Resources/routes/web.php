@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use VedianSoftware\VedianCMS\Controllers\PageController;
+use VedianCMS\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------

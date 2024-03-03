@@ -1,6 +1,6 @@
 <?php 
 
-namespace VedianSoftware\VedianCMS\Facades;
+namespace VedianCMS\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static void publishableTimestamps(\Illuminate\Database\Schema\Blueprint $table)
  * @method static void styling(\Illuminate\Database\Schema\Blueprint $table)
  * 
- * @see \VedianSoftware\VedianCMS\Support\VedianCMS
+ * @see \VedianCMS\Support\VedianCMS
  */
 class VedianSchema extends Facade 
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoftware\VedianCMS\Support;
+namespace VedianCMS\Support;
 
 use Closure;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
  * 
  * The schema for the Vedian CMS.
  *
- * @package VedianSoftware\VedianCMS
+ * @package VedianCMS
  */
 class VedianSchema
 {

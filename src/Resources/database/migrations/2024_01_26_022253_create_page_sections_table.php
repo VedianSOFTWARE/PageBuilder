@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use VedianSoftware\VedianCMS\Facades\VedianSchema;
-use VedianSoftware\VedianCMS\Vedian;
+use VedianCMS\Facades\VedianSchema;
+use VedianCMS\Vedian;
 
 return new class extends Migration
 {

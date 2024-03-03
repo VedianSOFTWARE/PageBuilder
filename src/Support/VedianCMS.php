@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianSoftware\VedianCMS\Support;
+namespace VedianCMS\Support;
 
 
 class VedianCMS

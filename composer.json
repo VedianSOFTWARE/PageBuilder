@@ -11,7 +11,7 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "VedianSoftware\\VedianCMS\\": "src/"
+            "VedianCMS\\": "src/"
         }
     },
     "require": {
@@ -22,11 +22,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VedianSoftware\\VedianCMS\\Providers\\VedianCMSProvider"
+                "VedianCMS\\Providers\\VedianCMSProvider"
             ],
             "aliases": {
-                "VedianCMS": "VedianSoftware\\VedianCMS\\Facades\\VedianCMS",
-                "VedianSchema": "VedianSoftware\\VedianCMS\\Facades\\VedianSchema"
+                "VedianCMS": "VedianCMS\\Facades\\VedianCMS",
+                "VedianSchema": "VedianCMS\\Facades\\VedianSchema"
             }
         }
     },

@@ -1,13 +1,13 @@
 <?php 
 
-namespace VedianSoftware\VedianCMS\Facades;
+namespace VedianCMS\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static void test()
  * 
- * @see \VedianSoftware\VedianCMS\Support\VedianCMS
+ * @see \VedianCMS\Support\VedianCMS
  */
 class VedianCMS extends Facade 
 {
