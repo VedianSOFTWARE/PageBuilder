@@ -4,8 +4,8 @@ namespace VedianSoftware\VedianCMS\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use VedianSoftware\VedianCMS\Support\VedianCMSSupport;
-use VedianSoftware\VedianCMS\Support\VedianSchemaSupport;
+use VedianSoftware\VedianCMS\Support\VedianCMS;
+use VedianSoftware\VedianCMS\Support\VedianSchema;
 
 /**
  * Class CmsServiceProvider
@@ -27,11 +27,11 @@ class VedianCMSProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../Resources/config/vedian-cms.php', 'vedian');
 
         $this->app->bind('vedian-cms', function () {
-            return new VedianCMSSupport();
+            return new VedianCMS();
         });
 
         $this->app->bind('vedian-schema', function () {
-            return new VedianSchemaSupport();
+            return new VedianSchema();
         });
     }
 
