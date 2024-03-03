@@ -1,13 +1,13 @@
 <?php
 
-namespace VedianCMS\Support;
+namespace Vedian\Cms\Support;
 
 use Closure;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use VedianCMS\Enum\Status;
-use VedianCMS\Enum\Visibility;
+use Vedian\Cms\Enum\Status;
+use Vedian\Cms\Enum\Visibility;
 
 /**
  * Class VedianSchema
