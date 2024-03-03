@@ -19,6 +19,9 @@
         "illuminate/support": "^10.0",
         "laravel/framework": "^10.0"
     },
+    "require-dev": {
+        "laravel/sail": "^1.0"
+    },
     "extra": {
         "laravel": {
             "providers": [
