@@ -1,21 +1,21 @@
 <?php
 
-namespace VedianCMS\Providers;
+namespace Vedian\PageBuilder\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use VedianCMS\Helpers\VedianPaths;
-use VedianCMS\Support\VedianCMS;
-use VedianCMS\Support\VedianSchema;
+use Vedian\PageBuilder\Class\PageBuilder;
+use Vedian\PageBuilder\Schema\PageSchema;
+use Vedian\PageBuilder\Support\Paths;
 
 /**
  * Class CmsServiceProvider
  * 
  * The service provider for the Vedian CMS.
  *
- * @package VedianCMS
+ * @package Cms
  */
-class VedianCMSProvider extends ServiceProvider
+class PageBuilderProvider extends ServiceProvider
 {
     /** 
      * 
@@ -48,7 +48,7 @@ class VedianCMSProvider extends ServiceProvider
      */
     protected function componentNamespaces()
     {
-        Blade::componentNamespace('VedianCMS\\View', 'vedian');
+        Blade::componentNamespace('PageBuilder\\View', 'pagebuilder');
     }
 
     /**
@@ -59,12 +59,12 @@ class VedianCMSProvider extends ServiceProvider
     protected function publishing()
     {
         $this->publishes([
-            VedianPaths::database('migrations') => database_path('migrations/vedian-cms')
-        ], 'vedian-cms-migrations');
+            Paths::database('migrations') => database_path('migrations/pagebuilder')
+        ], 'pagebuilder-migrations');
 
         $this->publishes([
-            VedianPaths::views() => resource_path('views/vendor/vedian-cms'),
-        ], 'vedian-cms-views');
+            Paths::views() => resource_path('views/vendor/pagebuilder'),
+        ], 'pagebuilder-views');
     }
 
     /**
@@ -74,9 +74,9 @@ class VedianCMSProvider extends ServiceProvider
      */
     protected function loading()
     {
-        $this->loadMigrationsFrom(VedianPaths::database('migrations'));
-        $this->loadViewsFrom(VedianPaths::views(), 'vedian');
-        $this->loadRoutesFrom(VedianPaths::routes('web'));
+        $this->loadMigrationsFrom(Paths::database('migrations'));
+        $this->loadViewsFrom(Paths::views(), 'pagebuilder');
+        $this->loadRoutesFrom(Paths::routes('web'));
     }
 
     /**
@@ -86,7 +86,7 @@ class VedianCMSProvider extends ServiceProvider
      */
     protected function merging()
     {
-        $this->mergeConfigFrom(VedianPaths::config('vedian-cms'), 'vedian');
+        $this->mergeConfigFrom(Paths::config('pagebuilder'), 'pagebuilder');
     }
 
     /**
@@ -96,12 +96,12 @@ class VedianCMSProvider extends ServiceProvider
      */
     protected function binding()
     {
-        $this->app->bind('vedian-cms', function () {
-            return new VedianCMS();
+        $this->app->bind('pagebuilder', function () {
+            return new PageBuilder();
         });
 
-        $this->app->bind('vedian-schema', function () {
-            return new VedianSchema();
+        $this->app->bind('pageschema', function () {
+            return new PageSchema();
         });
     }
 }

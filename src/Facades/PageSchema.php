@@ -1,6 +1,6 @@
 <?php 
 
-namespace VedianCMS\Facades;
+namespace Vedian\PageBuilder\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Facade;
  * @method static void author(\Illuminate\Database\Schema\Blueprint $table)
  * @method static void publishableTimestamps(\Illuminate\Database\Schema\Blueprint $table)
  * @method static void styling(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void content(\Illuminate\Database\Schema\Blueprint $table)
+ * @method static void softDeletes(\Illuminate\Database\Schema\Blueprint $table)
  * 
- * @see \VedianCMS\Support\VedianCMS
+ * 
+ * @see PageSchema
  */
-class VedianSchema extends Facade 
+class PageSchema extends Facade 
 {
     /**
      * Get the registered name of the component.
@@ -25,6 +28,6 @@ class VedianSchema extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'vedian-schema';
+        return 'pageschema';
     }
 }

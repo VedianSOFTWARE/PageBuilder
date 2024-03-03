@@ -1,5 +1,5 @@
 {
-    "name": "vediansoftware/vedian-cms",
+    "name": "vediansoftware/pagebuilder",
     "description": "Content management system for laravel",
     "keywords": [
         "cms",
@@ -11,7 +11,7 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "VedianCMS\\": "src/"
+            "Vedian\\PageBuilder\\": "src/"
         }
     },
     "require": {
@@ -25,11 +25,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VedianCMS\\Providers\\VedianCMSProvider"
+                "Vedian\\PageBuilder\\Providers\\PageBuilderProvider"
             ],
             "aliases": {
-                "VedianCMS": "VedianCMS\\Facades\\VedianCMS",
-                "VedianSchema": "VedianCMS\\Facades\\VedianSchema"
+                "Cms": "Vedian\\PageBuilder\\Facades\\PageBuilder",
+                "Schema": "Vedian\\PageBuilder\\Facades\\PageSchema"
             }
         }
     },

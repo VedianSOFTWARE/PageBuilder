@@ -1,6 +1,6 @@
 <?php
 
-namespace VedianCMS\Models;
+namespace Vedian\PageBuilder\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

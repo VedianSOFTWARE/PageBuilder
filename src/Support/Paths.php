@@ -1,9 +1,8 @@
 <?php
 
-namespace VedianCMS\Helpers;
+namespace Vedian\PageBuilder\Support;
 
-
-class VedianPaths
+class Paths
 {
     /**
      * Get the directory path within the resources directory.
