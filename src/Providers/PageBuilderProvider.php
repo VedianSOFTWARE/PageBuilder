@@ -5,10 +5,8 @@ namespace Vedian\PageBuilder\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Vedian\PageBuilder\Class\PageBuilder;
-use Vedian\PageBuilder\Facades\PageSchema;
+use Vedian\PageBuilder\Schema\PageSchema;
 use Vedian\PageBuilder\Support\Paths;
-use Vedian\PageBuilder\Support\Cms;
-use Vedian\PageBuilder\Support\Schema;
 
 /**
  * Class CmsServiceProvider
@@ -50,7 +48,7 @@ class PageBuilderProvider extends ServiceProvider
      */
     protected function componentNamespaces()
     {
-        Blade::componentNamespace('Cms\\View', 'vedian');
+        Blade::componentNamespace('PageBuilder\\View', 'pagebuilder');
     }
 
     /**
@@ -61,12 +59,12 @@ class PageBuilderProvider extends ServiceProvider
     protected function publishing()
     {
         $this->publishes([
-            Paths::database('migrations') => database_path('migrations/vedian-cms')
-        ], 'vedian-cms-migrations');
+            Paths::database('migrations') => database_path('migrations/pagebuilder')
+        ], 'pagebuilder-migrations');
 
         $this->publishes([
-            Paths::views() => resource_path('views/vendor/vedian-cms'),
-        ], 'vedian-cms-views');
+            Paths::views() => resource_path('views/vendor/pagebuilder'),
+        ], 'pagebuilder-views');
     }
 
     /**
@@ -77,7 +75,7 @@ class PageBuilderProvider extends ServiceProvider
     protected function loading()
     {
         $this->loadMigrationsFrom(Paths::database('migrations'));
-        $this->loadViewsFrom(Paths::views(), 'vedian');
+        $this->loadViewsFrom(Paths::views(), 'pagebuilder');
         $this->loadRoutesFrom(Paths::routes('web'));
     }
 
@@ -88,7 +86,7 @@ class PageBuilderProvider extends ServiceProvider
      */
     protected function merging()
     {
-        $this->mergeConfigFrom(Paths::config('vedian-cms'), 'vedian');
+        $this->mergeConfigFrom(Paths::config('pagebuilder'), 'pagebuilder');
     }
 
     /**
@@ -98,11 +96,11 @@ class PageBuilderProvider extends ServiceProvider
      */
     protected function binding()
     {
-        $this->app->bind('vedian-page-builder', function () {
+        $this->app->bind('pagebuilder', function () {
             return new PageBuilder();
         });
 
-        $this->app->bind('vedian-page-schema', function () {
+        $this->app->bind('pageschema', function () {
             return new PageSchema();
         });
     }

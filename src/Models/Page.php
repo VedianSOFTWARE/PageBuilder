@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Vedian\PageBuilder\Enum\Status;
 use Vedian\PageBuilder\Enum\Visibility;
-use Vedian\PageBuilder\Traits\HasCreator;
+use Vedian\PageBuilder\Functions\HasCreator;
 
 class Page extends Model
 {

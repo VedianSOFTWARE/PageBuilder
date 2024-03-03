@@ -18,6 +18,6 @@ class PageBuilder extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'vedian-page-builder';
+        return 'pagebuilder';
     }
 }

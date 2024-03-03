@@ -28,6 +28,6 @@ class PageSchema extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'vedian-page-schema';
+        return 'pageschema';
     }
 }
