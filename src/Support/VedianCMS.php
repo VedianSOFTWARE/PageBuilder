@@ -3,7 +3,7 @@
 namespace VedianSoftware\VedianCMS\Support;
 
 
-class VedianCMSSupport
+class VedianCMS
 {
     // Build your next great package.
     public function test()

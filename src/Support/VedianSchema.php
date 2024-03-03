@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
  *
  * @package VedianSoftware\VedianCMS
  */
-class VedianSchemaSupport
+class VedianSchema
 {
 
     /**

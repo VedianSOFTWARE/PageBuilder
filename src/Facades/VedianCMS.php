@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static void test()
  * 
- * @see \VedianSoftware\VedianCMS\Support\VedianCMSSupport
+ * @see \VedianSoftware\VedianCMS\Support\VedianCMS
  */
 class VedianCMS extends Facade 
 {
