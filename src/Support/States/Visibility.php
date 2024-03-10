@@ -1,6 +1,6 @@
 <?php
 
-namespace Vedian\PageBuilder\States;
+namespace Vedian\PageBuilder\Support\States;
 
 /**
  * The Visibility enum represents the visibility options for a resource.

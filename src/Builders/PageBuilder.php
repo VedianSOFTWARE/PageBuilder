@@ -2,8 +2,6 @@
 
 namespace Vedian\PageBuilder\Builders;
 
-use Illuminate\Support\Facades\Route;
-
 /**
  * Class PageBuilder
  * 
