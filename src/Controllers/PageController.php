@@ -5,6 +5,7 @@ namespace Vedian\PageBuilder\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
+use Vedian\PageBuilder\Builders\PageBuilder;
 
 /**
  * Class PageController
@@ -13,7 +14,18 @@ use Illuminate\Routing\Controller;
 class PageController extends Controller
 {
     use AuthorizesRequests, ValidatesRequests;
-    
+
+    /**
+     * Show the page index.
+     *
+     * @param PageBuilder $pb The page Service instance.
+     * @return \Illuminate\View\View The page index view.
+     */
+    public function index()
+    {
+        return PageBuilder::view('page.index');
+    }
+
     /**
      * Create a new page.
      *
@@ -22,7 +34,6 @@ class PageController extends Controller
      */
     public function create()
     {
-        return 123;
-        // return view('vedian::page.create');
+        return PageBuilder::view('page.create');
     }
 }

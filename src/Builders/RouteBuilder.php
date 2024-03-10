@@ -1,4 +1,3 @@
-
 <?php
 
 namespace Vedian\PageBuilder\Builders;
@@ -12,7 +11,6 @@ use Illuminate\Support\Facades\Route;
  */
 class RouteBuilder
 {
-
     /**
      * The prefix for the admin routes.
      *
@@ -28,6 +26,7 @@ class RouteBuilder
     public static function prefix(string $route)
     {
         return [
+            'middleware' => static::middleware(),
             'prefix' => $route,
             'as' => "{$route}.",
         ];
@@ -56,5 +55,39 @@ class RouteBuilder
             static::prefix(static::$dashboardRoute),
             $callback
         );
+    }
+
+    /**
+     * Get the auth middleware.
+     *
+     * @return string The auth middleware.
+     */
+    public static function getAuthMiddleware()
+    {
+        return config('pagebuilder.guard') ? config('pagebuilder.guard') : 'auth';
+    }
+
+    /**
+     * Get the auth session middleware.
+     *
+     * @return string The auth session middleware.
+     */
+    public static function getAuthSessionMiddleware()
+    {
+        return config('pagebuilder.auth_session', false) ? config('pagebuilder.auth_session') : null;
+    }
+
+    /**
+     * Get the middleware for the routes.
+     *
+     * @return array The middleware for the routes.
+     */
+    public static function middleware()
+    {
+        return array_values(array_filter([
+            'web',
+            static::getAuthMiddleware(),
+            static::getAuthSessionMiddleware(),
+        ]));
     }
 }
