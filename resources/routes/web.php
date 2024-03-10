@@ -31,3 +31,17 @@ use Vedian\PageBuilder\Controllers\PageController;
 //         Route::get('create', [PageController::class, 'create']);
 //     });
 // });
+
+Route::group([
+    'prefix' => 'builder',
+    'as' => 'builder.',
+], function(){
+    Route::group([
+        'prefix' => 'page',
+        'as' => 'page.',
+    ],function(){
+        Route::get('create', function(){
+            return 123;
+        })->name('create');
+    });
+});
