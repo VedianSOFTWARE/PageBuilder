@@ -85,8 +85,8 @@ class PageBuilder
      * @param string $view The view to retrieve.
      * @return string The view for the page builder.
      */
-    public static function view($view)
+    public static function view($view, $data = [], $mergeData = [])
     {
-        return view("pagebuilder::{$view}");
+        return view("pagebuilder::{$view}", $data, $mergeData);
     }
 }

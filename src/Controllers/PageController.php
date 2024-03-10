@@ -14,7 +14,18 @@ use Vedian\PageBuilder\Builders\PageBuilder;
 class PageController extends Controller
 {
     use AuthorizesRequests, ValidatesRequests;
-    
+
+    /**
+     * Show the page index.
+     *
+     * @param PageBuilder $pb The page Service instance.
+     * @return \Illuminate\View\View The page index view.
+     */
+    public function index()
+    {
+        return PageBuilder::view('page.index');
+    }
+
     /**
      * Create a new page.
      *
