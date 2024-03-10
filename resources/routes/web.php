@@ -14,27 +14,6 @@ use Vedian\PageBuilder\Builders\RouteBuilder;
 |
 */
 
-// $authMiddleware = config('vedian.guard')
-//     ? config('vedian.guard')
-//     : 'auth';
-
-// $authSessionMiddleware = config('vedian.auth_session', false)
-//     ? config('vedian.auth_session')
-//     : null;
-
-// Route::group([
-//     'middleware' => array_values(array_filter(['web', $authMiddleware, $authSessionMiddleware])),
-//     'prefix' => config('vedian.prefix'),
-// ], function () {
-
-//     Route::prefix('page')->group(function () {
-//         Route::get('create', [PageController::class, 'create']);
-//     });
-// });
-// RouteBuilder::group('dashboard', function () {
-//     RouteBuilder::resource('page', PageController::class);
-// });
-
 RouteBuilder::dashboard(function () {
     RouteBuilder::resource('page', PageController::class);
 });

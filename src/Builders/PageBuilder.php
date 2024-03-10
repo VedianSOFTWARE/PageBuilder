@@ -12,13 +12,6 @@ use Illuminate\Support\Facades\Route;
 class PageBuilder
 {
     /**
-     * The prefix for the admin routes.
-     *
-     * @var string
-     */
-    public static $dashboardRoute = 'dashboard';
-
-    /**
      * The fully qualified class name of the user model.
      *
      * @var string
@@ -84,5 +77,16 @@ class PageBuilder
     public static function column()
     {
         return static::$columnModel;
+    }
+
+    /**
+     * Get the view for the page builder.
+     *
+     * @param string $view The view to retrieve.
+     * @return string The view for the page builder.
+     */
+    public static function view($view, $data = [], $mergeData = [])
+    {
+        return view("pagebuilder::{$view}", $data, $mergeData);
     }
 }
