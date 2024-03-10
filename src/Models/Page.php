@@ -4,9 +4,9 @@ namespace Vedian\PageBuilder\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Vedian\PageBuilder\States\Status;
-use Vedian\PageBuilder\States\Visibility;
-use Vedian\PageBuilder\Functions\HasCreator;
+use Vedian\PageBuilder\Support\States\Status;
+use Vedian\PageBuilder\Support\States\Visibility;
+use Vedian\PageBuilder\Support\Traits\HasCreator;
 
 class Page extends Model
 {

@@ -1,9 +1,8 @@
 <?php
 
-namespace Vedian\PageBuilder\Functions;
+namespace Vedian\PageBuilder\Support\Traits;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
-use Vedian\PageBuilder\Facades\PageBuilder;
 
 trait HasCreator
 {
@@ -21,10 +20,5 @@ trait HasCreator
             $model->deleted_by = auth()->id();
             $model->save();
         });
-    }
-
-    public function creator()
-    {
-        return $this->belongsTo(PageBuilder::user(), 'created_by');
     }
 }
