@@ -22,6 +22,7 @@ class PageController extends Controller
      */
     public function create()
     {
+        return 123;
         // return view('vedian::page.create');
     }
 }
