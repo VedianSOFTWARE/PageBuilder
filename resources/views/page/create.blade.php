@@ -5,6 +5,5 @@
         </h2>
     </x-slot>
     
-    <x-element::container />
 
 </x-app-layout>

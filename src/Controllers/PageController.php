@@ -5,6 +5,7 @@ namespace Vedian\PageBuilder\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
+use Vedian\PageBuilder\Builders\PageBuilder;
 
 /**
  * Class PageController
@@ -22,7 +23,6 @@ class PageController extends Controller
      */
     public function create()
     {
-        return 123;
-        // return view('vedian::page.create');
+        return PageBuilder::view('page.create');
     }
 }

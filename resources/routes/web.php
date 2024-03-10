@@ -14,13 +14,6 @@ use Vedian\PageBuilder\Builders\RouteBuilder;
 |
 */
 
-// $authMiddleware = config('vedian.guard')
-//     ? config('vedian.guard')
-//     : 'auth';
-
-// $authSessionMiddleware = config('vedian.auth_session', false)
-//     ? config('vedian.auth_session')
-//     : null;
 
 // Route::group([
 //     'middleware' => array_values(array_filter(['web', $authMiddleware, $authSessionMiddleware])),
