@@ -1,6 +1,8 @@
 <?php
 
-namespace Vedian\PageBuilder\Class;
+namespace Vedian\PageBuilder\Builders;
+
+use Illuminate\Support\Facades\Route;
 
 /**
  * Class PageBuilder
@@ -9,6 +11,13 @@ namespace Vedian\PageBuilder\Class;
  */
 class PageBuilder
 {
+    /**
+     * The prefix for the admin routes.
+     *
+     * @var string
+     */
+    public static $dashboardRoute = 'dashboard';
+
     /**
      * The fully qualified class name of the user model.
      *

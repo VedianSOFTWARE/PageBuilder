@@ -4,8 +4,8 @@ namespace Vedian\PageBuilder\Schema;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Str;
-use Vedian\PageBuilder\Enum\Status;
-use Vedian\PageBuilder\Enum\Visibility;
+use Vedian\PageBuilder\States\Status;
+use Vedian\PageBuilder\States\Visibility;
 
 /**
  * Class Schema

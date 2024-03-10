@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Vedian\PageBuilder\Controllers\PageController;
+use Vedian\PageBuilder\Builders\RouteBuilder;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,17 +31,10 @@ use Vedian\PageBuilder\Controllers\PageController;
 //         Route::get('create', [PageController::class, 'create']);
 //     });
 // });
+// RouteBuilder::group('dashboard', function () {
+//     RouteBuilder::resource('page', PageController::class);
+// });
 
-Route::group([
-    'prefix' => 'builder',
-    'as' => 'builder.',
-], function(){
-    Route::group([
-        'prefix' => 'page',
-        'as' => 'page.',
-    ],function(){
-        Route::get('create', function(){
-            return 123;
-        })->name('create');
-    });
+RouteBuilder::dashboard(function () {
+    RouteBuilder::resource('page', PageController::class);
 });

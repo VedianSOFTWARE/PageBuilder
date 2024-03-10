@@ -4,7 +4,7 @@ namespace Vedian\PageBuilder\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Vedian\PageBuilder\Class\PageBuilder;
+use Vedian\PageBuilder\Builders\PageBuilder;
 use Vedian\PageBuilder\Schema\PageSchema;
 use Vedian\PageBuilder\Support\Paths;
 

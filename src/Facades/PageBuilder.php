@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static void test()
  * 
- * @see Vedian\PageBuilder\Class\PageBuilder
+ * @see Vedian\PageBuilder\Builders\PageBuilder
  */
 class PageBuilder extends Facade 
 {
