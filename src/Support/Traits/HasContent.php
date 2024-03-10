@@ -1,6 +1,6 @@
 <?php
 
-namespace Vedian\PageBuilder\Functions;
+namespace Vedian\PageBuilder\Support\Traits;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 

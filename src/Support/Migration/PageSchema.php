@@ -1,11 +1,11 @@
 <?php
 
-namespace Vedian\PageBuilder\Schema;
+namespace Vedian\PageBuilder\Support\Migration;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Str;
-use Vedian\PageBuilder\States\Status;
-use Vedian\PageBuilder\States\Visibility;
+use Vedian\PageBuilder\Support\States\Status;
+use Vedian\PageBuilder\Support\States\Visibility;
 
 /**
  * Class Schema
