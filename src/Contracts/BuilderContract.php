@@ -2,8 +2,6 @@
 
 namespace Vedian\PageBuilder\Contracts;
 
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 
 /**
  * Interface BuilderContract
@@ -17,11 +15,11 @@ use Illuminate\Contracts\View\View;
  */
 interface BuilderContract
 {
-    public static function view($view, $data = [], $mergeData = []): View|Factory;
+    // public static function view($view, $data = [], $mergeData = []): View|Factory;
 
-    public function add(array $data = []);
+    // public function add(array $data = []);
 
-    // public function make(array $data = []);
+    // // public function make(array $data = []);
 
-    public function save();
+    // public function save();
 }

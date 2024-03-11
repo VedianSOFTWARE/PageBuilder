@@ -5,11 +5,12 @@ namespace Vedian\PageBuilder\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Vedian\PageBuilder\Contracts\ModelContract;
+use Vedian\PageBuilder\Contracts\PageContract;
 use Vedian\PageBuilder\Support\States\Status;
 use Vedian\PageBuilder\Support\States\Visibility;
 use Vedian\PageBuilder\Support\Traits\HasCreator;
 
-class Page extends Model implements ModelContract
+class Page extends Model implements PageContract
 {
     use HasFactory, HasCreator;
 

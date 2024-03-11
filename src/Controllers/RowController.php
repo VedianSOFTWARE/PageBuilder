@@ -18,6 +18,6 @@ class RowController extends Controller
      */
     public function create()
     {
-        return PageBuilder::view('row.create');
+        return PageVedian::view('row.create');
     }
 }

@@ -28,8 +28,9 @@
                 "Vedian\\PageBuilder\\Providers\\PageBuilderProvider"
             ],
             "aliases": {
-                "Cms": "Vedian\\PageBuilder\\Facades\\PageBuilder",
-                "Schema": "Vedian\\PageBuilder\\Facades\\PageSchema"
+                "Vedian": "Vedian\\PageBuilder\\Facades\\Vedian",
+                "Definition": "Vedian\\PageBuilder\\Facades\\Definition",
+                "Path": "Vedian\\PageBuilder\\Facades\\Path"
             }
         }
     },

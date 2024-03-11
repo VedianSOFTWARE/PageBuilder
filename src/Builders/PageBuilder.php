@@ -23,7 +23,7 @@ class PageBuilder extends Builder implements PageBuilderContract
 
     public function make($data = [])
     {
-        $this->page = $this->create($data);
+        $this->page = $data;
 
         return $this;
     }

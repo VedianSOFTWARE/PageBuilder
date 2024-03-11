@@ -7,10 +7,6 @@ namespace Vedian\PageBuilder\Contracts;
  * 
  * This interface defines the methods that must be implemented by the page model.
  * 
- * @method static add($data = []): void
- * @method static make($data = [])
- * @method static save()
- * 
  * @package Vedian\PageBuilder\Contracts
  */
 interface PageBuilderContract

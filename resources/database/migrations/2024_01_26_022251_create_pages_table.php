@@ -3,13 +3,12 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Vedian\PageBuilder\Support\Facades\PageSchema;
-use Vedian\PageBuilder\Vedian;
+use Vedian\PageBuilder\Support\Facades\Definition;
 
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the Definitions.
      */
     public function up(): void
     {
@@ -18,21 +17,21 @@ return new class extends Migration
             $table->id();
 
             // Content functionality
-            PageSchema::title($table);
-            PageSchema::description($table);
-            PageSchema::slug($table);
+            Definition::title($table);
+            Definition::description($table);
+            Definition::slug($table);
 
             // Status functionality
-            PageSchema::status($table);
-            PageSchema::expirable($table);
+            Definition::status($table);
+            Definition::expirable($table);
 
             // Author functionality
-            PageSchema::publishable($table);
+            Definition::publishable($table);
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the Definitions.
      */
     public function down(): void
     {

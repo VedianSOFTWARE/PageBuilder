@@ -2,7 +2,9 @@
 
 namespace Vedian\PageBuilder\Support;
 
-class Paths
+use Vedian\PageBuilder\Support\Facades\Path;
+
+class PathSupport
 {
     /**
      * Get the directory path within the resources directory.
@@ -28,7 +30,7 @@ class Paths
         $path = $path ? $path : $name;
 
         // Return the resources path
-        return self::resources($path);
+        return Path::resources($path);
     }
 
 
@@ -37,7 +39,7 @@ class Paths
      *
      * @return string
      */
-    protected static function src()
+    public function src()
     {
         return dirname(__DIR__);
     }
@@ -47,11 +49,11 @@ class Paths
      *
      * @return string
      */
-    protected static function root(string $path = null)
+    public function root(string $path = null)
     {
         $path = $path ? "/{$path}" : "";
 
-        return dirname(self::src()) . $path;
+        return dirname(Path::src()) . $path;
     }
 
     /**
@@ -59,11 +61,11 @@ class Paths
      *
      * @return string
      */
-    public static function resources(string $path = null)
+    public function resources(string $path = null)
     {
         $path = $path ? "/{$path}" : "";
 
-        return self::root("resources") . $path;
+        return Path::root("resources") . $path;
     }
 
     /**
@@ -71,10 +73,10 @@ class Paths
      *
      * @return string
      */
-    public static function models(string $path = null)
+    public function models(string $path = null)
     {
         $path = $path ? "/{$path}" : "";
 
-        return self::src("Models") . $path;
+        return Path::src("Models") . $path;
     }
 }
