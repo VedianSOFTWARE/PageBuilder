@@ -2,9 +2,25 @@
 
 namespace Vedian\PageBuilder\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Vedian\PageBuilder\Builders\Builder;
+use Vedian\PageBuilder\Builders\ColumnBuilder;
 use Vedian\PageBuilder\Builders\PageBuilder;
+use Vedian\PageBuilder\Builders\RowBuilder;
+use Vedian\PageBuilder\Contracts\BuilderContract;
+use Vedian\PageBuilder\Contracts\ColumnBuilderContract;
+use Vedian\PageBuilder\Contracts\ModelContract;
+use Vedian\PageBuilder\Contracts\PageBuilderContract;
+use Vedian\PageBuilder\Contracts\RowBuilderContract;
+use Vedian\PageBuilder\Contracts\RowContract;
+use Vedian\PageBuilder\Contracts\RowManagerContract;
+use Vedian\PageBuilder\Controllers\PageController;
+use Vedian\PageBuilder\Managers\RowManager;
+use Vedian\PageBuilder\Models\Column;
+use Vedian\PageBuilder\Models\Page;
+use Vedian\PageBuilder\Models\Row;
 use Vedian\PageBuilder\Support\Migration\PageSchema;
 use Vedian\PageBuilder\Support\Paths;
 
@@ -96,10 +112,64 @@ class PageBuilderProvider extends ServiceProvider
      */
     protected function binding()
     {
-        $this->app->bind('pagebuilder', function () {
-            return new PageBuilder();
-        });
+        $this->facades();
+        $this->bindPageBuilder();
+        $this->bindRowBuilder();
+        $this->bindColumnBuilder();
+    }
 
+    /**
+     * Bind the page builder.
+     *
+     * @return void
+     */
+    protected function bindPageBuilder()
+    {
+        $this->app->bind(PageBuilderContract::class, PageBuilder::class);
+
+        $this->app->singleton(PageBuilderContract::class, function ($app) {
+            return new PageBuilder(
+                $app->make(Page::class),
+                $app->make(RowBuilderContract::class)
+            );
+        });
+    }
+
+    /**
+     * Bind the row builder.
+     *
+     * @return void
+     */
+    protected function bindRowBuilder()
+    {
+        $this->app->bind(RowBuilderContract::class, RowBuilder::class);
+
+        $this->app->singleton(RowBuilderContract::class, function ($app) {
+            return new RowBuilder(
+                $app->make(Row::class),
+                $app->make(ColumnBuilderContract::class)
+            );
+        });
+    }
+
+    /**
+     * Bind the column builder.
+     *
+     * @return void
+     */
+    protected function bindColumnBuilder()
+    {
+        $this->app->bind(ColumnBuilderContract::class, ColumnBuilder::class);
+
+        $this->app->singleton(ColumnBuilderContract::class, function ($app) {
+            return new ColumnBuilder(
+                $app->make(Column::class),
+            );
+        });
+    }
+
+    protected function facades()
+    {
         $this->app->bind('pageschema', function () {
             return new PageSchema();
         });

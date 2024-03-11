@@ -26,7 +26,7 @@ return new class extends Migration
             PageSchema::foreignId($table, 'page_rows');
 
             // PageSchema::author($table);
-            // PageSchema::timestamps($table);
+            PageSchema::timestamps($table);
         });
     }
 

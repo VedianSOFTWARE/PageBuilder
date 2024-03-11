@@ -87,7 +87,9 @@ class PageSchema
      */
     public function slug(Blueprint $table)
     {
-        $table->string('slug')->unique(); // The slug of the section (unique identifier   
+        $table->string('slug')
+            // ->unique()
+        ; // The slug of the section (unique identifier   
     }
 
     /**
