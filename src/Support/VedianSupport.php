@@ -24,6 +24,12 @@ class VedianSupport
         return view("pagebuilder::{$view}", $data, $mergeData);
     }
 
+    /**
+     * Build pages using the given model.
+     *
+     * @param string $model The model to use.
+     * @return void
+     */
     public static function buildPagesUsing(string $model)
     {
         return app()->singleton(PageBuilderContract::class, function ($app) use ($model) {
@@ -34,6 +40,12 @@ class VedianSupport
         });
     }
 
+    /**
+     * Build rows using the given model.
+     *
+     * @param string $model The model to use.
+     * @return void
+     */
     public static function buildRowsUsing(string $model)
     {
         return app()->singleton(RowBuilderContract::class, function ($app) use ($model) {
@@ -44,6 +56,12 @@ class VedianSupport
         });
     }
 
+    /**
+     * Build columns using the given model.
+     *
+     * @param string $model The model to use.
+     * @return void
+     */
     public static function buildColumnsUsing(string $model)
     {
         return app()->singleton(ColumnBuilderContract::class, function ($app) use ($model) {
