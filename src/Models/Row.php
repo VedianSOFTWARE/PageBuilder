@@ -4,9 +4,9 @@ namespace Vedian\PageBuilder\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Vedian\PageBuilder\Contracts\ModelContract;
+use Vedian\PageBuilder\Contracts\Models\IRow;
 
-class Row extends Model implements ModelContract
+class Row extends Model implements IRow
 {
     use HasFactory;
 
@@ -20,11 +20,11 @@ class Row extends Model implements ModelContract
 
     public function page()
     {
-        return $this->belongsTo(Page::class);
+        return $this->belongsTo(Page::class, 'page_id', 'id');
     }
 
     public function columns()
     {
-        return $this->hasMany(Column::class);
+        return $this->hasMany(Column::class, 'page_row_id', 'id');
     }
 }

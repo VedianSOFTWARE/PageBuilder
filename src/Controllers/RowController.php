@@ -3,6 +3,7 @@
 namespace Vedian\PageBuilder\Controllers;
 
 use Vedian\PageBuilder\Builders\PageBuilder;
+use Vedian\PageBuilder\Support\Facades\Vedian;
 
 /**
  * Class RowController
@@ -18,6 +19,6 @@ class RowController extends Controller
      */
     public function create()
     {
-        return PageVedian::view('row.create');
+        return Vedian::view('row.create');
     }
 }

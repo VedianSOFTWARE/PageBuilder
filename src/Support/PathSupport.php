@@ -6,12 +6,13 @@ use Vedian\PageBuilder\Support\Facades\Path;
 
 class PathSupport
 {
+    
     /**
      * Get the directory path within the resources directory.
      *
      * @return string
      */
-    public static function __callStatic($name, $arguments)
+    public function __call($name, $arguments)
     {
         // Get the path from the first argument
         $path = $arguments[0] ?? null;

@@ -3,7 +3,7 @@
 namespace Vedian\PageBuilder\Support\Traits;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
-use Vedian\PageBuilder\Support\Facades\PageBuilder;
+use Vedian\PageBuilder\Support\Facades\Vedian;
 
 trait HasCreator
 {
@@ -25,6 +25,6 @@ trait HasCreator
 
     public function creator()
     {
-        return $this->belongsTo(PageBuilder::user(), 'created_by');
+        return $this->belongsTo(Vedian::user(), 'created_by');
     }
 }

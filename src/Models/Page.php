@@ -4,13 +4,12 @@ namespace Vedian\PageBuilder\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Vedian\PageBuilder\Contracts\ModelContract;
-use Vedian\PageBuilder\Contracts\PageContract;
+use Vedian\PageBuilder\Contracts\Models\IPage;
 use Vedian\PageBuilder\Support\States\Status;
 use Vedian\PageBuilder\Support\States\Visibility;
 use Vedian\PageBuilder\Support\Traits\HasCreator;
 
-class Page extends Model implements PageContract
+class Page extends Model implements IPage
 {
     use HasFactory, HasCreator;
 
@@ -33,7 +32,7 @@ class Page extends Model implements PageContract
 
     public function rows()
     {
-        return $this->hasMany(Row::class);
+        return $this->hasMany(Row::class, 'page_id', 'id');
     }
 
     public function getRouteKeyName()

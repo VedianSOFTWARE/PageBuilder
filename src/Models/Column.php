@@ -4,9 +4,9 @@ namespace Vedian\PageBuilder\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Vedian\PageBuilder\Contracts\ModelContract;
+use Vedian\PageBuilder\Contracts\Models\IColumn;
 
-class Column extends Model implements ModelContract
+class Column extends Model implements IColumn
 {
     use HasFactory;
 
