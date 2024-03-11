@@ -2,20 +2,11 @@
 
 namespace Vedian\PageBuilder\Providers;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Vedian\PageBuilder\Builders\Builder;
-use Vedian\PageBuilder\Builders\ColumnBuilder;
-use Vedian\PageBuilder\Builders\PageBuilder;
-use Vedian\PageBuilder\Builders\RowBuilder;
-use Vedian\PageBuilder\Contracts\BuilderContract;
-use Vedian\PageBuilder\Contracts\ColumnBuilderContract;
 use Vedian\PageBuilder\Contracts\ColumnContract;
 use Vedian\PageBuilder\Contracts\ModelContract;
-use Vedian\PageBuilder\Contracts\PageBuilderContract;
 use Vedian\PageBuilder\Contracts\PageContract;
-use Vedian\PageBuilder\Contracts\RowBuilderContract;
 use Vedian\PageBuilder\Contracts\RowContract;
 use Vedian\PageBuilder\Models\Column;
 use Vedian\PageBuilder\Models\Page;
@@ -23,6 +14,7 @@ use Vedian\PageBuilder\Models\Row;
 use Vedian\PageBuilder\Support\DefinitionSupport;
 use Vedian\PageBuilder\Support\Facades\Vedian;
 use Vedian\PageBuilder\Support\PathSupport;
+use Vedian\PageBuilder\Support\RouteSupport;
 use Vedian\PageBuilder\Support\VedianSupport;
 
 /**
@@ -124,10 +116,6 @@ class PageBuilderProvider extends ServiceProvider
         Vedian::buildColumnsUsing(Column::class);
     }
 
-    protected function registerBuilderBindings()
-    {
-    }
-
     protected function facades()
     {
         // Bind the facades.
@@ -149,6 +137,13 @@ class PageBuilderProvider extends ServiceProvider
 
             // Return the Vedian System Support
             return new VedianSupport();
+        });
+
+        // Bind the facades.
+        $this->app->bind('route-support', function () {
+
+            // Return the Vedian System Support
+            return new RouteSupport();
         });
     }
 }

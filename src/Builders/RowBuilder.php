@@ -2,7 +2,6 @@
 
 namespace Vedian\PageBuilder\Builders;
 
-use Vedian\PageBuilder\Contracts\BuilderContract;
 use Vedian\PageBuilder\Contracts\RowBuilderContract;
 
 /**

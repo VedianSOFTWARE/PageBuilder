@@ -1,29 +1,29 @@
 <?php
 
-namespace Vedian\PageBuilder\Builders;
+namespace Vedian\PageBuilder\Support;
 
 use Illuminate\Support\Facades\Route;
 
 /**
- * Class RouteBuilder
+ * Class RouteSupport
  * 
- * This class provides static methods to build routes for the Vedian CMS page builder.
+ * This class provides methods to build routes for the Vedian CMS page builder.
  */
-class RouteBuilder
+class RouteSupport
 {
     /**
      * The prefix for the admin routes.
      *
      * @var string
      */
-    protected static string $dashboardRoute = 'dashboard';
+    protected string $dashboardRoute = 'dashboard';
 
     /**
      * Get the route prefix for the admin routes.
      *
      * @return string The route prefix for the admin routes.
      */
-    public static function prefix(string $route)
+    public function prefix(string $route)
     {
         return [
             'middleware' => static::middleware(),
@@ -37,7 +37,7 @@ class RouteBuilder
      *
      * @return array The routes for the admin dashboard.
      */
-    public static function resource(string $name, $controller)
+    public function resource(string $name, $controller)
     {
         Route::resource($name, $controller);
     }
@@ -49,7 +49,7 @@ class RouteBuilder
      * @param callable $callback The callback to execute.
      * @return void
      */
-    public static function dashboard($callback)
+    public function dashboard($callback)
     {
         Route::group(
             static::prefix(static::$dashboardRoute),
@@ -62,7 +62,7 @@ class RouteBuilder
      *
      * @return string The auth middleware.
      */
-    public static function getAuthMiddleware()
+    public function getAuthMiddleware()
     {
         return config('pagebuilder.guard') ? config('pagebuilder.guard') : 'auth';
     }
@@ -72,7 +72,7 @@ class RouteBuilder
      *
      * @return string The auth session middleware.
      */
-    public static function getAuthSessionMiddleware()
+    public function getAuthSessionMiddleware()
     {
         return config('pagebuilder.auth_session', false) ? config('pagebuilder.auth_session') : null;
     }
@@ -82,7 +82,7 @@ class RouteBuilder
      *
      * @return array The middleware for the routes.
      */
-    public static function middleware()
+    public function middleware()
     {
         return array_values(array_filter([
             'web',
