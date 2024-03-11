@@ -32,6 +32,32 @@ class PathSupport
         // Return the resources path
         return Path::resources($path);
     }
+    /**
+     * Get the directory path within the resources directory.
+     *
+     * @return string
+     */
+    public function __call($name, $arguments)
+    {
+        // Get the path from the first argument
+        $path = $arguments[0] ?? null;
+
+        // If the path is a config or routes file, append the file extension
+        switch ($name) {
+            case 'config':
+            case 'routes':
+                $path = "{$name}/{$path}.php";
+                break;
+            default:
+                $path = "{$name}/{$path}";
+                break;
+        }
+
+        $path = $path ? $path : $name;
+
+        // Return the resources path
+        return Path::resources($path);
+    }
 
 
     /**

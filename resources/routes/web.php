@@ -2,6 +2,7 @@
 
 use Vedian\PageBuilder\Controllers\PageController;
 use Vedian\PageBuilder\Builders\RouteSupport;
+use Vedian\PageBuilder\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,6 @@ use Vedian\PageBuilder\Builders\RouteSupport;
 |
 */
 
-RouteSupport::dashboard(function () {
-    RouteSupport::resource('page', PageController::class);
+Route::dashboard(function () {
+    Route::resource('page', PageController::class);
 });

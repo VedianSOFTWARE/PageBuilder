@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use Vedian\PageBuilder\Builders\PageBuilder;
-use Vedian\PageBuilder\Contracts\PageBuilderContract;
+use Vedian\PageBuilder\Contracts\Builders\IPageBuilder;
 use Vedian\PageBuilder\Support\Facades\Vedian;
 
 /**
@@ -24,7 +24,7 @@ class PageController extends Controller
      * @param PageBuilder $pb The page Service instance.
      * @return \Illuminate\View\View The page index view.
      */
-    public function index(PageBuilderContract $builder)
+    public function index(IPageBuilder $builder)
     {
         $page = $builder->make([
             'title' => 'Test page',
@@ -54,7 +54,7 @@ class PageController extends Controller
      * @param PageBuilder $pb The page Service instance.
      * @return int The created page ID.
      */
-    public function store(Request $request, PageBuilderContract $builder)
+    public function store(Request $request, IPageBuilder $builder)
     {
     }
 }

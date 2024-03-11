@@ -4,16 +4,13 @@ namespace Vedian\PageBuilder\Contracts;
 
 
 /**
- * Interface BuilderContract
+ * Interface IBuilder
  * 
  * This interface provides methods to retrieve the models used by the Vedian CMS page builder.
  * 
- * @method static view(string $string)
- * @method add($model)
- * 
  * @package Vedian\PageBuilder\Contracts
  */
-interface BuilderContract
+interface IBuilder
 {
     // public static function view($view, $data = [], $mergeData = []): View|Factory;
 

@@ -4,9 +4,9 @@ namespace Vedian\PageBuilder\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Vedian\PageBuilder\Contracts\ModelContract;
+use Vedian\PageBuilder\Contracts\Models\IRow;
 
-class Row extends Model implements ModelContract
+class Row extends Model implements IRow
 {
     use HasFactory;
 

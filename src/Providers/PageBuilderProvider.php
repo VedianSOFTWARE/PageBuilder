@@ -4,14 +4,21 @@ namespace Vedian\PageBuilder\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Vedian\PageBuilder\Contracts\ColumnContract;
-use Vedian\PageBuilder\Contracts\ModelContract;
-use Vedian\PageBuilder\Contracts\PageContract;
-use Vedian\PageBuilder\Contracts\RowContract;
+
+// Contracts
+use Vedian\PageBuilder\Contracts\IModel;
+use Vedian\PageBuilder\Contracts\Models\IColumn;
+use Vedian\PageBuilder\Contracts\Models\IPage;
+use Vedian\PageBuilder\Contracts\Models\IRow;
+
+// Models
 use Vedian\PageBuilder\Models\Column;
 use Vedian\PageBuilder\Models\Page;
 use Vedian\PageBuilder\Models\Row;
+
+// Support
 use Vedian\PageBuilder\Support\DefinitionSupport;
+use Vedian\PageBuilder\Support\Facades\Path;
 use Vedian\PageBuilder\Support\Facades\Vedian;
 use Vedian\PageBuilder\Support\PathSupport;
 use Vedian\PageBuilder\Support\RouteSupport;
@@ -68,11 +75,11 @@ class PageBuilderProvider extends ServiceProvider
     protected function publishing()
     {
         $this->publishes([
-            PathSupport::database('migrations') => database_path('migrations/pagebuilder')
+            Path::database('migrations') => database_path('migrations/pagebuilder')
         ], 'pagebuilder-migrations');
 
         $this->publishes([
-            PathSupport::views() => resource_path('views/vendor/pagebuilder'),
+            Path::views() => resource_path('views/vendor/pagebuilder'),
         ], 'pagebuilder-views');
     }
 
@@ -83,9 +90,9 @@ class PageBuilderProvider extends ServiceProvider
      */
     protected function loading()
     {
-        $this->loadMigrationsFrom(PathSupport::database('migrations'));
-        $this->loadViewsFrom(PathSupport::views(), 'pagebuilder');
-        $this->loadRoutesFrom(PathSupport::routes('web'));
+        $this->loadMigrationsFrom(Path::database('migrations'));
+        $this->loadViewsFrom(Path::views(), 'pagebuilder');
+        $this->loadRoutesFrom(Path::routes('web'));
     }
 
     /**
@@ -95,7 +102,7 @@ class PageBuilderProvider extends ServiceProvider
      */
     protected function merging()
     {
-        $this->mergeConfigFrom(PathSupport::config('pagebuilder'), 'pagebuilder');
+        $this->mergeConfigFrom(Path::config('pagebuilder'), 'pagebuilder');
     }
 
     /**
@@ -106,10 +113,10 @@ class PageBuilderProvider extends ServiceProvider
     protected function binding()
     {
         $this->facades();
-        
-        $this->app->singleton(ModelContract::class, PageContract::class);
-        $this->app->singleton(ModelContract::class, RowContract::class);
-        $this->app->singleton(ModelContract::class, ColumnContract::class);
+
+        $this->app->singleton(IModel::class, IPage::class);
+        $this->app->singleton(IModel::class, IRow::class);
+        $this->app->singleton(IModel::class, IColumn::class);
 
         Vedian::buildPagesUsing(Page::class);
         Vedian::buildRowsUsing(Row::class);

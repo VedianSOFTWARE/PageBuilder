@@ -2,14 +2,14 @@
 
 namespace Vedian\PageBuilder\Builders;
 
-use Vedian\PageBuilder\Contracts\ColumnBuilderContract;
+use Vedian\PageBuilder\Contracts\Builders\IColumnBuilder;
 
 /**
  * Class PageBuilder
  * 
  * This class provides static methods to retrieve the models used by the Vedian CMS page builder.
  */
-class ColumnBuilder extends Builder implements ColumnBuilderContract
+class ColumnBuilder extends Builder implements IColumnBuilder
 {
     public function make($data = [])
     {

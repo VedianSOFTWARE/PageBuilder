@@ -3,6 +3,6 @@
 namespace Vedian\PageBuilder\Contracts;
 
 
-interface ModelContract
+interface IModel
 {
 }

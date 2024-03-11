@@ -2,10 +2,7 @@
 
 namespace Vedian\PageBuilder\Builders;
 
-use Vedian\PageBuilder\Contracts\BuilderContract;
-use Vedian\PageBuilder\Contracts\PageBuilderContract;
-use Vedian\PageBuilder\Contracts\RowBuilderContract;
-use Vedian\PageBuilder\Models\Page;
+use Vedian\PageBuilder\Contracts\Builders\IPageBuilder;
 
 /**
  * Class PageBuilder
@@ -18,7 +15,7 @@ use Vedian\PageBuilder\Models\Page;
  * 
  * @package Vedian\PageBuilder\Builders
  */
-class PageBuilder extends Builder implements PageBuilderContract
+class PageBuilder extends Builder implements IPageBuilder
 {
 
     public function make($data = [])
