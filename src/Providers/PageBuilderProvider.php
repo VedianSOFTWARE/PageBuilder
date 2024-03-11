@@ -114,15 +114,16 @@ class PageBuilderProvider extends ServiceProvider
     {
         $this->facades();
 
-        // $this->app->singleton(IModel::class, IPage::class);
-        // $this->app->singleton(IModel::class, IRow::class);
-        // $this->app->singleton(IModel::class, IColumn::class);
-
         Vedian::buildPagesUsing(Page::class);
         Vedian::buildRowsUsing(Row::class);
         Vedian::buildColumnsUsing(Column::class);
     }
 
+    /**
+     * Bind the facades.
+     *
+     * @return void
+     */
     protected function facades()
     {
         // Bind the facades.

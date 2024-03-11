@@ -4,21 +4,17 @@ namespace Vedian\PageBuilder\Support\Traits;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-trait HasCreator
+trait HasStyling
 {
-    public static function bootHasCreator()
+    public static function bootHasStyling()
     {
         parent::creating(function (Eloquent $model) {
-            $model->created_by = 1;
         });
 
         parent::updating(function (Eloquent $model) {
-            $model->updated_by = auth()->id();
         });
 
         parent::deleting(function (Eloquent $model) {
-            $model->deleted_by = auth()->id();
-            $model->save();
         });
     }
 }
