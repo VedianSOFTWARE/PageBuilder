@@ -22,7 +22,6 @@ use Vedian\PageBuilder\Models\Row;
  */
 abstract class Builder extends Controller implements BuilderContract
 {
-
     /**
      * Create a new builder instance.
      *
@@ -33,8 +32,7 @@ abstract class Builder extends Controller implements BuilderContract
      */
     public function __construct(
         protected ModelContract $model,
-        protected BuilderContract|null $builder = null,
-        public array $data = []
+        protected BuilderContract|null $builder = null
     ) {
     }
 }
