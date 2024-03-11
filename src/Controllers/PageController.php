@@ -3,9 +3,6 @@
 namespace Vedian\PageBuilder\Controllers;
 
 use GuzzleHttp\Psr7\Request;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller;
 use Vedian\PageBuilder\Builders\PageBuilder;
 use Vedian\PageBuilder\Contracts\Builders\IPageBuilder;
 use Vedian\PageBuilder\Support\Facades\Vedian;
@@ -16,7 +13,6 @@ use Vedian\PageBuilder\Support\Facades\Vedian;
  */
 class PageController extends Controller
 {
-    use AuthorizesRequests, ValidatesRequests;
 
     /**
      * Show the page index.
@@ -26,13 +22,25 @@ class PageController extends Controller
      */
     public function index(IPageBuilder $builder)
     {
+        $builder->title = 'Test page';
+        $builder->slug  = 'test-page';
+        $builder->description = 'This is a test page.';
+
+        $p = $builder->create();
+        
+        $p->row([
+            'title' => 'Test row',
+            'description' => 'This is a test row.',
+        ]);
+        dd($p);
+
         $page = $builder->make([
             'title' => 'Test page',
             'slug' => 'test-page',
             'description' => 'This is a test page.',
         ]);
 
-        dd($page);
+        dd($builder, $page);
 
         return Vedian::view('page.index');
     }

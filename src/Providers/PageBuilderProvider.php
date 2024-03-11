@@ -4,7 +4,10 @@ namespace Vedian\PageBuilder\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-
+use Vedian\PageBuilder\Builders\PageBuilder;
+use Vedian\PageBuilder\Builders\RowBuilder;
+use Vedian\PageBuilder\Contracts\Builders\IPageBuilder;
+use Vedian\PageBuilder\Contracts\Builders\IRowBuilder;
 // Contracts
 use Vedian\PageBuilder\Contracts\IModel;
 use Vedian\PageBuilder\Contracts\Models\IColumn;

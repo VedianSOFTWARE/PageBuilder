@@ -5,6 +5,7 @@ namespace Vedian\PageBuilder\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Vedian\PageBuilder\Builders\PageBuilder;
+use Vedian\PageBuilder\Support\Facades\Vedian;
 
 /**
  * Class ColumnController
@@ -20,6 +21,6 @@ class ColumnController extends Controller
      */
     public function create()
     {
-        return PageVedian::view('page.create');
+        return Vedian::view('page.create');
     }
 }

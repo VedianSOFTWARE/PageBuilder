@@ -32,7 +32,7 @@ class Page extends Model implements IPage
 
     public function rows()
     {
-        return $this->hasMany(Row::class);
+        return $this->hasMany(Row::class, 'page_id', 'id');
     }
 
     public function getRouteKeyName()

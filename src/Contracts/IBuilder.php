@@ -12,11 +12,5 @@ namespace Vedian\PageBuilder\Contracts;
  */
 interface IBuilder
 {
-    // public static function view($view, $data = [], $mergeData = []): View|Factory;
-
-    // public function add(array $data = []);
-
-    // // public function make(array $data = []);
-
-    // public function save();
+    public function create();
 }
