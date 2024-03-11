@@ -2,9 +2,11 @@
 
 namespace Vedian\PageBuilder\Builders;
 
+use Illuminate\Support\Collection;
 use Vedian\PageBuilder\Contracts\Builders\IRowBuilder;
 use Vedian\PageBuilder\Contracts\IBuilder;
 use Vedian\PageBuilder\Contracts\IModel;
+use Vedian\PageBuilder\Models\Row;
 
 /**
  * Class PageBuilder
@@ -15,6 +17,8 @@ use Vedian\PageBuilder\Contracts\IModel;
  */
 class RowBuilder extends Builder implements IRowBuilder
 {
+
+
     /**
      * Create a new builder instance.
      *

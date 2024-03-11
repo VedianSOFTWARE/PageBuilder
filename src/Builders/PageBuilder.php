@@ -2,10 +2,13 @@
 
 namespace Vedian\PageBuilder\Builders;
 
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Vedian\PageBuilder\Contracts\Builders\IPageBuilder;
 use Vedian\PageBuilder\Contracts\IBuilder;
 use Vedian\PageBuilder\Contracts\IModel;
+use Vedian\PageBuilder\Contracts\Models\IColumn;
+use Vedian\PageBuilder\Models\Column;
+use Vedian\PageBuilder\Models\Page;
 
 /**
  * Class PageBuilder
@@ -16,6 +19,7 @@ use Vedian\PageBuilder\Contracts\IModel;
  */
 class PageBuilder extends Builder implements IPageBuilder
 {
+
     public Collection $rows;
 
     /**
@@ -30,27 +34,45 @@ class PageBuilder extends Builder implements IPageBuilder
         protected IModel $model,
         protected IBuilder|null $builder = null
     ) {
+
         parent::__construct($model, $builder);
+        
         $this->rows = new Collection();
+        $this->columns = new Collection();
     }
 
-    public function setBuilderEntity()
+    public function prop($key, $value)
     {
-        $this->builder->entity = $this->entity;
-    }
-
-    public function relation($name = 'rows')
-    {
-        return $this->entity->{$name}();
+        $this->properties->put($key, $value);
+        return $this;
     }
 
     public function row($data = [])
     {
-        $this
-            ->relation()
-            ->save($this->builder($data));
+        // dd($this->relation('rows'));
+        $row = $this
+            ->relation('rows')
+            ->save($this->rowBuilder($data));
 
-        $this->setBuilderEntity();
+        $builder = PageBuilder::class;
+        $builder = new $builder($this->entity, $this->builder);
+        $this->builder = $builder;
+
+        // $this->entity = $row;
+        $this->builder->entity = $row;
+
+        $this->rows->push($row);
+
+        return $this->builder;
+    }
+
+    public function col($data = [])
+    {
+        $col = $this
+            ->relation('columns')
+            ->save($this->colBuilder($data));
+
+        $this->columns->push($col);
 
         return $this;
     }

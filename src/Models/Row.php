@@ -20,11 +20,11 @@ class Row extends Model implements IRow
 
     public function page()
     {
-        return $this->belongsTo(Page::class);
+        return $this->belongsTo(Page::class, 'page_id', 'id');
     }
 
     public function columns()
     {
-        return $this->hasMany(Column::class);
+        return $this->hasMany(Column::class, 'page_row_id', 'id');
     }
 }

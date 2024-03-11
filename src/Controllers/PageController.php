@@ -5,6 +5,7 @@ namespace Vedian\PageBuilder\Controllers;
 use GuzzleHttp\Psr7\Request;
 use Vedian\PageBuilder\Builders\PageBuilder;
 use Vedian\PageBuilder\Contracts\Builders\IPageBuilder;
+use Vedian\PageBuilder\Models\Row;
 use Vedian\PageBuilder\Support\Facades\Vedian;
 
 /**
@@ -22,25 +23,77 @@ class PageController extends Controller
      */
     public function index(IPageBuilder $builder)
     {
-        $builder->title = 'Test page';
-        $builder->slug  = 'test-page';
-        $builder->description = 'This is a test page.';
+        $builder->prop('title', 'Test page');
+        $builder->prop('slug', 'test-page');
+        $builder->prop('description', 'This is a test page.');
 
-        $p = $builder->create();
-        
-        $p->row([
+        $builder = $builder->create();
+
+        $builder->row([
             'title' => 'Test row',
             'description' => 'This is a test row.',
         ]);
-        dd($p);
 
-        $page = $builder->make([
-            'title' => 'Test page',
-            'slug' => 'test-page',
-            'description' => 'This is a test page.',
-        ]);
+        $builder->row([
+            'title' => 'Test row',
+            'description' => 'This is a test row.',
+        ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ]);
 
-        dd($builder, $page);
+
+        $builder->row([
+            'title' => 'Test row',
+            'description' => 'This is a test row.',
+        ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ])
+            ->col([
+                'title' => 'Test column',
+                'description' => 'This is a test column.',
+            ]);
+        
+            dd($builder);
 
         return Vedian::view('page.index');
     }

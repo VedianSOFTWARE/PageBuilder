@@ -6,11 +6,14 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use Vedian\PageBuilder\Contracts\IBuilder;
 use Vedian\PageBuilder\Contracts\IModel;
+use Vedian\PageBuilder\Contracts\Models\IRow;
+use Vedian\PageBuilder\Models\Column;
+use Vedian\PageBuilder\Models\Row;
 
 abstract class Builder
 {
-
-    public Collection $data;
+    public $entity;
+    public Collection $properties;
 
     /**
      * Create a new builder instance.
@@ -22,16 +25,67 @@ abstract class Builder
      */
     public function __construct(
         protected IModel $model,
-        protected IBuilder|null $builder = null,
-        protected IModel|null $entity = null
+        protected IBuilder|null $builder = null
     ) {
-        $this->data = new Collection();
+        $this->properties = new Collection();
     }
 
-    public function builder($data)
+    /**
+     * Create a new instance of the model.
+     *
+     * @param array $data The data to use.
+     * @return IModel The created model.
+     */
+    public function builder(string $model, $data)
     {
-        $model = $this->builder->model::class;
         return new $model($data);
+    }
+
+    public function rowBuilder($data)
+    {
+        return $this->builder(Row::class, $data);
+    }
+
+
+    public function colBuilder($data)
+    {
+        return $this->builder(Column::class, $data);
+    }
+
+    /**
+     * Set the value of the given property.
+     *
+     * @param string $name The name of the property.
+     * @param mixed $value The value of the property.
+     */
+    public function setPageModel()
+    {
+        return $this->setEntity($this->createPage());
+    }
+
+    /**
+     * Set the value of the given property.
+     *
+     * @param string $name The name of the property.
+     * @param mixed $value The value of the property.
+     * @return void
+     */
+    public function setEntity($entity)
+    {
+        $this->entity = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of the given property.
+     *
+     * @param string $name The name of the property.
+     * @return mixed The value of the property.
+     */
+    public function relation($name = 'rows')
+    {
+        return $this->entity->{$name}();
     }
 
     /**
@@ -55,7 +109,6 @@ abstract class Builder
     public function __set($name, $value)
     {
         $this->$name = $value;
-        $this->data[$name] = $value;
     }
 
     /**
@@ -88,10 +141,11 @@ abstract class Builder
      */
     public function create()
     {
-        $this->entity = $this->model->create(
-            $this->data->toArray()
-        );
+        return $this->setPageModel();
+    }
 
-        return $this;
+    public function createPage()
+    {
+        return $this->model->create($this->properties->toArray());
     }
 }
