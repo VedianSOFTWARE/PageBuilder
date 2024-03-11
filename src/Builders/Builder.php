@@ -6,7 +6,7 @@ use Illuminate\Routing\Controller;
 use Vedian\PageBuilder\Contracts\IBuilder;
 use Vedian\PageBuilder\Contracts\IModel;
 
-abstract class Builder extends Controller implements IBuilder
+abstract class Builder
 {
     /**
      * Create a new builder instance.

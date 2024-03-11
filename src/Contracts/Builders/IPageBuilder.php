@@ -9,7 +9,7 @@ use Vedian\PageBuilder\Contracts\IBuilder;
  * 
  * This interface defines the methods that must be implemented by the page model.
  * 
- * @package Vedian\PageBuilder\Contracts
+ * @see \Vedian\PageBuilder\Builders\PageBuilder
  */
 interface IPageBuilder extends IBuilder
 {

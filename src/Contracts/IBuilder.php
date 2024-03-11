@@ -8,7 +8,7 @@ namespace Vedian\PageBuilder\Contracts;
  * 
  * This interface provides methods to retrieve the models used by the Vedian CMS page builder.
  * 
- * @package Vedian\PageBuilder\Contracts
+ * @see \Vedian\PageBuilder\Builders\Builder
  */
 interface IBuilder
 {
