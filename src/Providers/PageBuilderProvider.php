@@ -2,11 +2,28 @@
 
 namespace Vedian\PageBuilder\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Vedian\PageBuilder\Builders\Builder;
+use Vedian\PageBuilder\Builders\ColumnBuilder;
 use Vedian\PageBuilder\Builders\PageBuilder;
-use Vedian\PageBuilder\Support\Migration\PageSchema;
-use Vedian\PageBuilder\Support\Paths;
+use Vedian\PageBuilder\Builders\RowBuilder;
+use Vedian\PageBuilder\Contracts\BuilderContract;
+use Vedian\PageBuilder\Contracts\ColumnBuilderContract;
+use Vedian\PageBuilder\Contracts\ColumnContract;
+use Vedian\PageBuilder\Contracts\ModelContract;
+use Vedian\PageBuilder\Contracts\PageBuilderContract;
+use Vedian\PageBuilder\Contracts\PageContract;
+use Vedian\PageBuilder\Contracts\RowBuilderContract;
+use Vedian\PageBuilder\Contracts\RowContract;
+use Vedian\PageBuilder\Models\Column;
+use Vedian\PageBuilder\Models\Page;
+use Vedian\PageBuilder\Models\Row;
+use Vedian\PageBuilder\Support\DefinitionSupport;
+use Vedian\PageBuilder\Support\Facades\Vedian;
+use Vedian\PageBuilder\Support\PathSupport;
+use Vedian\PageBuilder\Support\VedianSupport;
 
 /**
  * Class CmsServiceProvider
@@ -59,11 +76,11 @@ class PageBuilderProvider extends ServiceProvider
     protected function publishing()
     {
         $this->publishes([
-            Paths::database('migrations') => database_path('migrations/pagebuilder')
+            PathSupport::database('migrations') => database_path('migrations/pagebuilder')
         ], 'pagebuilder-migrations');
 
         $this->publishes([
-            Paths::views() => resource_path('views/vendor/pagebuilder'),
+            PathSupport::views() => resource_path('views/vendor/pagebuilder'),
         ], 'pagebuilder-views');
     }
 
@@ -74,9 +91,9 @@ class PageBuilderProvider extends ServiceProvider
      */
     protected function loading()
     {
-        $this->loadMigrationsFrom(Paths::database('migrations'));
-        $this->loadViewsFrom(Paths::views(), 'pagebuilder');
-        $this->loadRoutesFrom(Paths::routes('web'));
+        $this->loadMigrationsFrom(PathSupport::database('migrations'));
+        $this->loadViewsFrom(PathSupport::views(), 'pagebuilder');
+        $this->loadRoutesFrom(PathSupport::routes('web'));
     }
 
     /**
@@ -86,7 +103,7 @@ class PageBuilderProvider extends ServiceProvider
      */
     protected function merging()
     {
-        $this->mergeConfigFrom(Paths::config('pagebuilder'), 'pagebuilder');
+        $this->mergeConfigFrom(PathSupport::config('pagebuilder'), 'pagebuilder');
     }
 
     /**
@@ -96,12 +113,42 @@ class PageBuilderProvider extends ServiceProvider
      */
     protected function binding()
     {
-        $this->app->bind('pagebuilder', function () {
-            return new PageBuilder();
+        $this->facades();
+        
+        $this->app->singleton(ModelContract::class, PageContract::class);
+        $this->app->singleton(ModelContract::class, RowContract::class);
+        $this->app->singleton(ModelContract::class, ColumnContract::class);
+
+        Vedian::buildPagesUsing(Page::class);
+        Vedian::buildRowsUsing(Row::class);
+        Vedian::buildColumnsUsing(Column::class);
+    }
+
+    protected function registerBuilderBindings()
+    {
+    }
+
+    protected function facades()
+    {
+        // Bind the facades.
+        $this->app->bind('definition-support', function () {
+
+            // Return the migration support.
+            return new DefinitionSupport();
         });
 
-        $this->app->bind('pageschema', function () {
-            return new PageSchema();
+        // Bind the facades.
+        $this->app->bind('path-support', function () {
+
+            // Return the path support.
+            return new PathSupport();
+        });
+
+        // Bind the facades.
+        $this->app->bind('vedian-support', function () {
+
+            // Return the Vedian System Support
+            return new VedianSupport();
         });
     }
 }

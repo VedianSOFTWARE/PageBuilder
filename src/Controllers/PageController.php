@@ -2,10 +2,13 @@
 
 namespace Vedian\PageBuilder\Controllers;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use Vedian\PageBuilder\Builders\PageBuilder;
+use Vedian\PageBuilder\Contracts\PageBuilderContract;
+use Vedian\PageBuilder\Support\Facades\Vedian;
 
 /**
  * Class PageController
@@ -21,9 +24,17 @@ class PageController extends Controller
      * @param PageBuilder $pb The page Service instance.
      * @return \Illuminate\View\View The page index view.
      */
-    public function index()
+    public function index(PageBuilderContract $builder)
     {
-        return PageBuilder::view('page.index');
+        $page = $builder->make([
+            'title' => 'Test page',
+            'slug' => 'test-page',
+            'description' => 'This is a test page.',
+        ]);
+
+        dd($page);
+
+        return Vedian::view('page.index');
     }
 
     /**
@@ -34,6 +45,16 @@ class PageController extends Controller
      */
     public function create()
     {
-        return PageBuilder::view('page.create');
+        return Vedian::view('page.create');
+    }
+
+    /**
+     * Store a new page.
+     *
+     * @param PageBuilder $pb The page Service instance.
+     * @return int The created page ID.
+     */
+    public function store(Request $request, PageBuilderContract $builder)
+    {
     }
 }

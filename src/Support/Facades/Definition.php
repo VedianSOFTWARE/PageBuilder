@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Vedian\PageBuilder\Support\Facades;
 
@@ -16,10 +16,9 @@ use Illuminate\Support\Facades\Facade;
  * @method static void content(\Illuminate\Database\Schema\Blueprint $table)
  * @method static void softDeletes(\Illuminate\Database\Schema\Blueprint $table)
  * 
- * 
- * @see PageSchema
+ * @see \Vedian\PageBuilder\Support\SchemaDefinition
  */
-class PageSchema extends Facade 
+class Definition extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -28,6 +27,6 @@ class PageSchema extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'pageschema';
+        return 'definition-support';
     }
 }

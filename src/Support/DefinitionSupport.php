@@ -1,6 +1,6 @@
 <?php
 
-namespace Vedian\PageBuilder\Support\Migration;
+namespace Vedian\PageBuilder\Support;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Str;
@@ -14,7 +14,7 @@ use Vedian\PageBuilder\Support\States\Visibility;
  *
  * @package Cms
  */
-class PageSchema
+class DefinitionSupport
 {
 
     /**
@@ -87,7 +87,9 @@ class PageSchema
      */
     public function slug(Blueprint $table)
     {
-        $table->string('slug')->unique(); // The slug of the section (unique identifier   
+        $table->string('slug')
+            // ->unique()
+        ; // The slug of the section (unique identifier   
     }
 
     /**

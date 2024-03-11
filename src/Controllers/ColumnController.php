@@ -20,6 +20,6 @@ class ColumnController extends Controller
      */
     public function create()
     {
-        return PageBuilder::view('page.create');
+        return PageVedian::view('page.create');
     }
 }

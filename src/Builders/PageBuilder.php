@@ -2,89 +2,34 @@
 
 namespace Vedian\PageBuilder\Builders;
 
+use Vedian\PageBuilder\Contracts\BuilderContract;
+use Vedian\PageBuilder\Contracts\PageBuilderContract;
+use Vedian\PageBuilder\Contracts\RowBuilderContract;
+use Vedian\PageBuilder\Models\Page;
+
 /**
  * Class PageBuilder
  * 
  * This class provides static methods to retrieve the models used by the Vedian CMS page builder.
+ * 
+ * @method static view(string $string)
+ * @method add($model): void
+ * @method make($data = [])
+ * 
+ * @package Vedian\PageBuilder\Builders
  */
-class PageBuilder
+class PageBuilder extends Builder implements PageBuilderContract
 {
-    /**
-     * The fully qualified class name of the user model.
-     *
-     * @var string
-     */
-    public static $userModel = 'App\\Models\\User';
 
-    /**
-     * The fully qualified class name of the page model.
-     *
-     * @var string
-     */
-    public static $pageModel = 'Vedian\\PageBuilder\\Models\\Page';
-
-    /**
-     * The fully qualified class name of the row model.
-     *
-     * @var string
-     */
-    public static $rowModel = 'Vedian\\PageBuilder\\Models\\Row';
-
-    /**
-     * The fully qualified class name of the column model.
-     *
-     * @var string
-     */
-    public static $columnModel = 'Vedian\\PageBuilder\\Models\\Column';
-
-    /**
-     * Get the user model.
-     *
-     * @return string The fully qualified class name of the user model.
-     */
-    public static function user()
+    public function make($data = [])
     {
-        return static::$userModel;
+        $this->page = $data;
+
+        return $this;
     }
 
-    /**
-     * Get the page model.
-     *
-     * @return string The fully qualified class name of the page model.
-     */
-    public static function page()
+    public function save()
     {
-        return static::$pageModel;
-    }
-
-    /**
-     * Get the row model.
-     *
-     * @return string The fully qualified class name of the row model.
-     */
-    public static function row()
-    {
-        return static::$rowModel;
-    }
-
-    /**
-     * Get the column model.
-     *
-     * @return string The fully qualified class name of the column model.
-     */
-    public static function column()
-    {
-        return static::$columnModel;
-    }
-
-    /**
-     * Get the view for the page builder.
-     *
-     * @param string $view The view to retrieve.
-     * @return string The view for the page builder.
-     */
-    public static function view($view, $data = [], $mergeData = [])
-    {
-        return view("pagebuilder::{$view}", $data, $mergeData);
+        return $this->model->id;
     }
 }

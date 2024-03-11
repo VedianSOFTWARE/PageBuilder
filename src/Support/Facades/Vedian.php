@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Vedian\PageBuilder\Support\Facades;
 
@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * 
- * @see Vedian\PageBuilder\Builders\PageBuilder
+ * @see \Vedian\PageBuilder\Support\VedianSupport
  */
-class PageBuilder extends Facade 
+class Vedian extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -17,6 +17,6 @@ class PageBuilder extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'pagebuilder'; 
+        return 'vedian-support';
     }
 }
