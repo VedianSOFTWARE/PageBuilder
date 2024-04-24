@@ -9,6 +9,7 @@ use Vedian\PageBuilder\Contracts\IModel;
 use Vedian\PageBuilder\Contracts\Models\IColumn;
 use Vedian\PageBuilder\Models\Column;
 use Vedian\PageBuilder\Models\Page;
+use Vedian\PageBuilder\Models\Row;
 
 /**
  * Class PageBuilder
@@ -19,7 +20,6 @@ use Vedian\PageBuilder\Models\Page;
  */
 class PageBuilder extends Builder implements IPageBuilder
 {
-
     public Collection $rows;
 
     /**
@@ -37,8 +37,8 @@ class PageBuilder extends Builder implements IPageBuilder
 
         parent::__construct($model, $builder);
         
-        $this->rows = new Collection();
-        $this->columns = new Collection();
+        $this->rows = new Collection;
+        $this->columns = new Collection;
     }
 
     public function prop($key, $value)
@@ -49,16 +49,14 @@ class PageBuilder extends Builder implements IPageBuilder
 
     public function row($data = [])
     {
-        // dd($this->relation('rows'));
         $row = $this
-            ->relation('rows')
+            ->relation(Row::class)
             ->save($this->rowBuilder($data));
 
         $builder = PageBuilder::class;
         $builder = new $builder($this->entity, $this->builder);
-        $this->builder = $builder;
 
-        // $this->entity = $row;
+        $this->builder = $builder;
         $this->builder->entity = $row;
 
         $this->rows->push($row);
