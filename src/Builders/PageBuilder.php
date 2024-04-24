@@ -20,8 +20,6 @@ use Vedian\PageBuilder\Models\Row;
  */
 class PageBuilder extends Builder implements IPageBuilder
 {
-    public Collection $rows;
-
     /**
      * Create a new builder instance.
      *
@@ -32,22 +30,20 @@ class PageBuilder extends Builder implements IPageBuilder
      */
     public function __construct(
         protected IModel $model,
-        protected IBuilder|null $builder = null
+        protected IBuilder|null $builder = null,
+        public Collection $rows = new Collection,
+        public Collection $columns = new Collection
     ) {
-
         parent::__construct($model, $builder);
-        
-        $this->rows = new Collection;
-        $this->columns = new Collection;
     }
 
-    public function prop($key, $value)
+    public function prop($key, $value): IPageBuilder
     {
         $this->properties->put($key, $value);
         return $this;
     }
 
-    public function row($data = [])
+    public function row(array $data = []): IBuilder
     {
         $row = $this
             ->relation(Row::class)
@@ -64,10 +60,10 @@ class PageBuilder extends Builder implements IPageBuilder
         return $this->builder;
     }
 
-    public function col($data = [])
+    public function col($data = []): IBuilder
     {
         $col = $this
-            ->relation('columns')
+            ->relation(Column::class)
             ->save($this->colBuilder($data));
 
         $this->columns->push($col);

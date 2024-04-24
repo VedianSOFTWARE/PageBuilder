@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 abstract class Builder
 {
     public $entity;
-    public Collection $properties;
 
     /**
      * Create a new builder instance.
@@ -26,9 +25,9 @@ abstract class Builder
      */
     public function __construct(
         protected IModel $model,
-        protected IBuilder|null $builder = null
+        protected IBuilder|null $builder = null,
+        public Collection $properties = new Collection
     ) {
-        $this->properties = new Collection;
     }
 
     /**
@@ -78,10 +77,10 @@ abstract class Builder
         return $this;
     }
 
+    // TODO: Fix this
     private function getMethod(string $method, bool $plural = true)
     {
         $method = Str::of($method)->lower()->plural();
-        
     }
 
     /**
@@ -92,7 +91,6 @@ abstract class Builder
      */
     public function relation($relation = Row::class)
     {
-        dd($this->getMethod($relation));
         return $this->entity->{$relation}();
     }
 
