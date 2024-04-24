@@ -9,11 +9,11 @@ use Vedian\PageBuilder\Contracts\IModel;
 use Vedian\PageBuilder\Contracts\Models\IRow;
 use Vedian\PageBuilder\Models\Column;
 use Vedian\PageBuilder\Models\Row;
+use Illuminate\Support\Str;
 
 abstract class Builder
 {
     public $entity;
-    public Collection $properties;
 
     /**
      * Create a new builder instance.
@@ -25,9 +25,9 @@ abstract class Builder
      */
     public function __construct(
         protected IModel $model,
-        protected IBuilder|null $builder = null
+        protected IBuilder|null $builder = null,
+        public Collection $properties = new Collection
     ) {
-        $this->properties = new Collection();
     }
 
     /**
@@ -77,15 +77,21 @@ abstract class Builder
         return $this;
     }
 
+    // TODO: Fix this
+    private function getMethod(string $method, bool $plural = true)
+    {
+        $method = Str::of($method)->lower()->plural();
+    }
+
     /**
      * Get the value of the given property.
      *
      * @param string $name The name of the property.
      * @return mixed The value of the property.
      */
-    public function relation($name = 'rows')
+    public function relation($relation = Row::class)
     {
-        return $this->entity->{$name}();
+        return $this->entity->{$relation}();
     }
 
     /**

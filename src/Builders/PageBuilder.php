@@ -9,6 +9,7 @@ use Vedian\PageBuilder\Contracts\IModel;
 use Vedian\PageBuilder\Contracts\Models\IColumn;
 use Vedian\PageBuilder\Models\Column;
 use Vedian\PageBuilder\Models\Page;
+use Vedian\PageBuilder\Models\Row;
 
 /**
  * Class PageBuilder
@@ -19,9 +20,6 @@ use Vedian\PageBuilder\Models\Page;
  */
 class PageBuilder extends Builder implements IPageBuilder
 {
-
-    public Collection $rows;
-
     /**
      * Create a new builder instance.
      *
@@ -32,33 +30,29 @@ class PageBuilder extends Builder implements IPageBuilder
      */
     public function __construct(
         protected IModel $model,
-        protected IBuilder|null $builder = null
+        protected IBuilder|null $builder = null,
+        public Collection $rows = new Collection,
+        public Collection $columns = new Collection
     ) {
-
         parent::__construct($model, $builder);
-        
-        $this->rows = new Collection();
-        $this->columns = new Collection();
     }
 
-    public function prop($key, $value)
+    public function prop($key, $value): IPageBuilder
     {
         $this->properties->put($key, $value);
         return $this;
     }
 
-    public function row($data = [])
+    public function row(array $data = []): IBuilder
     {
-        // dd($this->relation('rows'));
         $row = $this
-            ->relation('rows')
+            ->relation(Row::class)
             ->save($this->rowBuilder($data));
 
         $builder = PageBuilder::class;
         $builder = new $builder($this->entity, $this->builder);
-        $this->builder = $builder;
 
-        // $this->entity = $row;
+        $this->builder = $builder;
         $this->builder->entity = $row;
 
         $this->rows->push($row);
@@ -66,10 +60,10 @@ class PageBuilder extends Builder implements IPageBuilder
         return $this->builder;
     }
 
-    public function col($data = [])
+    public function col($data = []): IBuilder
     {
         $col = $this
-            ->relation('columns')
+            ->relation(Column::class)
             ->save($this->colBuilder($data));
 
         $this->columns->push($col);

@@ -52,7 +52,7 @@ class RouteSupport
     public function dashboard($callback)
     {
         Route::group(
-            static::prefix(static::$dashboardRoute),
+            static::prefix($this->dashboardRoute),
             $callback
         );
     }
